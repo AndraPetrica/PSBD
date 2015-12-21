@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library_Form_Application", "Library_Form_Application\Library_Form_Application.csproj", "{D048A020-5068-43A5-AEAB-BA6C3B156E60}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{6C2903CE-CDC8-4B7B-BB34-99BB8169BFF3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books", "Books\Books.csproj", "{F1A2593E-E4F5-494E-8013-D75EF1DEAD31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +15,6 @@ Global
 		{D048A020-5068-43A5-AEAB-BA6C3B156E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D048A020-5068-43A5-AEAB-BA6C3B156E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D048A020-5068-43A5-AEAB-BA6C3B156E60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C2903CE-CDC8-4B7B-BB34-99BB8169BFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C2903CE-CDC8-4B7B-BB34-99BB8169BFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C2903CE-CDC8-4B7B-BB34-99BB8169BFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C2903CE-CDC8-4B7B-BB34-99BB8169BFF3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1A2593E-E4F5-494E-8013-D75EF1DEAD31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1A2593E-E4F5-494E-8013-D75EF1DEAD31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1A2593E-E4F5-494E-8013-D75EF1DEAD31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1A2593E-E4F5-494E-8013-D75EF1DEAD31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

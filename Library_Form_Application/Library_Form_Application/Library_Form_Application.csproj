@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Books.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,16 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Books\Books.csproj">
-      <Project>{f1a2593e-e4f5-494e-8013-d75ef1dead31}</Project>
-      <Name>Books</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Connection\Connection.csproj">
-      <Project>{6c2903ce-cdc8-4b7b-bb34-99bb8169bff3}</Project>
-      <Name>Connection</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

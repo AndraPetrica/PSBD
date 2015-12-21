@@ -69,8 +69,8 @@ namespace Library_Form_Application
         private void LoadAllBooks(object sender, EventArgs e)
         {
             
-            String[] books = { "Book1", "Book2" };
-
+           // String[] books = { "Book1", "Book2" };
+            String[] books = booksAdapter.GetAllBooks();
             foreach (String book in books)
             {
                 listBoxBooks.Items.Add(book);
