@@ -52,7 +52,7 @@ namespace Library_Form_Application
         private void InitAdapters()
         {
             booksAdapter = new Books.Books(connection.GetConnectionObject());
-            bookIndex = booksAdapter.GetAllBooks().Length;
+          //  bookIndex = booksAdapter.GetAllBooks().Length;
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -69,8 +69,8 @@ namespace Library_Form_Application
         private void LoadAllBooks(object sender, EventArgs e)
         {
             
-           // String[] books = { "Book1", "Book2" };
-            String[] books = booksAdapter.GetAllBooks();
+            String[] books = { "Book1", "Book2" };
+           // String[] books = booksAdapter.GetAllBooks();
             foreach (String book in books)
             {
                 listBoxBooks.Items.Add(book);
