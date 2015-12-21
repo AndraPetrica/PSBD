@@ -77,15 +77,15 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.BooksAddTypeTb = new System.Windows.Forms.TextBox();
+            this.BooksAddAvalaibleStockTb = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.BooksAddTotalStockTb = new System.Windows.Forms.TextBox();
+            this.BooksAddPublisherTb = new System.Windows.Forms.TextBox();
+            this.BooksAddPublicationDateTb = new System.Windows.Forms.TextBox();
+            this.BooksAddAuthorTb = new System.Windows.Forms.TextBox();
+            this.BooksAddTitleTb = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxBooks = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button10 = new System.Windows.Forms.Button();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
@@ -110,10 +110,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this._cardsTabPage = new System.Windows.Forms.TabPage();
-            this._penalizationsTabPage = new System.Windows.Forms.TabPage();
-            this._debtsTabPage = new System.Windows.Forms.TabPage();
-            this._loansTabPage = new System.Windows.Forms.TabPage();
-            this._returnsTabPage = new System.Windows.Forms.TabPage();
+            this.button15 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.textBox29 = new System.Windows.Forms.TextBox();
@@ -136,7 +133,7 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.button15 = new System.Windows.Forms.Button();
+            this._penalizationsTabPage = new System.Windows.Forms.TabPage();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -149,6 +146,8 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.listBox4 = new System.Windows.Forms.ListBox();
@@ -160,9 +159,10 @@
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.textBox32 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
+            this._debtsTabPage = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.listBox6 = new System.Windows.Forms.ListBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.textBox38 = new System.Windows.Forms.TextBox();
@@ -176,8 +176,7 @@
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.listBox6 = new System.Windows.Forms.ListBox();
-            this.label39 = new System.Windows.Forms.Label();
+            this._loansTabPage = new System.Windows.Forms.TabPage();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -189,8 +188,18 @@
             this.label36 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.listBox7 = new System.Windows.Forms.ListBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.button26 = new System.Windows.Forms.Button();
             this.comboBox16 = new System.Windows.Forms.ComboBox();
             this.comboBox17 = new System.Windows.Forms.ComboBox();
@@ -198,16 +207,7 @@
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.textBox41 = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBox42 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textBox40 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
+            this._returnsTabPage = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -218,17 +218,17 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this._cardsTabPage.SuspendLayout();
-            this._penalizationsTabPage.SuspendLayout();
-            this._debtsTabPage.SuspendLayout();
-            this._loansTabPage.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this._penalizationsTabPage.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this._debtsTabPage.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this._loansTabPage.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
@@ -248,6 +248,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(857, 499);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Click += new System.EventHandler(this.LoadAllBooks);
             // 
             // _studentsTabPage
             // 
@@ -668,7 +669,7 @@
             this._booksTabPage.Controls.Add(this.button8);
             this._booksTabPage.Controls.Add(this.button9);
             this._booksTabPage.Controls.Add(this.groupBox4);
-            this._booksTabPage.Controls.Add(this.listBox2);
+            this._booksTabPage.Controls.Add(this.listBoxBooks);
             this._booksTabPage.Controls.Add(this.groupBox5);
             this._booksTabPage.Location = new System.Drawing.Point(4, 22);
             this._booksTabPage.Name = "_booksTabPage";
@@ -693,20 +694,21 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(92, 23);
             this.button7.TabIndex = 14;
-            this.button7.Text = "Add student";
+            this.button7.Text = "Add Book";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.AddBook);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox17);
-            this.groupBox3.Controls.Add(this.textBox18);
+            this.groupBox3.Controls.Add(this.BooksAddTypeTb);
+            this.groupBox3.Controls.Add(this.BooksAddAvalaibleStockTb);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.textBox19);
-            this.groupBox3.Controls.Add(this.textBox20);
-            this.groupBox3.Controls.Add(this.textBox21);
-            this.groupBox3.Controls.Add(this.textBox22);
-            this.groupBox3.Controls.Add(this.textBox23);
+            this.groupBox3.Controls.Add(this.BooksAddTotalStockTb);
+            this.groupBox3.Controls.Add(this.BooksAddPublisherTb);
+            this.groupBox3.Controls.Add(this.BooksAddPublicationDateTb);
+            this.groupBox3.Controls.Add(this.BooksAddAuthorTb);
+            this.groupBox3.Controls.Add(this.BooksAddTitleTb);
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.label21);
@@ -719,19 +721,19 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add Book";
             // 
-            // textBox17
+            // BooksAddTypeTb
             // 
-            this.textBox17.Location = new System.Drawing.Point(88, 173);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(145, 20);
-            this.textBox17.TabIndex = 14;
+            this.BooksAddTypeTb.Location = new System.Drawing.Point(88, 173);
+            this.BooksAddTypeTb.Name = "BooksAddTypeTb";
+            this.BooksAddTypeTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddTypeTb.TabIndex = 14;
             // 
-            // textBox18
+            // BooksAddAvalaibleStockTb
             // 
-            this.textBox18.Location = new System.Drawing.Point(88, 147);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(145, 20);
-            this.textBox18.TabIndex = 13;
+            this.BooksAddAvalaibleStockTb.Location = new System.Drawing.Point(88, 147);
+            this.BooksAddAvalaibleStockTb.Name = "BooksAddAvalaibleStockTb";
+            this.BooksAddAvalaibleStockTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddAvalaibleStockTb.TabIndex = 13;
             // 
             // label17
             // 
@@ -751,40 +753,40 @@
             this.label18.TabIndex = 10;
             this.label18.Text = "Avail. Stock:";
             // 
-            // textBox19
+            // BooksAddTotalStockTb
             // 
-            this.textBox19.Location = new System.Drawing.Point(88, 121);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(145, 20);
-            this.textBox19.TabIndex = 9;
+            this.BooksAddTotalStockTb.Location = new System.Drawing.Point(88, 121);
+            this.BooksAddTotalStockTb.Name = "BooksAddTotalStockTb";
+            this.BooksAddTotalStockTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddTotalStockTb.TabIndex = 9;
             // 
-            // textBox20
+            // BooksAddPublisherTb
             // 
-            this.textBox20.Location = new System.Drawing.Point(88, 95);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(145, 20);
-            this.textBox20.TabIndex = 8;
+            this.BooksAddPublisherTb.Location = new System.Drawing.Point(88, 95);
+            this.BooksAddPublisherTb.Name = "BooksAddPublisherTb";
+            this.BooksAddPublisherTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddPublisherTb.TabIndex = 8;
             // 
-            // textBox21
+            // BooksAddPublicationDateTb
             // 
-            this.textBox21.Location = new System.Drawing.Point(88, 69);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(145, 20);
-            this.textBox21.TabIndex = 7;
+            this.BooksAddPublicationDateTb.Location = new System.Drawing.Point(88, 69);
+            this.BooksAddPublicationDateTb.Name = "BooksAddPublicationDateTb";
+            this.BooksAddPublicationDateTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddPublicationDateTb.TabIndex = 7;
             // 
-            // textBox22
+            // BooksAddAuthorTb
             // 
-            this.textBox22.Location = new System.Drawing.Point(88, 43);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(145, 20);
-            this.textBox22.TabIndex = 6;
+            this.BooksAddAuthorTb.Location = new System.Drawing.Point(88, 43);
+            this.BooksAddAuthorTb.Name = "BooksAddAuthorTb";
+            this.BooksAddAuthorTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddAuthorTb.TabIndex = 6;
             // 
-            // textBox23
+            // BooksAddTitleTb
             // 
-            this.textBox23.Location = new System.Drawing.Point(88, 17);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(145, 20);
-            this.textBox23.TabIndex = 5;
+            this.BooksAddTitleTb.Location = new System.Drawing.Point(88, 17);
+            this.BooksAddTitleTb.Name = "BooksAddTitleTb";
+            this.BooksAddTitleTb.Size = new System.Drawing.Size(145, 20);
+            this.BooksAddTitleTb.TabIndex = 5;
             // 
             // label19
             // 
@@ -912,13 +914,13 @@
             this.label28.TabIndex = 0;
             this.label28.Text = "Total Stock:";
             // 
-            // listBox2
+            // listBoxBooks
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(6, 104);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(279, 355);
-            this.listBox2.TabIndex = 9;
+            this.listBoxBooks.FormattingEnabled = true;
+            this.listBoxBooks.Location = new System.Drawing.Point(6, 104);
+            this.listBoxBooks.Name = "listBoxBooks";
+            this.listBoxBooks.Size = new System.Drawing.Size(279, 355);
+            this.listBoxBooks.TabIndex = 9;
             // 
             // groupBox5
             // 
@@ -1016,59 +1018,14 @@
             this._cardsTabPage.Text = "Cards";
             this._cardsTabPage.UseVisualStyleBackColor = true;
             // 
-            // _penalizationsTabPage
+            // button15
             // 
-            this._penalizationsTabPage.Controls.Add(this.button16);
-            this._penalizationsTabPage.Controls.Add(this.button17);
-            this._penalizationsTabPage.Controls.Add(this.groupBox9);
-            this._penalizationsTabPage.Controls.Add(this.button18);
-            this._penalizationsTabPage.Controls.Add(this.button19);
-            this._penalizationsTabPage.Controls.Add(this.groupBox10);
-            this._penalizationsTabPage.Controls.Add(this.listBox4);
-            this._penalizationsTabPage.Controls.Add(this.groupBox11);
-            this._penalizationsTabPage.Location = new System.Drawing.Point(4, 22);
-            this._penalizationsTabPage.Name = "_penalizationsTabPage";
-            this._penalizationsTabPage.Size = new System.Drawing.Size(849, 473);
-            this._penalizationsTabPage.TabIndex = 3;
-            this._penalizationsTabPage.Text = "Penalizations";
-            this._penalizationsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // _debtsTabPage
-            // 
-            this._debtsTabPage.Controls.Add(this.groupBox13);
-            this._debtsTabPage.Controls.Add(this.listBox5);
-            this._debtsTabPage.Controls.Add(this.groupBox14);
-            this._debtsTabPage.Location = new System.Drawing.Point(4, 22);
-            this._debtsTabPage.Name = "_debtsTabPage";
-            this._debtsTabPage.Size = new System.Drawing.Size(849, 473);
-            this._debtsTabPage.TabIndex = 4;
-            this._debtsTabPage.Text = "Debts";
-            this._debtsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // _loansTabPage
-            // 
-            this._loansTabPage.Controls.Add(this.button21);
-            this._loansTabPage.Controls.Add(this.button22);
-            this._loansTabPage.Controls.Add(this.groupBox12);
-            this._loansTabPage.Controls.Add(this.button25);
-            this._loansTabPage.Controls.Add(this.groupBox15);
-            this._loansTabPage.Controls.Add(this.listBox7);
-            this._loansTabPage.Controls.Add(this.groupBox16);
-            this._loansTabPage.Location = new System.Drawing.Point(4, 22);
-            this._loansTabPage.Name = "_loansTabPage";
-            this._loansTabPage.Size = new System.Drawing.Size(849, 473);
-            this._loansTabPage.TabIndex = 5;
-            this._loansTabPage.Text = "Loans";
-            this._loansTabPage.UseVisualStyleBackColor = true;
-            // 
-            // _returnsTabPage
-            // 
-            this._returnsTabPage.Location = new System.Drawing.Point(4, 22);
-            this._returnsTabPage.Name = "_returnsTabPage";
-            this._returnsTabPage.Size = new System.Drawing.Size(849, 473);
-            this._returnsTabPage.TabIndex = 6;
-            this._returnsTabPage.Text = "Returns";
-            this._returnsTabPage.UseVisualStyleBackColor = true;
+            this.button15.Location = new System.Drawing.Point(604, 257);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(92, 23);
+            this.button15.TabIndex = 23;
+            this.button15.Text = "Add card";
+            this.button15.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
@@ -1274,14 +1231,22 @@
             this.checkBox7.Text = "Student Name";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // _penalizationsTabPage
             // 
-            this.button15.Location = new System.Drawing.Point(604, 257);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(92, 23);
-            this.button15.TabIndex = 23;
-            this.button15.Text = "Add card";
-            this.button15.UseVisualStyleBackColor = true;
+            this._penalizationsTabPage.Controls.Add(this.button16);
+            this._penalizationsTabPage.Controls.Add(this.button17);
+            this._penalizationsTabPage.Controls.Add(this.groupBox9);
+            this._penalizationsTabPage.Controls.Add(this.button18);
+            this._penalizationsTabPage.Controls.Add(this.button19);
+            this._penalizationsTabPage.Controls.Add(this.groupBox10);
+            this._penalizationsTabPage.Controls.Add(this.listBox4);
+            this._penalizationsTabPage.Controls.Add(this.groupBox11);
+            this._penalizationsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._penalizationsTabPage.Name = "_penalizationsTabPage";
+            this._penalizationsTabPage.Size = new System.Drawing.Size(849, 473);
+            this._penalizationsTabPage.TabIndex = 3;
+            this._penalizationsTabPage.Text = "Penalizations";
+            this._penalizationsTabPage.UseVisualStyleBackColor = true;
             // 
             // button16
             // 
@@ -1395,6 +1360,22 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Penalization Info";
             // 
+            // textBox32
+            // 
+            this.textBox32.Location = new System.Drawing.Point(88, 43);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(145, 20);
+            this.textBox32.TabIndex = 7;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 46);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(40, 13);
+            this.label32.TabIndex = 6;
+            this.label32.Text = "Status:";
+            // 
             // textBox25
             // 
             this.textBox25.Location = new System.Drawing.Point(88, 17);
@@ -1498,21 +1479,17 @@
             this.checkBox10.Text = "Student Name";
             this.checkBox10.UseVisualStyleBackColor = true;
             // 
-            // textBox32
+            // _debtsTabPage
             // 
-            this.textBox32.Location = new System.Drawing.Point(88, 43);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(145, 20);
-            this.textBox32.TabIndex = 7;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(7, 46);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(40, 13);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "Status:";
+            this._debtsTabPage.Controls.Add(this.groupBox13);
+            this._debtsTabPage.Controls.Add(this.listBox5);
+            this._debtsTabPage.Controls.Add(this.groupBox14);
+            this._debtsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._debtsTabPage.Name = "_debtsTabPage";
+            this._debtsTabPage.Size = new System.Drawing.Size(849, 473);
+            this._debtsTabPage.TabIndex = 4;
+            this._debtsTabPage.Text = "Debts";
+            this._debtsTabPage.UseVisualStyleBackColor = true;
             // 
             // groupBox13
             // 
@@ -1528,6 +1505,23 @@
             this.groupBox13.TabIndex = 34;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Debt Info";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(7, 76);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(40, 13);
+            this.label39.TabIndex = 9;
+            this.label39.Text = "Books:";
+            // 
+            // listBox6
+            // 
+            this.listBox6.FormattingEnabled = true;
+            this.listBox6.Location = new System.Drawing.Point(10, 92);
+            this.listBox6.Name = "listBox6";
+            this.listBox6.Size = new System.Drawing.Size(498, 251);
+            this.listBox6.TabIndex = 8;
             // 
             // textBox37
             // 
@@ -1648,22 +1642,21 @@
             this.checkBox13.Text = "Student Name";
             this.checkBox13.UseVisualStyleBackColor = true;
             // 
-            // listBox6
+            // _loansTabPage
             // 
-            this.listBox6.FormattingEnabled = true;
-            this.listBox6.Location = new System.Drawing.Point(10, 92);
-            this.listBox6.Name = "listBox6";
-            this.listBox6.Size = new System.Drawing.Size(498, 251);
-            this.listBox6.TabIndex = 8;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(7, 76);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(40, 13);
-            this.label39.TabIndex = 9;
-            this.label39.Text = "Books:";
+            this._loansTabPage.Controls.Add(this.button21);
+            this._loansTabPage.Controls.Add(this.button22);
+            this._loansTabPage.Controls.Add(this.groupBox12);
+            this._loansTabPage.Controls.Add(this.button25);
+            this._loansTabPage.Controls.Add(this.groupBox15);
+            this._loansTabPage.Controls.Add(this.listBox7);
+            this._loansTabPage.Controls.Add(this.groupBox16);
+            this._loansTabPage.Location = new System.Drawing.Point(4, 22);
+            this._loansTabPage.Name = "_loansTabPage";
+            this._loansTabPage.Size = new System.Drawing.Size(849, 473);
+            this._loansTabPage.TabIndex = 5;
+            this._loansTabPage.Text = "Loans";
+            this._loansTabPage.UseVisualStyleBackColor = true;
             // 
             // button21
             // 
@@ -1772,6 +1765,70 @@
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Loan Info";
             // 
+            // textBox42
+            // 
+            this.textBox42.Location = new System.Drawing.Point(88, 95);
+            this.textBox42.Name = "textBox42";
+            this.textBox42.Size = new System.Drawing.Size(145, 20);
+            this.textBox42.TabIndex = 11;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(7, 98);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(40, 13);
+            this.label43.TabIndex = 10;
+            this.label43.Text = "Status:";
+            // 
+            // textBox41
+            // 
+            this.textBox41.Location = new System.Drawing.Point(88, 69);
+            this.textBox41.Name = "textBox41";
+            this.textBox41.Size = new System.Drawing.Size(145, 20);
+            this.textBox41.TabIndex = 9;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(7, 72);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(60, 13);
+            this.label42.TabIndex = 8;
+            this.label42.Text = "Loan Date:";
+            // 
+            // textBox39
+            // 
+            this.textBox39.Location = new System.Drawing.Point(88, 43);
+            this.textBox39.Name = "textBox39";
+            this.textBox39.Size = new System.Drawing.Size(145, 20);
+            this.textBox39.TabIndex = 7;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(7, 46);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(58, 13);
+            this.label40.TabIndex = 6;
+            this.label40.Text = "Book Title:";
+            // 
+            // textBox40
+            // 
+            this.textBox40.Location = new System.Drawing.Point(88, 17);
+            this.textBox40.Name = "textBox40";
+            this.textBox40.Size = new System.Drawing.Size(145, 20);
+            this.textBox40.TabIndex = 5;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(7, 20);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(78, 13);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Student Name:";
+            // 
             // listBox7
             // 
             this.listBox7.FormattingEnabled = true;
@@ -1797,6 +1854,24 @@
             this.groupBox16.TabIndex = 32;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Search";
+            // 
+            // comboBox19
+            // 
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Location = new System.Drawing.Point(588, 44);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(141, 21);
+            this.comboBox19.TabIndex = 12;
+            // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(588, 20);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(56, 17);
+            this.checkBox17.TabIndex = 11;
+            this.checkBox17.Text = "Status";
+            this.checkBox17.UseVisualStyleBackColor = true;
             // 
             // button26
             // 
@@ -1861,87 +1936,14 @@
             this.checkBox16.Text = "Student Name";
             this.checkBox16.UseVisualStyleBackColor = true;
             // 
-            // comboBox19
+            // _returnsTabPage
             // 
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Location = new System.Drawing.Point(588, 44);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(141, 21);
-            this.comboBox19.TabIndex = 12;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(588, 20);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(56, 17);
-            this.checkBox17.TabIndex = 11;
-            this.checkBox17.Text = "Status";
-            this.checkBox17.UseVisualStyleBackColor = true;
-            // 
-            // textBox41
-            // 
-            this.textBox41.Location = new System.Drawing.Point(88, 69);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(145, 20);
-            this.textBox41.TabIndex = 9;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(7, 72);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(60, 13);
-            this.label42.TabIndex = 8;
-            this.label42.Text = "Loan Date:";
-            // 
-            // textBox42
-            // 
-            this.textBox42.Location = new System.Drawing.Point(88, 95);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.Size = new System.Drawing.Size(145, 20);
-            this.textBox42.TabIndex = 11;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(7, 98);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(40, 13);
-            this.label43.TabIndex = 10;
-            this.label43.Text = "Status:";
-            // 
-            // textBox40
-            // 
-            this.textBox40.Location = new System.Drawing.Point(88, 17);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(145, 20);
-            this.textBox40.TabIndex = 5;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(7, 20);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(78, 13);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Student Name:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(7, 46);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(58, 13);
-            this.label40.TabIndex = 6;
-            this.label40.Text = "Book Title:";
-            // 
-            // textBox39
-            // 
-            this.textBox39.Location = new System.Drawing.Point(88, 43);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(145, 20);
-            this.textBox39.TabIndex = 7;
+            this._returnsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._returnsTabPage.Name = "_returnsTabPage";
+            this._returnsTabPage.Size = new System.Drawing.Size(849, 473);
+            this._returnsTabPage.TabIndex = 6;
+            this._returnsTabPage.Text = "Returns";
+            this._returnsTabPage.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1951,6 +1953,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Library";
+            this.Load += new System.EventHandler(this.OnLoad);
             this.tabControl1.ResumeLayout(false);
             this._studentsTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -1967,25 +1970,25 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this._cardsTabPage.ResumeLayout(false);
-            this._penalizationsTabPage.ResumeLayout(false);
-            this._debtsTabPage.ResumeLayout(false);
-            this._loansTabPage.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this._penalizationsTabPage.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this._debtsTabPage.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this._loansTabPage.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox15.ResumeLayout(false);
@@ -2052,15 +2055,15 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox BooksAddTypeTb;
+        private System.Windows.Forms.TextBox BooksAddAvalaibleStockTb;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox BooksAddTotalStockTb;
+        private System.Windows.Forms.TextBox BooksAddPublisherTb;
+        private System.Windows.Forms.TextBox BooksAddPublicationDateTb;
+        private System.Windows.Forms.TextBox BooksAddAuthorTb;
+        private System.Windows.Forms.TextBox BooksAddTitleTb;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
@@ -2075,7 +2078,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxBooks;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ComboBox comboBox4;
