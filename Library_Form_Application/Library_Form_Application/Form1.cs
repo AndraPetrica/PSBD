@@ -15,23 +15,34 @@ namespace Library_Form_Application
 {
     public partial class Form1 : Form
     {
+        enum adaptersIndexes
+        {
+            studentsIndex,
+            booksIndex,
+            cardsIndex,
+            penalizationsIndex,
+            debtsIndex,
+            loansIndex,
+            returnsIndex
+        }
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private Connection.Connection connection;
-        private OracleConnection oracleConn;
-        Books.Books booksAdapter;
-        int bookIndex;
+        private Connection.Connection _connection;
+        private OracleConnection _oracleConn;
+        private Entity[] _adapters;
 
         public bool InitOracleDbConnection()
         {
             bool bRet = true;
             try
             {
-                connection = new Connection.Connection();
-                bRet = connection.Init();
+                _connection = new Connection.Connection();
+                _oracleConn = _connection.GetConnectionObject();
+                bRet = _connection.Init();
             }
             catch (Exception ex)
             {
@@ -42,7 +53,7 @@ namespace Library_Form_Application
 
         public bool Login()
         {
-            bool bRet = connection.Login("user1", "user1");
+            bool bRet = _connection.Login("user1", "user1");
             String message;
             message = (bRet == true ? "Utilizator logat" : "Utilizator nelogat");
             MessageBox.Show(message);
@@ -51,8 +62,10 @@ namespace Library_Form_Application
 
         private void InitAdapters()
         {
-            booksAdapter = new Books.Books(connection.GetConnectionObject());
-          //  bookIndex = booksAdapter.GetAllBooks().Length;
+            _adapters = new Entity[7];
+            _adapters[(int)adaptersIndexes.booksIndex] = new Books(_oracleConn);
+            
+          
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -81,7 +94,6 @@ namespace Library_Form_Application
         {
             try
             {
-                int bookId = ++bookIndex;
                 String title = BooksAddTitleTb.Text;
                 String author = BooksAddAuthorTb.Text;
                 String publisher = BooksAddPublisherTb.Text;
@@ -89,9 +101,10 @@ namespace Library_Form_Application
                 int totalStock = Int32.Parse(BooksAddTotalStockTb.Text);
                 int avalaibleStock = Int32.Parse(BooksAddAvalaibleStockTb.Text);
                 String[] lines = BooksAddPublicationDateTb.Text.Split("-./".ToCharArray());
-                Books.PubDate date = new Books.PubDate(lines[0], lines[1], lines[2]);
+                PubDate date = new PubDate(lines[0], lines[1], lines[2]);
 
-                bool ret = booksAdapter.AddBook(bookId, title, author, date, publisher, totalStock, avalaibleStock, type);
+                Books booksAdapter = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                bool ret = booksAdapter.AddBook(title, author, date, publisher, totalStock, avalaibleStock, type);
                 String message = (ret ? "Book added !" : "Book not added : Fill all fields !");
                 MessageBox.Show(message);
             }
