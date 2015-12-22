@@ -39,10 +39,10 @@ namespace Library_Form_Application
         }
 
 
-        public bool AddBook(String title, String author, PubDate pubDate, String publisher, int totalStock, int avalaibleStock, String type)
+        public bool AddBook(String title, String author, CustomDate pubDate, String publisher, int totalStock, int avalaibleStock, String type)
         {
             bool success = false;
-            String date = pubDate.ToStringDate();
+            String date = pubDate.DateToString();
 
             String cmdString = String.Format("INSERT INTO Books (BOOK_ID, TITLE, AUTHOR, PUBLICATION_DATE, PUBLISHER, TOTAL_STOCK, AVALAIBLE_STOCK, TYPE) " +
                 "VALUES( {0}, '{1}', '{2}', {3}, '{4}', {5}, {6}, '{7}' )", _numberOfBooks, title, author, date, publisher, totalStock, avalaibleStock, type);

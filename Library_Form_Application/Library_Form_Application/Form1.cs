@@ -64,7 +64,7 @@ namespace Library_Form_Application
         {
             _adapters = new Entity[7];
             _adapters[(int)adaptersIndexes.booksIndex] = new Books(_oracleConn);
-            
+            _adapters[(int)adaptersIndexes.studentsIndex] = new Students(_oracleConn);
           
         }
 
@@ -79,7 +79,7 @@ namespace Library_Form_Application
             
         }
 
-        private void LoadAllBooks(object sender, EventArgs e)
+        private void LoadAllBooks()
         {
             
             String[] books = { "Book1", "Book2" };
@@ -101,7 +101,7 @@ namespace Library_Form_Application
                 int totalStock = Int32.Parse(BooksAddTotalStockTb.Text);
                 int avalaibleStock = Int32.Parse(BooksAddAvalaibleStockTb.Text);
                 String[] lines = BooksAddPublicationDateTb.Text.Split("-./".ToCharArray());
-                PubDate date = new PubDate(lines[0], lines[1], lines[2]);
+                CustomDate date = new CustomDate(lines[0], lines[1], lines[2]);
 
                 Books booksAdapter = (Books)_adapters[(int)adaptersIndexes.booksIndex];
                 bool ret = booksAdapter.AddBook(title, author, date, publisher, totalStock, avalaibleStock, type);
@@ -111,6 +111,119 @@ namespace Library_Form_Application
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadAllStudents()
+        {
+            List<Student> students = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]).GetAllStudents();
+            listBoxStudents.Items.Clear();
+            foreach (Student stud in students)
+            {
+                listBoxStudents.Items.Add(stud.CNP + " " + stud.first_name + " " + stud.last_name);
+            }
+        }
+
+        private void AddStudent(object sender, EventArgs e)
+        {
+            try
+            {
+                String CNP = studentsAddCNPTb.Text;
+                String firstName = studentsAddFirstNameTb.Text;
+                String lastName = studentsAddLastNameTb.Text;
+                String birthDate = studentsAddBirthDateTb.Text;
+                String address = studentsAddAddressTb.Text;
+                String phone = studentsAddPhoneTb.Text;
+                String email = studentsAddEmailTb.Text;
+                String yearOfStudy = studentsAddYearOfStudyTb.Text;
+                String gender = studentsAddGenderTb.Text;
+
+                Students studentsAdapter = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
+                bool success = studentsAdapter.AddStudent(CNP, firstName, lastName, birthDate, address, phone, email, gender, yearOfStudy);
+
+                if (success)
+                {
+                    LoadAllStudents();
+                    ClearAddStudentFields();
+                }
+                
+                String message = (success ? "Student added !" : "Student not added : Fill all fields !");
+                MessageBox.Show(message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteStudent(object sender, EventArgs e)
+        {
+            try
+            {
+                int index = listBoxStudents.SelectedIndex;
+                Students students = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
+                Student stud = students._students[index];
+                bool success = students.DeleteStudent(stud.CNP);
+
+                if (success)
+                {
+                    LoadAllStudents();
+                    ClearAddStudentFields();
+                }
+
+                String message = (success ? "Student deleted !" : "Student not deleted");
+                MessageBox.Show(message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ClearAddStudentFields()
+        {
+            studentsAddCNPTb.Text = "";
+            studentsAddFirstNameTb.Text = "";
+            studentsAddLastNameTb.Text = "";
+            studentsAddBirthDateTb.Text = "";
+            studentsAddAddressTb.Text = "";
+            studentsAddPhoneTb.Text = "";
+            studentsAddEmailTb.Text = "";
+            studentsAddYearOfStudyTb.Text = "";
+            studentsAddGenderTb.Text = "";
+        }
+
+        private void LoadData(object sender, EventArgs e)
+        {
+            TabControl tc =  (TabControl)sender;
+            String tab = tc.SelectedTab.Text;
+            if (tab.CompareTo("Students") == 0)
+            {
+                LoadAllStudents();
+            }
+            else if (tab.CompareTo("Books") == 0)
+            {
+                LoadAllBooks();
+            }
+            else if (tab.CompareTo("Cards") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Penalizations") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Debts") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Loans") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Returns") == 0)
+            {
+
             }
         }
     }

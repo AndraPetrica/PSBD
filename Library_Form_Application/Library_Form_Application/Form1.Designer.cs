@@ -33,19 +33,19 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.studentsAddGenderTb = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.studentsAddYearOfStudyTb = new System.Windows.Forms.TextBox();
+            this.studentsAddEmailTb = new System.Windows.Forms.TextBox();
+            this.studentsAddPhoneTb = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.studentsAddAddressTb = new System.Windows.Forms.TextBox();
+            this.studentsAddBirthDateTb = new System.Windows.Forms.TextBox();
+            this.studentsAddLastNameTb = new System.Windows.Forms.TextBox();
+            this.studentsAddFirstNameTb = new System.Windows.Forms.TextBox();
+            this.studentsAddCNPTb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxStudents = new System.Windows.Forms.ListBox();
             this._studentsSearchGroupBox = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -248,7 +248,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(857, 499);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.Click += new System.EventHandler(this.LoadAllBooks);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.LoadData);
             // 
             // _studentsTabPage
             // 
@@ -258,7 +258,7 @@
             this._studentsTabPage.Controls.Add(this.button3);
             this._studentsTabPage.Controls.Add(this.button2);
             this._studentsTabPage.Controls.Add(this.groupBox1);
-            this._studentsTabPage.Controls.Add(this.listBox1);
+            this._studentsTabPage.Controls.Add(this.listBoxStudents);
             this._studentsTabPage.Controls.Add(this._studentsSearchGroupBox);
             this._studentsTabPage.Location = new System.Drawing.Point(4, 22);
             this._studentsTabPage.Name = "_studentsTabPage";
@@ -285,22 +285,23 @@
             this.button4.TabIndex = 6;
             this.button4.Text = "Add student";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.AddStudent);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox14);
+            this.groupBox2.Controls.Add(this.studentsAddGenderTb);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.textBox11);
-            this.groupBox2.Controls.Add(this.textBox12);
-            this.groupBox2.Controls.Add(this.textBox13);
+            this.groupBox2.Controls.Add(this.studentsAddYearOfStudyTb);
+            this.groupBox2.Controls.Add(this.studentsAddEmailTb);
+            this.groupBox2.Controls.Add(this.studentsAddPhoneTb);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Controls.Add(this.textBox7);
-            this.groupBox2.Controls.Add(this.textBox8);
-            this.groupBox2.Controls.Add(this.textBox9);
-            this.groupBox2.Controls.Add(this.textBox10);
+            this.groupBox2.Controls.Add(this.studentsAddAddressTb);
+            this.groupBox2.Controls.Add(this.studentsAddBirthDateTb);
+            this.groupBox2.Controls.Add(this.studentsAddLastNameTb);
+            this.groupBox2.Controls.Add(this.studentsAddFirstNameTb);
+            this.groupBox2.Controls.Add(this.studentsAddCNPTb);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
@@ -313,12 +314,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Student";
             // 
-            // textBox14
+            // studentsAddGenderTb
             // 
-            this.textBox14.Location = new System.Drawing.Point(88, 225);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(145, 20);
-            this.textBox14.TabIndex = 17;
+            this.studentsAddGenderTb.Location = new System.Drawing.Point(88, 225);
+            this.studentsAddGenderTb.Name = "studentsAddGenderTb";
+            this.studentsAddGenderTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddGenderTb.TabIndex = 17;
             // 
             // label14
             // 
@@ -329,26 +330,26 @@
             this.label14.TabIndex = 16;
             this.label14.Text = "Gender:";
             // 
-            // textBox11
+            // studentsAddYearOfStudyTb
             // 
-            this.textBox11.Location = new System.Drawing.Point(88, 199);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(145, 20);
-            this.textBox11.TabIndex = 15;
+            this.studentsAddYearOfStudyTb.Location = new System.Drawing.Point(88, 199);
+            this.studentsAddYearOfStudyTb.Name = "studentsAddYearOfStudyTb";
+            this.studentsAddYearOfStudyTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddYearOfStudyTb.TabIndex = 15;
             // 
-            // textBox12
+            // studentsAddEmailTb
             // 
-            this.textBox12.Location = new System.Drawing.Point(88, 173);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(145, 20);
-            this.textBox12.TabIndex = 14;
+            this.studentsAddEmailTb.Location = new System.Drawing.Point(88, 173);
+            this.studentsAddEmailTb.Name = "studentsAddEmailTb";
+            this.studentsAddEmailTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddEmailTb.TabIndex = 14;
             // 
-            // textBox13
+            // studentsAddPhoneTb
             // 
-            this.textBox13.Location = new System.Drawing.Point(88, 147);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(145, 20);
-            this.textBox13.TabIndex = 13;
+            this.studentsAddPhoneTb.Location = new System.Drawing.Point(88, 147);
+            this.studentsAddPhoneTb.Name = "studentsAddPhoneTb";
+            this.studentsAddPhoneTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddPhoneTb.TabIndex = 13;
             // 
             // label11
             // 
@@ -377,40 +378,40 @@
             this.label13.TabIndex = 10;
             this.label13.Text = "Phone No:";
             // 
-            // textBox6
+            // studentsAddAddressTb
             // 
-            this.textBox6.Location = new System.Drawing.Point(88, 121);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(145, 20);
-            this.textBox6.TabIndex = 9;
+            this.studentsAddAddressTb.Location = new System.Drawing.Point(88, 121);
+            this.studentsAddAddressTb.Name = "studentsAddAddressTb";
+            this.studentsAddAddressTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddAddressTb.TabIndex = 9;
             // 
-            // textBox7
+            // studentsAddBirthDateTb
             // 
-            this.textBox7.Location = new System.Drawing.Point(88, 95);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(145, 20);
-            this.textBox7.TabIndex = 8;
+            this.studentsAddBirthDateTb.Location = new System.Drawing.Point(88, 95);
+            this.studentsAddBirthDateTb.Name = "studentsAddBirthDateTb";
+            this.studentsAddBirthDateTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddBirthDateTb.TabIndex = 8;
             // 
-            // textBox8
+            // studentsAddLastNameTb
             // 
-            this.textBox8.Location = new System.Drawing.Point(88, 69);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(145, 20);
-            this.textBox8.TabIndex = 7;
+            this.studentsAddLastNameTb.Location = new System.Drawing.Point(88, 69);
+            this.studentsAddLastNameTb.Name = "studentsAddLastNameTb";
+            this.studentsAddLastNameTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddLastNameTb.TabIndex = 7;
             // 
-            // textBox9
+            // studentsAddFirstNameTb
             // 
-            this.textBox9.Location = new System.Drawing.Point(88, 43);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(145, 20);
-            this.textBox9.TabIndex = 6;
+            this.studentsAddFirstNameTb.Location = new System.Drawing.Point(88, 43);
+            this.studentsAddFirstNameTb.Name = "studentsAddFirstNameTb";
+            this.studentsAddFirstNameTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddFirstNameTb.TabIndex = 6;
             // 
-            // textBox10
+            // studentsAddCNPTb
             // 
-            this.textBox10.Location = new System.Drawing.Point(88, 17);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(145, 20);
-            this.textBox10.TabIndex = 5;
+            this.studentsAddCNPTb.Location = new System.Drawing.Point(88, 17);
+            this.studentsAddCNPTb.Name = "studentsAddCNPTb";
+            this.studentsAddCNPTb.Size = new System.Drawing.Size(145, 20);
+            this.studentsAddCNPTb.TabIndex = 5;
             // 
             // label6
             // 
@@ -465,6 +466,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Delete student";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.DeleteStudent);
             // 
             // button2
             // 
@@ -574,13 +576,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Birth Date:";
             // 
-            // listBox1
+            // listBoxStudents
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(7, 105);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(279, 355);
-            this.listBox1.TabIndex = 1;
+            this.listBoxStudents.FormattingEnabled = true;
+            this.listBoxStudents.Location = new System.Drawing.Point(7, 105);
+            this.listBoxStudents.Name = "listBoxStudents";
+            this.listBoxStudents.Size = new System.Drawing.Size(279, 355);
+            this.listBoxStudents.TabIndex = 1;
             // 
             // _studentsSearchGroupBox
             // 
@@ -2015,7 +2017,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxStudents;
         private System.Windows.Forms.GroupBox _studentsSearchGroupBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox3;
@@ -2032,19 +2034,19 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox studentsAddGenderTb;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox studentsAddYearOfStudyTb;
+        private System.Windows.Forms.TextBox studentsAddEmailTb;
+        private System.Windows.Forms.TextBox studentsAddPhoneTb;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox studentsAddAddressTb;
+        private System.Windows.Forms.TextBox studentsAddBirthDateTb;
+        private System.Windows.Forms.TextBox studentsAddLastNameTb;
+        private System.Windows.Forms.TextBox studentsAddFirstNameTb;
+        private System.Windows.Forms.TextBox studentsAddCNPTb;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
