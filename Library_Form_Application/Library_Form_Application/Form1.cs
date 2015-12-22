@@ -81,12 +81,19 @@ namespace Library_Form_Application
 
         private void LoadAllBooks()
         {
-            
-            String[] books = { "Book1", "Book2" };
-           // String[] books = booksAdapter.GetAllBooks();
-            foreach (String book in books)
+            List <Books.Book> books = ((Books)_adapters[(int)adaptersIndexes.booksIndex]).GetAllBooks();           
+            listBoxBooks.Items.Clear();
+            foreach (Books.Book book in books)
             {
-                listBoxBooks.Items.Add(book);
+                listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0] );
+            }
+            if(books.Count > 0)
+            {
+                BooksDeleteButton.Enabled = true;
+            }
+            else
+            {
+                BooksDeleteButton.Enabled = false;
             }
         }
 
@@ -107,10 +114,29 @@ namespace Library_Form_Application
                 bool ret = booksAdapter.AddBook(title, author, date, publisher, totalStock, avalaibleStock, type);
                 String message = (ret ? "Book added !" : "Book not added : Fill all fields !");
                 MessageBox.Show(message);
+                LoadAllBooks();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteBook(object sender, EventArgs e)
+        {
+            try
+            {
+                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                int index = listBoxBooks.SelectedIndex;
+                Books.Book entry = library.books[index];
+                bool bIsDeleted = library.DeleteBook(entry.bookId);
+                String message = (bIsDeleted ? "Book successfully deleted" : "Book not deleted");
+                MessageBox.Show(message);
+                LoadAllBooks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare deleting book : " + ex.ToString());
             }
         }
 
@@ -195,7 +221,7 @@ namespace Library_Form_Application
 
         private void LoadData(object sender, EventArgs e)
         {
-            TabControl tc =  (TabControl)sender;
+            TabControl tc = (TabControl)sender;
             String tab = tc.SelectedTab.Text;
             if (tab.CompareTo("Students") == 0)
             {
@@ -223,8 +249,8 @@ namespace Library_Form_Application
             }
             else if (tab.CompareTo("Returns") == 0)
             {
-
             }
         }
+        
     }
 }

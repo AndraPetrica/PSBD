@@ -91,7 +91,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.BooksDeleteButton = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox26 = new System.Windows.Forms.TextBox();
@@ -668,7 +668,7 @@
             this._booksTabPage.Controls.Add(this.button6);
             this._booksTabPage.Controls.Add(this.button7);
             this._booksTabPage.Controls.Add(this.groupBox3);
-            this._booksTabPage.Controls.Add(this.button8);
+            this._booksTabPage.Controls.Add(this.BooksDeleteButton);
             this._booksTabPage.Controls.Add(this.button9);
             this._booksTabPage.Controls.Add(this.groupBox4);
             this._booksTabPage.Controls.Add(this.listBoxBooks);
@@ -835,14 +835,15 @@
             this.label23.TabIndex = 0;
             this.label23.Text = "Title:";
             // 
-            // button8
+            // BooksDeleteButton
             // 
-            this.button8.Location = new System.Drawing.Point(329, 306);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 23);
-            this.button8.TabIndex = 12;
-            this.button8.Text = "Delete book";
-            this.button8.UseVisualStyleBackColor = true;
+            this.BooksDeleteButton.Location = new System.Drawing.Point(329, 306);
+            this.BooksDeleteButton.Name = "BooksDeleteButton";
+            this.BooksDeleteButton.Size = new System.Drawing.Size(92, 23);
+            this.BooksDeleteButton.TabIndex = 12;
+            this.BooksDeleteButton.Text = "Delete book";
+            this.BooksDeleteButton.UseVisualStyleBackColor = true;
+            this.BooksDeleteButton.Click += new System.EventHandler(this.DeleteBook);
             // 
             // button9
             // 
@@ -2071,7 +2072,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button BooksDeleteButton;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox26;
