@@ -73,7 +73,7 @@
             this.StudentsFNameCB = new System.Windows.Forms.CheckBox();
             this._booksTabPage = new System.Windows.Forms.TabPage();
             this.BooksEditButton = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.BooksAddButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BooksAddTypeCmB = new System.Windows.Forms.ComboBox();
             this.BooksAddAvalaibleStockTb = new System.Windows.Forms.TextBox();
@@ -108,21 +108,21 @@
             this.BooksAuthorCB = new System.Windows.Forms.CheckBox();
             this.BooksTitleCB = new System.Windows.Forms.CheckBox();
             this._cardsTabPage = new System.Windows.Forms.TabPage();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.CardsAddButton = new System.Windows.Forms.Button();
+            this.CardsEditButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.CardsAddCreationDateTb = new System.Windows.Forms.TextBox();
+            this.CardsAddCNPTb = new System.Windows.Forms.TextBox();
+            this.CardsAddNameTb = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.CardsDeleteBook = new System.Windows.Forms.Button();
+            this.CardsSaveButton = new System.Windows.Forms.Button();
+            this.CardsEditGroup = new System.Windows.Forms.GroupBox();
+            this.CardsEditValidDateTb = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.listBoxCards = new System.Windows.Forms.ListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.button14 = new System.Windows.Forms.Button();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
@@ -208,6 +208,7 @@
             this._returnsTabPage = new System.Windows.Forms.TabPage();
             this.StudentsEditStudyYearCmB = new System.Windows.Forms.ComboBox();
             this.studentsAddStudyYearCmB = new System.Windows.Forms.ComboBox();
+
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -219,7 +220,7 @@
             this.groupBox5.SuspendLayout();
             this._cardsTabPage.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.CardsEditGroup.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this._penalizationsTabPage.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -249,6 +250,7 @@
             this.tabControl1.Size = new System.Drawing.Size(857, 499);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.LoadData);
+            this.tabControl1.Click += new System.EventHandler(this.SaveCardChanges);
             // 
             // _studentsTabPage
             // 
@@ -656,7 +658,7 @@
             // _booksTabPage
             // 
             this._booksTabPage.Controls.Add(this.BooksEditButton);
-            this._booksTabPage.Controls.Add(this.button7);
+            this._booksTabPage.Controls.Add(this.BooksAddButton);
             this._booksTabPage.Controls.Add(this.groupBox3);
             this._booksTabPage.Controls.Add(this.BooksDeleteButton);
             this._booksTabPage.Controls.Add(this.BooksSaveButton);
@@ -681,15 +683,15 @@
             this.BooksEditButton.UseVisualStyleBackColor = true;
             this.BooksEditButton.Click += new System.EventHandler(this.EditBook);
             // 
-            // button7
+            // BooksAddButton
             // 
-            this.button7.Location = new System.Drawing.Point(604, 349);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 23);
-            this.button7.TabIndex = 14;
-            this.button7.Text = "Add Book";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.AddBook);
+            this.BooksAddButton.Location = new System.Drawing.Point(604, 349);
+            this.BooksAddButton.Name = "BooksAddButton";
+            this.BooksAddButton.Size = new System.Drawing.Size(92, 23);
+            this.BooksAddButton.TabIndex = 14;
+            this.BooksAddButton.Text = "Add Book";
+            this.BooksAddButton.UseVisualStyleBackColor = true;
+            this.BooksAddButton.Click += new System.EventHandler(this.AddBook);
             // 
             // groupBox3
             // 
@@ -1002,13 +1004,13 @@
             // 
             // _cardsTabPage
             // 
-            this._cardsTabPage.Controls.Add(this.button15);
-            this._cardsTabPage.Controls.Add(this.button11);
+            this._cardsTabPage.Controls.Add(this.CardsAddButton);
+            this._cardsTabPage.Controls.Add(this.CardsEditButton);
             this._cardsTabPage.Controls.Add(this.groupBox6);
-            this._cardsTabPage.Controls.Add(this.button12);
-            this._cardsTabPage.Controls.Add(this.button13);
-            this._cardsTabPage.Controls.Add(this.groupBox7);
-            this._cardsTabPage.Controls.Add(this.listBox3);
+            this._cardsTabPage.Controls.Add(this.CardsDeleteBook);
+            this._cardsTabPage.Controls.Add(this.CardsSaveButton);
+            this._cardsTabPage.Controls.Add(this.CardsEditGroup);
+            this._cardsTabPage.Controls.Add(this.listBoxCards);
             this._cardsTabPage.Controls.Add(this.groupBox8);
             this._cardsTabPage.Location = new System.Drawing.Point(4, 22);
             this._cardsTabPage.Name = "_cardsTabPage";
@@ -1017,29 +1019,31 @@
             this._cardsTabPage.Text = "Cards";
             this._cardsTabPage.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // CardsAddButton
             // 
-            this.button15.Location = new System.Drawing.Point(604, 257);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(92, 23);
-            this.button15.TabIndex = 23;
-            this.button15.Text = "Add card";
-            this.button15.UseVisualStyleBackColor = true;
+            this.CardsAddButton.Location = new System.Drawing.Point(604, 257);
+            this.CardsAddButton.Name = "CardsAddButton";
+            this.CardsAddButton.Size = new System.Drawing.Size(92, 23);
+            this.CardsAddButton.TabIndex = 23;
+            this.CardsAddButton.Text = "Add card";
+            this.CardsAddButton.UseVisualStyleBackColor = true;
+            this.CardsAddButton.Click += new System.EventHandler(this.AddCard);
             // 
-            // button11
+            // CardsEditButton
             // 
-            this.button11.Location = new System.Drawing.Point(329, 200);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 23);
-            this.button11.TabIndex = 22;
-            this.button11.Text = "Edit book";
-            this.button11.UseVisualStyleBackColor = true;
+            this.CardsEditButton.Location = new System.Drawing.Point(329, 200);
+            this.CardsEditButton.Name = "CardsEditButton";
+            this.CardsEditButton.Size = new System.Drawing.Size(92, 23);
+            this.CardsEditButton.TabIndex = 22;
+            this.CardsEditButton.Text = "Edit book";
+            this.CardsEditButton.UseVisualStyleBackColor = true;
+            this.CardsEditButton.Click += new System.EventHandler(this.EditCard);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.textBox29);
-            this.groupBox6.Controls.Add(this.textBox30);
-            this.groupBox6.Controls.Add(this.textBox31);
+            this.groupBox6.Controls.Add(this.CardsAddCreationDateTb);
+            this.groupBox6.Controls.Add(this.CardsAddCNPTb);
+            this.groupBox6.Controls.Add(this.CardsAddNameTb);
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.label31);
@@ -1050,26 +1054,26 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Add Card";
             // 
-            // textBox29
+            // CardsAddCreationDateTb
             // 
-            this.textBox29.Location = new System.Drawing.Point(88, 69);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(145, 20);
-            this.textBox29.TabIndex = 7;
+            this.CardsAddCreationDateTb.Location = new System.Drawing.Point(88, 69);
+            this.CardsAddCreationDateTb.Name = "CardsAddCreationDateTb";
+            this.CardsAddCreationDateTb.Size = new System.Drawing.Size(145, 20);
+            this.CardsAddCreationDateTb.TabIndex = 7;
             // 
-            // textBox30
+            // CardsAddCNPTb
             // 
-            this.textBox30.Location = new System.Drawing.Point(88, 43);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(145, 20);
-            this.textBox30.TabIndex = 6;
+            this.CardsAddCNPTb.Location = new System.Drawing.Point(88, 43);
+            this.CardsAddCNPTb.Name = "CardsAddCNPTb";
+            this.CardsAddCNPTb.Size = new System.Drawing.Size(145, 20);
+            this.CardsAddCNPTb.TabIndex = 6;
             // 
-            // textBox31
+            // CardsAddNameTb
             // 
-            this.textBox31.Location = new System.Drawing.Point(88, 17);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(145, 20);
-            this.textBox31.TabIndex = 5;
+            this.CardsAddNameTb.Location = new System.Drawing.Point(88, 17);
+            this.CardsAddNameTb.Name = "CardsAddNameTb";
+            this.CardsAddNameTb.Size = new System.Drawing.Size(145, 20);
+            this.CardsAddNameTb.TabIndex = 5;
             // 
             // label29
             // 
@@ -1098,41 +1102,42 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "Name:";
             // 
-            // button12
+            // CardsDeleteBook
             // 
-            this.button12.Location = new System.Drawing.Point(329, 257);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(92, 23);
-            this.button12.TabIndex = 20;
-            this.button12.Text = "Delete book";
-            this.button12.UseVisualStyleBackColor = true;
+            this.CardsDeleteBook.Location = new System.Drawing.Point(329, 257);
+            this.CardsDeleteBook.Name = "CardsDeleteBook";
+            this.CardsDeleteBook.Size = new System.Drawing.Size(92, 23);
+            this.CardsDeleteBook.TabIndex = 20;
+            this.CardsDeleteBook.Text = "Delete book";
+            this.CardsDeleteBook.UseVisualStyleBackColor = true;
+            this.CardsDeleteBook.Click += new System.EventHandler(this.DeleteCard);
             // 
-            // button13
+            // CardsSaveButton
             // 
-            this.button13.Location = new System.Drawing.Point(460, 200);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(92, 23);
-            this.button13.TabIndex = 19;
-            this.button13.Text = "Save changes";
-            this.button13.UseVisualStyleBackColor = true;
+            this.CardsSaveButton.Location = new System.Drawing.Point(460, 200);
+            this.CardsSaveButton.Name = "CardsSaveButton";
+            this.CardsSaveButton.Size = new System.Drawing.Size(92, 23);
+            this.CardsSaveButton.TabIndex = 19;
+            this.CardsSaveButton.Text = "Save changes";
+            this.CardsSaveButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
+            // CardsEditGroup
             // 
-            this.groupBox7.Controls.Add(this.textBox34);
-            this.groupBox7.Controls.Add(this.label34);
-            this.groupBox7.Location = new System.Drawing.Point(319, 108);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(248, 63);
-            this.groupBox7.TabIndex = 18;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Card Info";
+            this.CardsEditGroup.Controls.Add(this.CardsEditValidDateTb);
+            this.CardsEditGroup.Controls.Add(this.label34);
+            this.CardsEditGroup.Location = new System.Drawing.Point(319, 108);
+            this.CardsEditGroup.Name = "CardsEditGroup";
+            this.CardsEditGroup.Size = new System.Drawing.Size(248, 63);
+            this.CardsEditGroup.TabIndex = 18;
+            this.CardsEditGroup.TabStop = false;
+            this.CardsEditGroup.Text = "Card Info";
             // 
-            // textBox34
+            // CardsEditValidDateTb
             // 
-            this.textBox34.Location = new System.Drawing.Point(88, 17);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(145, 20);
-            this.textBox34.TabIndex = 5;
+            this.CardsEditValidDateTb.Location = new System.Drawing.Point(88, 17);
+            this.CardsEditValidDateTb.Name = "CardsEditValidDateTb";
+            this.CardsEditValidDateTb.Size = new System.Drawing.Size(145, 20);
+            this.CardsEditValidDateTb.TabIndex = 5;
             // 
             // label34
             // 
@@ -1143,13 +1148,14 @@
             this.label34.TabIndex = 0;
             this.label34.Text = "Validation Date:";
             // 
-            // listBox3
+            // listBoxCards
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(6, 108);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(279, 355);
-            this.listBox3.TabIndex = 17;
+            this.listBoxCards.FormattingEnabled = true;
+            this.listBoxCards.Location = new System.Drawing.Point(6, 108);
+            this.listBoxCards.Name = "listBoxCards";
+            this.listBoxCards.Size = new System.Drawing.Size(279, 355);
+            this.listBoxCards.TabIndex = 17;
+            this.listBoxCards.SelectedValueChanged += new System.EventHandler(this.OnSelectCard);
             // 
             // groupBox8
             // 
@@ -1987,8 +1993,8 @@
             this._cardsTabPage.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            this.CardsEditGroup.ResumeLayout(false);
+            this.CardsEditGroup.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this._penalizationsTabPage.ResumeLayout(false);
@@ -2066,7 +2072,7 @@
         private System.Windows.Forms.Button StudentsDeleteButton;
         private System.Windows.Forms.Button StudentsSaveButton;
         private System.Windows.Forms.Button BooksEditButton;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button BooksAddButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox BooksAddAvalaibleStockTb;
         private System.Windows.Forms.Label label17;
@@ -2098,21 +2104,21 @@
         private System.Windows.Forms.CheckBox BooksTypeCB;
         private System.Windows.Forms.CheckBox BooksAuthorCB;
         private System.Windows.Forms.CheckBox BooksTitleCB;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button CardsAddButton;
+        private System.Windows.Forms.Button CardsEditButton;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.TextBox CardsAddCreationDateTb;
+        private System.Windows.Forms.TextBox CardsAddCNPTb;
+        private System.Windows.Forms.TextBox CardsAddNameTb;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.Button CardsDeleteBook;
+        private System.Windows.Forms.Button CardsSaveButton;
+        private System.Windows.Forms.GroupBox CardsEditGroup;
+        private System.Windows.Forms.TextBox CardsEditValidDateTb;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox listBoxCards;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.ComboBox comboBox7;

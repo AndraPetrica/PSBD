@@ -7,38 +7,36 @@ using System.Windows.Forms;
 
 namespace Library_Form_Application
 {
+    public class Book
+    {
+        public String bookId;
+        public String title;
+        public String author;
+        public String pubDate;
+        public String publisher;
+        public String totalStock;
+        public String avalaibleStock;
+        public String type;
+
+        public Book(String bookIdC, String titleC, String authorC, String pubDateC, String publisherC, String totalC, String avalaibleC, String typeC)
+        {
+            bookId = bookIdC;
+            title = titleC;
+            author = authorC;
+            pubDate = pubDateC;
+            publisher = publisherC;
+            totalStock = totalC;
+            avalaibleStock = avalaibleC;
+            type = typeC;
+        }
+    }
+
     public class Books:Entity
     {
-        public List<Book> books;
-        public class Book
-        {
-            public String bookId;
-            public String title;
-            public String author;
-            public String pubDate;
-            public String publisher;
-            public String totalStock;
-            public String avalaibleStock;
-            public String type;
-
-            public Book(String bookIdC, String titleC, String authorC, String pubDateC, String publisherC, String totalC, String avalaibleC, String typeC)
-            {
-                bookId = bookIdC;
-                title = titleC;
-                author = authorC;
-                pubDate = pubDateC;
-                publisher = publisherC;
-                totalStock = totalC;
-                avalaibleStock = avalaibleC;
-                type = typeC;
-            }
-        }
-
-        private int _numberOfBooks;
+        public List<Book> books;    
 
         public Books(OracleConnection conn):base(conn)
         {
-            _numberOfBooks = 0;
             books = new List<Book>();
         }
 
@@ -179,6 +177,7 @@ namespace Library_Form_Application
                 command = "SELECT * FROM BOOKS";
             }
 
+            command += " ORDER BY TITLE ASC";
             OracleCommand cmd = new OracleCommand(command, _connection);
             OracleDataReader dr = cmd.ExecuteReader();
             books.Clear();
@@ -202,14 +201,13 @@ namespace Library_Form_Application
                     MessageBox.Show("Eroare la citirea cartilor : " + ex.ToString());
                 }
             }
-            _numberOfBooks = books.Count;
             return books;
         }
 
         public List<String> GetAuthors()
         {
             List<String> authors = new List<String>();
-            String command = "SELECT DISTINCT(AUTHOR) FROM BOOKS";
+            String command = "SELECT DISTINCT(AUTHOR) FROM BOOKS ORDER BY AUTHOR ASC";
            
             OracleCommand cmd = new OracleCommand(command, _connection);
             OracleDataReader dr = cmd.ExecuteReader();
@@ -232,7 +230,7 @@ namespace Library_Form_Application
         public List<String> GetTitles()
         {
             List<String> titles = new List<String>();
-            String command = "SELECT DISTINCT(TITLE) FROM BOOKS";
+            String command = "SELECT DISTINCT(TITLE) FROM BOOKS ORDER BY TITLE ASC";
 
             OracleCommand cmd = new OracleCommand(command, _connection);
             OracleDataReader dr = cmd.ExecuteReader();

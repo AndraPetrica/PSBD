@@ -31,6 +31,8 @@ namespace Library_Form_Application
             InitializeComponent();
         }
 
+        #region Connection
+
         private Connection.Connection _connection;
         private OracleConnection _oracleConn;
         private Entity[] _adapters;
@@ -68,6 +70,42 @@ namespace Library_Form_Application
           
         }
 
+        #endregion Connection
+
+        #region Main
+        private void LoadData(object sender, EventArgs e)
+        {
+            TabControl tc = (TabControl)sender;
+            String tab = tc.SelectedTab.Text;
+            DisableEditElements();
+            if (tab.CompareTo("Students") == 0)
+            {
+                LoadAllStudents();
+            }
+            else if (tab.CompareTo("Books") == 0)
+            {
+                LoadAllBooks();
+            }
+            else if (tab.CompareTo("Cards") == 0)
+            {
+                LoadAllCards();
+            }
+            else if (tab.CompareTo("Penalizations") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Debts") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Loans") == 0)
+            {
+
+            }
+            else if (tab.CompareTo("Returns") == 0)
+            {
+            }
+        }
         private void DisableEditElements()
         {
             //Books
@@ -95,13 +133,17 @@ namespace Library_Form_Application
             
         }
 
+        #endregion Main
+
+        #region Books
+
         private void LoadAllBooks()
         {
             Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
-            List<Books.Book> books = booksAdapter.GetAllBooks();
+            List<Book> books = booksAdapter.GetAllBooks();
 
             listBoxBooks.Items.Clear();
-            foreach (Books.Book book in books)
+            foreach (Book book in books)
             {
                 listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0] );
             }
@@ -162,7 +204,7 @@ namespace Library_Form_Application
             {
                 Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
                 int index = listBoxBooks.SelectedIndex;
-                Books.Book entry = library.books[index];
+                Book entry = library.books[index];
                 bool bIsDeleted = library.DeleteBook(entry.bookId);
                 String message = (bIsDeleted ? "Book successfully deleted" : "Book not deleted");
                 MessageBox.Show(message);
@@ -173,6 +215,84 @@ namespace Library_Form_Application
                 MessageBox.Show("Eroare deleting book : " + ex.ToString());
             }
         }
+
+        private void EditBook(object sender, EventArgs e)
+        {
+            BooksEditGroup.Enabled = true;
+            BooksSaveButton.Enabled = true;
+        }
+
+        private void SaveBookChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                int index = listBoxBooks.SelectedIndex;
+                Book entry = library.books[index];
+                bool isUpdated = library.UpdateBook(entry.bookId, BooksEditTotalStockTB.Text, BooksEditAvalStockTB.Text, BooksEditTypeCmB.Text);
+                String message = (isUpdated ? "Book successfully updated" : "Book not updated");
+                MessageBox.Show(message);
+                LoadAllBooks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating book: " + ex.Message);
+            }
+        }
+
+        private void OnSelectBook(object sender, EventArgs e)
+        {
+            try
+            {
+                BooksEditButton.Enabled = true;
+                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                int index = listBoxBooks.SelectedIndex;
+                Book entry = library.books[index];
+                BooksEditTotalStockTB.Text = entry.totalStock;
+                BooksEditAvalStockTB.Text = entry.avalaibleStock;
+                BooksEditTypeCmB.SelectedText = entry.type;
+                BooksDeleteButton.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void SearchBooks(object sender, EventArgs e)
+        {
+            String title = "";
+            String author = "";
+            String type = "";
+            if (BooksTitleCB.Checked == true)
+            {
+                title = BooksTitleCmB.Text;
+            }
+            if (BooksAuthorCB.Checked == true)
+            {
+                author = BooksAuthorCmB.Text;
+            }
+            if (BooksTypeCB.Checked == true)
+            {
+                type = BooksTypeCmB.Text;
+            }
+
+            Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+
+            List<Book> books = library.Search(title, author, type);
+
+            listBoxBooks.Items.Clear();
+            foreach (Book book in books)
+            {
+                listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0]);
+            }
+
+        }
+
+        #endregion Books
+
+        #region Students
 
         private void LoadAllStudents()
         {
@@ -286,115 +406,6 @@ namespace Library_Form_Application
             studentsAddStudyYearCmB.Text = "";
             studentsAddGenderTb.Text = "";
         }
-
-        private void LoadData(object sender, EventArgs e)
-        {
-            TabControl tc = (TabControl)sender;
-            String tab = tc.SelectedTab.Text;
-            DisableEditElements();
-            if (tab.CompareTo("Students") == 0)
-            {
-                LoadAllStudents();
-            }
-            else if (tab.CompareTo("Books") == 0)
-            {
-                LoadAllBooks();
-            }
-            else if (tab.CompareTo("Cards") == 0)
-            {
-
-            }
-            else if (tab.CompareTo("Penalizations") == 0)
-            {
-
-            }
-            else if (tab.CompareTo("Debts") == 0)
-            {
-
-            }
-            else if (tab.CompareTo("Loans") == 0)
-            {
-
-            }
-            else if (tab.CompareTo("Returns") == 0)
-            {
-            }
-        }
-
-        private void EditBook(object sender, EventArgs e)
-        {
-            BooksEditGroup.Enabled = true;
-            BooksSaveButton.Enabled = true;
-        }
-
-        private void SaveBookChanges(object sender, EventArgs e)
-        {
-            try
-            {
-                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
-                int index = listBoxBooks.SelectedIndex;
-                Books.Book entry = library.books[index];
-                bool isUpdated = library.UpdateBook(entry.bookId, BooksEditTotalStockTB.Text, BooksEditAvalStockTB.Text, BooksEditTypeCmB.Text);
-                String message = (isUpdated ? "Book successfully updated" : "Book not updated");
-                MessageBox.Show(message);
-                LoadAllBooks();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Error updating book: " + ex.Message);
-            }
-        }
-
-        private void OnSelectBook(object sender, EventArgs e)
-        {
-            try
-            {
-                BooksEditButton.Enabled = true;
-                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
-                int index = listBoxBooks.SelectedIndex;
-                Books.Book entry = library.books[index];
-                BooksEditTotalStockTB.Text = entry.totalStock;
-                BooksEditAvalStockTB.Text = entry.avalaibleStock;
-                BooksEditTypeCmB.Text = entry.type;
-                BooksDeleteButton.Enabled = true;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-        private void SearchBooks(object sender, EventArgs e)
-        {
-            String title = "";
-            String author = "";
-            String type = "";
-            if(BooksTitleCB.Checked == true)
-            {
-                title = BooksTitleCmB.Text;
-            }
-            if(BooksAuthorCB.Checked == true)
-            {
-                author = BooksAuthorCmB.Text;
-            }
-            if(BooksTypeCB.Checked == true)
-            {
-                type = BooksTypeCmB.Text;
-            }
-                        
-            Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
-
-            List <Books.Book> books =  library.Search(title, author, type);
-
-            listBoxBooks.Items.Clear();
-            foreach (Books.Book book in books)
-            {
-                listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0]);
-            }
-
-        }
-
         private void EditStudent(object sender, EventArgs e)
         {
             StudentsEditGroup.Enabled = true;
@@ -470,5 +481,42 @@ namespace Library_Form_Application
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        #endregion Students
+
+        #region Cards
+
+        private void LoadAllCards()
+        {
+
+        }
+
+        private void AddCard(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OnSelectCard(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditCard(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveCardChanges(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteCard(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion Cards
+
     }
 }
