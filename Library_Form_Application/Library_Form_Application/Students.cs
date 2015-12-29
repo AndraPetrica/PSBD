@@ -270,5 +270,28 @@ namespace Library_Form_Application
 
             return name;
         }
+
+        public List<String> GetCNPListByName(String fName, String lName)
+        {
+            List<String> cnpList = new List<String>();
+            String command = String.Format("SELECT CNP FROM STUDENTS WHERE FIRST_NAME = '{0}' AND LAST_NAME = '{1}'", fName, lName);
+
+            OracleCommand cmd = new OracleCommand(command, _connection);
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                try
+                {
+                    cnpList.Add(dr["CNP"].ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error getting cnp list : " + ex.ToString());
+                }
+            }
+
+            return cnpList;
+        }
     }
 } 
