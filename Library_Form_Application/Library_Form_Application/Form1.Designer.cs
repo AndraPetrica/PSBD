@@ -119,20 +119,20 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.CardsDeleteBook = new System.Windows.Forms.Button();
+            this.CardsDeleteButton = new System.Windows.Forms.Button();
             this.CardsSaveButton = new System.Windows.Forms.Button();
             this.CardsEditGroup = new System.Windows.Forms.GroupBox();
             this.CardsEditValidDateTb = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.listBoxCards = new System.Windows.Forms.ListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button14 = new System.Windows.Forms.Button();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.CardsApplyFiltersButton = new System.Windows.Forms.Button();
+            this.CardsStudyYearCmb = new System.Windows.Forms.ComboBox();
+            this.CardsValidationDateCmB = new System.Windows.Forms.ComboBox();
+            this.CardsStudentNameCmB = new System.Windows.Forms.ComboBox();
+            this.CardsStudyYearCB = new System.Windows.Forms.CheckBox();
+            this.CardsValidationDateCB = new System.Windows.Forms.CheckBox();
+            this.CardsStudentNameCB = new System.Windows.Forms.CheckBox();
             this._penalizationsTabPage = new System.Windows.Forms.TabPage();
             this.PenalizationsAddButton = new System.Windows.Forms.Button();
             this.PenalizationsEditButton = new System.Windows.Forms.Button();
@@ -249,7 +249,6 @@
             this.tabControl1.Size = new System.Drawing.Size(857, 499);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.LoadData);
-            this.tabControl1.Click += new System.EventHandler(this.SaveCardChanges);
             // 
             // _studentsTabPage
             // 
@@ -1022,7 +1021,7 @@
             this._cardsTabPage.Controls.Add(this.CardsAddButton);
             this._cardsTabPage.Controls.Add(this.CardsEditButton);
             this._cardsTabPage.Controls.Add(this.groupBox6);
-            this._cardsTabPage.Controls.Add(this.CardsDeleteBook);
+            this._cardsTabPage.Controls.Add(this.CardsDeleteButton);
             this._cardsTabPage.Controls.Add(this.CardsSaveButton);
             this._cardsTabPage.Controls.Add(this.CardsEditGroup);
             this._cardsTabPage.Controls.Add(this.listBoxCards);
@@ -1050,7 +1049,7 @@
             this.CardsEditButton.Name = "CardsEditButton";
             this.CardsEditButton.Size = new System.Drawing.Size(92, 23);
             this.CardsEditButton.TabIndex = 22;
-            this.CardsEditButton.Text = "Edit book";
+            this.CardsEditButton.Text = "Edit Card";
             this.CardsEditButton.UseVisualStyleBackColor = true;
             this.CardsEditButton.Click += new System.EventHandler(this.EditCard);
             // 
@@ -1120,15 +1119,15 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "Name:";
             // 
-            // CardsDeleteBook
+            // CardsDeleteButton
             // 
-            this.CardsDeleteBook.Location = new System.Drawing.Point(329, 257);
-            this.CardsDeleteBook.Name = "CardsDeleteBook";
-            this.CardsDeleteBook.Size = new System.Drawing.Size(92, 23);
-            this.CardsDeleteBook.TabIndex = 20;
-            this.CardsDeleteBook.Text = "Delete book";
-            this.CardsDeleteBook.UseVisualStyleBackColor = true;
-            this.CardsDeleteBook.Click += new System.EventHandler(this.DeleteCard);
+            this.CardsDeleteButton.Location = new System.Drawing.Point(329, 257);
+            this.CardsDeleteButton.Name = "CardsDeleteButton";
+            this.CardsDeleteButton.Size = new System.Drawing.Size(92, 23);
+            this.CardsDeleteButton.TabIndex = 20;
+            this.CardsDeleteButton.Text = "Delete card";
+            this.CardsDeleteButton.UseVisualStyleBackColor = true;
+            this.CardsDeleteButton.Click += new System.EventHandler(this.DeleteCard);
             // 
             // CardsSaveButton
             // 
@@ -1138,6 +1137,7 @@
             this.CardsSaveButton.TabIndex = 19;
             this.CardsSaveButton.Text = "Save changes";
             this.CardsSaveButton.UseVisualStyleBackColor = true;
+            this.CardsSaveButton.Click += new System.EventHandler(this.SaveCardChanges);
             // 
             // CardsEditGroup
             // 
@@ -1177,13 +1177,13 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.button14);
-            this.groupBox8.Controls.Add(this.comboBox7);
-            this.groupBox8.Controls.Add(this.comboBox8);
-            this.groupBox8.Controls.Add(this.comboBox9);
-            this.groupBox8.Controls.Add(this.checkBox5);
-            this.groupBox8.Controls.Add(this.checkBox6);
-            this.groupBox8.Controls.Add(this.checkBox7);
+            this.groupBox8.Controls.Add(this.CardsApplyFiltersButton);
+            this.groupBox8.Controls.Add(this.CardsStudyYearCmb);
+            this.groupBox8.Controls.Add(this.CardsValidationDateCmB);
+            this.groupBox8.Controls.Add(this.CardsStudentNameCmB);
+            this.groupBox8.Controls.Add(this.CardsStudyYearCB);
+            this.groupBox8.Controls.Add(this.CardsValidationDateCB);
+            this.groupBox8.Controls.Add(this.CardsStudentNameCB);
             this.groupBox8.Location = new System.Drawing.Point(6, 10);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(836, 83);
@@ -1191,68 +1191,69 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Search";
             // 
-            // button14
+            // CardsApplyFiltersButton
             // 
-            this.button14.Location = new System.Drawing.Point(735, 43);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(86, 21);
-            this.button14.TabIndex = 10;
-            this.button14.Text = "Apply filters";
-            this.button14.UseVisualStyleBackColor = true;
+            this.CardsApplyFiltersButton.Location = new System.Drawing.Point(735, 43);
+            this.CardsApplyFiltersButton.Name = "CardsApplyFiltersButton";
+            this.CardsApplyFiltersButton.Size = new System.Drawing.Size(86, 21);
+            this.CardsApplyFiltersButton.TabIndex = 10;
+            this.CardsApplyFiltersButton.Text = "Apply filters";
+            this.CardsApplyFiltersButton.UseVisualStyleBackColor = true;
+            this.CardsApplyFiltersButton.Click += new System.EventHandler(this.SearchCards);
             // 
-            // comboBox7
+            // CardsStudyYearCmb
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(588, 42);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(121, 21);
-            this.comboBox7.TabIndex = 9;
+            this.CardsStudyYearCmb.FormattingEnabled = true;
+            this.CardsStudyYearCmb.Location = new System.Drawing.Point(588, 42);
+            this.CardsStudyYearCmb.Name = "CardsStudyYearCmb";
+            this.CardsStudyYearCmb.Size = new System.Drawing.Size(121, 21);
+            this.CardsStudyYearCmb.TabIndex = 9;
             // 
-            // comboBox8
+            // CardsValidationDateCmB
             // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(313, 42);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(248, 21);
-            this.comboBox8.TabIndex = 8;
+            this.CardsValidationDateCmB.FormattingEnabled = true;
+            this.CardsValidationDateCmB.Location = new System.Drawing.Point(313, 42);
+            this.CardsValidationDateCmB.Name = "CardsValidationDateCmB";
+            this.CardsValidationDateCmB.Size = new System.Drawing.Size(248, 21);
+            this.CardsValidationDateCmB.TabIndex = 8;
             // 
-            // comboBox9
+            // CardsStudentNameCmB
             // 
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(10, 43);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(269, 21);
-            this.comboBox9.TabIndex = 7;
+            this.CardsStudentNameCmB.FormattingEnabled = true;
+            this.CardsStudentNameCmB.Location = new System.Drawing.Point(10, 43);
+            this.CardsStudentNameCmB.Name = "CardsStudentNameCmB";
+            this.CardsStudentNameCmB.Size = new System.Drawing.Size(269, 21);
+            this.CardsStudentNameCmB.TabIndex = 7;
             // 
-            // checkBox5
+            // CardsStudyYearCB
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(588, 18);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(78, 17);
-            this.checkBox5.TabIndex = 6;
-            this.checkBox5.Text = "Study Year";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.CardsStudyYearCB.AutoSize = true;
+            this.CardsStudyYearCB.Location = new System.Drawing.Point(588, 18);
+            this.CardsStudyYearCB.Name = "CardsStudyYearCB";
+            this.CardsStudyYearCB.Size = new System.Drawing.Size(78, 17);
+            this.CardsStudyYearCB.TabIndex = 6;
+            this.CardsStudyYearCB.Text = "Study Year";
+            this.CardsStudyYearCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // CardsValidationDateCB
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(313, 19);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(98, 17);
-            this.checkBox6.TabIndex = 4;
-            this.checkBox6.Text = "Validation Date";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.CardsValidationDateCB.AutoSize = true;
+            this.CardsValidationDateCB.Location = new System.Drawing.Point(313, 19);
+            this.CardsValidationDateCB.Name = "CardsValidationDateCB";
+            this.CardsValidationDateCB.Size = new System.Drawing.Size(98, 17);
+            this.CardsValidationDateCB.TabIndex = 4;
+            this.CardsValidationDateCB.Text = "Validation Date";
+            this.CardsValidationDateCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // CardsStudentNameCB
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(10, 19);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(94, 17);
-            this.checkBox7.TabIndex = 2;
-            this.checkBox7.Text = "Student Name";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.CardsStudentNameCB.AutoSize = true;
+            this.CardsStudentNameCB.Location = new System.Drawing.Point(10, 19);
+            this.CardsStudentNameCB.Name = "CardsStudentNameCB";
+            this.CardsStudentNameCB.Size = new System.Drawing.Size(94, 17);
+            this.CardsStudentNameCB.TabIndex = 2;
+            this.CardsStudentNameCB.Text = "Student Name";
+            this.CardsStudentNameCB.UseVisualStyleBackColor = true;
             // 
             // _penalizationsTabPage
             // 
@@ -2123,20 +2124,20 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Button CardsDeleteBook;
+        private System.Windows.Forms.Button CardsDeleteButton;
         private System.Windows.Forms.Button CardsSaveButton;
         private System.Windows.Forms.GroupBox CardsEditGroup;
         private System.Windows.Forms.TextBox CardsEditValidDateTb;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ListBox listBoxCards;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Button CardsApplyFiltersButton;
+        private System.Windows.Forms.ComboBox CardsStudyYearCmb;
+        private System.Windows.Forms.ComboBox CardsValidationDateCmB;
+        private System.Windows.Forms.ComboBox CardsStudentNameCmB;
+        private System.Windows.Forms.CheckBox CardsStudyYearCB;
+        private System.Windows.Forms.CheckBox CardsValidationDateCB;
+        private System.Windows.Forms.CheckBox CardsStudentNameCB;
         private System.Windows.Forms.Button PenalizationsAddButton;
         private System.Windows.Forms.Button PenalizationsEditButton;
         private System.Windows.Forms.GroupBox groupBox9;

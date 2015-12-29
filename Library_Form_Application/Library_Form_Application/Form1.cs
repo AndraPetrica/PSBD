@@ -98,14 +98,15 @@ namespace Library_Form_Application
             }
             else if (tab.CompareTo("Debts") == 0)
             {
-
+                LoadAllDebts();
             }
             else if (tab.CompareTo("Loans") == 0)
             {
-
+                LoadAllLoans();
             }
             else if (tab.CompareTo("Returns") == 0)
             {
+                LoadAllReturns();
             }
         }
         private void DisableEditElements()
@@ -122,8 +123,13 @@ namespace Library_Form_Application
             StudentsSaveButton.Enabled = false;
             StudentsDeleteButton.Enabled = false;
 
-            //Penalizations
+            //Cards
+            CardsEditGroup.Enabled = false;
+            CardsEditButton.Enabled = false;
+            CardsDeleteButton.Enabled = false;
+            CardsSaveButton.Enabled = false;
 
+            //Penalizations
             PenalizationsEditGroup.Enabled = false;
             PenalizationsSaveButton.Enabled = false;
             PenalizationsEditButton.Enabled = false;
@@ -140,6 +146,41 @@ namespace Library_Form_Application
                 DisableEditElements();
             }
             
+        }
+
+        private void ClearAddFields()
+        {
+            //Students
+            studentsAddCNPTb.Text = "";
+            studentsAddFirstNameTb.Text = "";
+            studentsAddLastNameTb.Text = "";
+            studentsAddBirthDateTb.Text = "";
+            studentsAddAddressTb.Text = "";
+            studentsAddPhoneTb.Text = "";
+            studentsAddEmailTb.Text = "";
+            studentsAddStudyYearCmB.Text = "";
+            studentsAddGenderTb.Text = "";
+
+            //Books
+            BooksAddTitleTb.Text = "";
+            BooksAddAuthorTb.Text = "";
+            BooksAddPublicationDateTb.Text = "";
+            BooksAddPublisherTb.Text = "";
+            BooksAddTotalStockTb.Text = "";
+            BooksAddAvalaibleStockTb.Text = "";
+            BooksAddTypeCmB.Text = "";
+
+            //Cards
+            CardsAddCreationDateTb.Text = "";
+
+            //Penalizations
+            PenalizationsAddSumTB.Text = "";
+
+            //Debts
+
+            //Loans
+
+            //Returns
         }
 
         #endregion Main
@@ -403,18 +444,6 @@ namespace Library_Form_Application
             }
         }
 
-        private void ClearAddFields()
-        {
-            studentsAddCNPTb.Text = "";
-            studentsAddFirstNameTb.Text = "";
-            studentsAddLastNameTb.Text = "";
-            studentsAddBirthDateTb.Text = "";
-            studentsAddAddressTb.Text = "";
-            studentsAddPhoneTb.Text = "";
-            studentsAddEmailTb.Text = "";
-            studentsAddStudyYearCmB.Text = "";
-            studentsAddGenderTb.Text = "";
-        }
         private void EditStudent(object sender, EventArgs e)
         {
             StudentsEditGroup.Enabled = true;
@@ -505,6 +534,8 @@ namespace Library_Form_Application
 
             listBoxCards.Items.Clear();
             CardsAddNameCmB.Items.Clear();
+            CardsStudentNameCmB.Items.Clear();
+            CardsStudyYearCmb.Items.Clear();
 
             foreach (Card card in cards)
             {
@@ -514,7 +545,13 @@ namespace Library_Form_Application
             foreach (Student s in names)
             {
                 CardsAddNameCmB.Items.Add(s.last_name + " " + s.first_name);
+                CardsStudentNameCmB.Items.Add(s.last_name + " " + s.first_name);
             }
+
+            CardsStudyYearCmb.Items.Add("1");
+            CardsStudyYearCmb.Items.Add("2");
+            CardsStudyYearCmb.Items.Add("3");
+            CardsStudyYearCmb.Items.Add("4");
         }
 
         private void AddCard(object sender, EventArgs e)
@@ -538,22 +575,63 @@ namespace Library_Form_Application
 
         private void OnSelectCard(object sender, EventArgs e)
         {
-
+            try
+            {
+                BooksEditButton.Enabled = true;
+                Cards cardAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+                int index = listBoxCards.SelectedIndex;
+                Card entry = cardAdapter.cards[index];
+                CardsEditValidDateTb.Text = entry.lastValidation.Split(" ".ToCharArray())[0];
+                CardsEditButton.Enabled = true;
+                CardsDeleteButton.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void EditCard(object sender, EventArgs e)
         {
-
+            CardsEditGroup.Enabled = true;
+            CardsSaveButton.Enabled = true;
         }
 
         private void SaveCardChanges(object sender, EventArgs e)
         {
-
+            try
+            {
+                CustomDate date = new CustomDate(CardsEditValidDateTb.Text);
+                Cards cardAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+                int index = listBoxCards.SelectedIndex;
+                Card entry = cardAdapter.cards[index];
+                bool bIsUpdated = cardAdapter.UpdateCard(entry.cardId, date);
+                String message = (bIsUpdated ? "Card successfully updated" : "Card not updated");
+                MessageBox.Show(message);
+                LoadAllCards();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare updating card : " + ex.ToString());
+            }
         }
 
         private void DeleteCard(object sender, EventArgs e)
         {
-
+            try
+            {
+                Cards cardAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+                int index = listBoxCards.SelectedIndex;
+                Card entry = cardAdapter.cards[index];
+                bool bIsDeleted = cardAdapter.DeleteCard(entry.cardId);
+                String message = (bIsDeleted ? "Card successfully deleted" : "Card not deleted");
+                MessageBox.Show(message);
+                LoadAllCards();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare deleting card : " + ex.ToString());
+            }
         }
 
         private void OnCardsNameChanged(object sender, EventArgs e)
@@ -569,6 +647,35 @@ namespace Library_Form_Application
             }
         }
 
+        private void SearchCards(object sender, EventArgs e)
+        {
+            Cards cardsAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+            String name = "";
+            String date = "";
+            String year = "";
+
+            if(CardsStudentNameCB.Checked)
+            {
+                name = CardsStudentNameCmB.Text;
+            }
+            if(CardsValidationDateCB.Checked)
+            {
+                date = CardsValidationDateCmB.Text;
+            }
+            if(CardsStudyYearCB.Checked)
+            {
+                year = CardsStudyYearCmb.Text;
+            }
+
+            List<Card> cards = cardsAdapter.Search(name, date, year);
+            
+            listBoxCards.Items.Clear();
+           
+            foreach (Card card in cards)
+            {
+                listBoxCards.Items.Add(card.lastName + " " + card.firstName + " " + card.lastValidation.Split(" ".ToCharArray())[0]);
+            }
+        }
 
         #endregion Cards
 
@@ -686,10 +793,7 @@ namespace Library_Form_Application
                 PenalizationsAddCNPCmB.Items.Add(cnp);
             }
         }
-
-
-        #endregion Penalizations
-
+        
         private void OnSelectPenalization(object sender, EventArgs e)
         {
             try
@@ -709,5 +813,35 @@ namespace Library_Form_Application
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        #endregion Penalizations
+
+        #region Debts
+
+        private void LoadAllDebts()
+        {
+
+        }
+
+        #endregion Debts
+
+
+        #region Loans
+
+         private void LoadAllLoans()
+        {
+
+        }
+        #endregion Loans
+
+        #region Returns
+
+        private void LoadAllReturns()
+        {
+
+        }
+        #endregion Returns
+
+
     }
 }

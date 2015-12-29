@@ -133,7 +133,7 @@ namespace Library_Form_Application
             {
                 String date = validationDate.DateToString();
                 String cmdString = String.Format("UPDATE Cards " +
-                    "SET VALIDATION_DATE = {0} WHERE CARD_ID = {1}", date, cardId);
+                    "SET LAST_VALIDATION = {0} WHERE CARD_ID = {1}", date, cardId);
                 OracleCommand deleteCardCmd = new OracleCommand(cmdString);
                 deleteCardCmd.Connection = _connection;
 
@@ -150,6 +150,90 @@ namespace Library_Form_Application
 
             return bIsUpdated;
         }
+
+        public String GetCardIdByCNP(String cnp)
+        {
+            String cardId = "";
+            String command = String.Format("SELECT CARD_ID FROM CARDS WHERE STUDENT_ID = {0}", cnp);
+            OracleCommand cmd = new OracleCommand(command, _connection);
+            OracleDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                try
+                {
+                    cardId = dr["CARD_ID"].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Eroare la citirea cartilor : " + ex.ToString());
+                }
+            }
+            return cardId;
+        }
+
+        public List<Card> Search(String name, String date, String studyYear)
+        {
+            String[] names = name.Split(" ".ToCharArray());
+            List<Card> cardsList = new List<Card>();
+            bool prevSelected = false;
+            String command = "SELECT c.CARD_ID, c.CREATION_DATE, c.LAST_VALIDATION, c.STUDENT_ID, s.FIRST_NAME, S.LAST_NAME " +
+                               "FROM CARDS c JOIN STUDENTS s " +
+                               "ON c.STUDENT_ID = s.CNP ";
+            String predicate = " WHERE ";
+            if(name.CompareTo("") != 0)
+            {
+                predicate += String.Format(" s.FIRST_NAME = '{1}' AND s.LAST_NAME = '{0}'", names[0], names[1]);
+                prevSelected = true;
+            }
+
+            if(studyYear.CompareTo("") != 0)
+            {
+                predicate += (prevSelected ? " AND " : "");
+                predicate += String.Format(" s.STUDY_YEAR = {0}", studyYear);
+                prevSelected = true;
+            }
+
+            if(date.CompareTo("") != 0)
+            {
+                String vDate = new CustomDate(date).DateToString();
+                predicate += (prevSelected ? " AND " : "");
+                predicate += String.Format(" c.LAST_VALIDATION > {0}", vDate);
+                prevSelected = true;
+            }
+
+            if( prevSelected )
+            {
+                command += predicate;
+            }
+
+            OracleCommand cmd = new OracleCommand(command, _connection);
+            OracleDataReader dr = cmd.ExecuteReader();
+            cards.Clear();
+
+            while (dr.Read())
+            {
+                try
+                {
+                    cards.Add(new Card(
+                        dr["CARD_ID"].ToString(),
+                        dr["CREATION_DATE"].ToString(),
+                        dr["LAST_VALIDATION"].ToString(),
+                        dr["STUDENT_ID"].ToString(),
+                        dr["FIRST_NAME"].ToString(),
+                        dr["LAST_NAME"].ToString()));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Eroare la citirea cartilor : " + ex.ToString());
+                }
+            }
+
+            return cards;
+
+            cards = cardsList;
+            return cards;
+        }
+
 
         /*public List<Card> Search(String title, String author, String type)
         {
