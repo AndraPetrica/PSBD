@@ -33,6 +33,7 @@
             this.StudentsEditButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.studentsAddStudyYearCmB = new System.Windows.Forms.ComboBox();
             this.studentsAddGenderTb = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.studentsAddEmailTb = new System.Windows.Forms.TextBox();
@@ -53,6 +54,7 @@
             this.StudentsDeleteButton = new System.Windows.Forms.Button();
             this.StudentsSaveButton = new System.Windows.Forms.Button();
             this.StudentsEditGroup = new System.Windows.Forms.GroupBox();
+            this.StudentsEditStudyYearCmB = new System.Windows.Forms.ComboBox();
             this.StudentsEditEmailTB = new System.Windows.Forms.TextBox();
             this.StudentsEditPhoneTB = new System.Windows.Forms.TextBox();
             this.StudentsEditAddressTB = new System.Windows.Forms.TextBox();
@@ -112,8 +114,6 @@
             this.CardsEditButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.CardsAddCreationDateTb = new System.Windows.Forms.TextBox();
-            this.CardsAddCNPTb = new System.Windows.Forms.TextBox();
-            this.CardsAddNameTb = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -206,9 +206,8 @@
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this._returnsTabPage = new System.Windows.Forms.TabPage();
-            this.StudentsEditStudyYearCmB = new System.Windows.Forms.ComboBox();
-            this.studentsAddStudyYearCmB = new System.Windows.Forms.ComboBox();
-
+            this.CardsAddCNPCmB = new System.Windows.Forms.ComboBox();
+            this.CardsAddNameCmB = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -316,6 +315,14 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Student";
+            // 
+            // studentsAddStudyYearCmB
+            // 
+            this.studentsAddStudyYearCmB.FormattingEnabled = true;
+            this.studentsAddStudyYearCmB.Location = new System.Drawing.Point(88, 199);
+            this.studentsAddStudyYearCmB.Name = "studentsAddStudyYearCmB";
+            this.studentsAddStudyYearCmB.Size = new System.Drawing.Size(145, 21);
+            this.studentsAddStudyYearCmB.TabIndex = 18;
             // 
             // studentsAddGenderTb
             // 
@@ -492,6 +499,14 @@
             this.StudentsEditGroup.TabIndex = 2;
             this.StudentsEditGroup.TabStop = false;
             this.StudentsEditGroup.Text = "Student Info";
+            // 
+            // StudentsEditStudyYearCmB
+            // 
+            this.StudentsEditStudyYearCmB.FormattingEnabled = true;
+            this.StudentsEditStudyYearCmB.Location = new System.Drawing.Point(88, 121);
+            this.StudentsEditStudyYearCmB.Name = "StudentsEditStudyYearCmB";
+            this.StudentsEditStudyYearCmB.Size = new System.Drawing.Size(145, 21);
+            this.StudentsEditStudyYearCmB.TabIndex = 10;
             // 
             // StudentsEditEmailTB
             // 
@@ -1041,9 +1056,9 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.CardsAddNameCmB);
+            this.groupBox6.Controls.Add(this.CardsAddCNPCmB);
             this.groupBox6.Controls.Add(this.CardsAddCreationDateTb);
-            this.groupBox6.Controls.Add(this.CardsAddCNPTb);
-            this.groupBox6.Controls.Add(this.CardsAddNameTb);
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.label31);
@@ -1060,20 +1075,6 @@
             this.CardsAddCreationDateTb.Name = "CardsAddCreationDateTb";
             this.CardsAddCreationDateTb.Size = new System.Drawing.Size(145, 20);
             this.CardsAddCreationDateTb.TabIndex = 7;
-            // 
-            // CardsAddCNPTb
-            // 
-            this.CardsAddCNPTb.Location = new System.Drawing.Point(88, 43);
-            this.CardsAddCNPTb.Name = "CardsAddCNPTb";
-            this.CardsAddCNPTb.Size = new System.Drawing.Size(145, 20);
-            this.CardsAddCNPTb.TabIndex = 6;
-            // 
-            // CardsAddNameTb
-            // 
-            this.CardsAddNameTb.Location = new System.Drawing.Point(88, 17);
-            this.CardsAddNameTb.Name = "CardsAddNameTb";
-            this.CardsAddNameTb.Size = new System.Drawing.Size(145, 20);
-            this.CardsAddNameTb.TabIndex = 5;
             // 
             // label29
             // 
@@ -1950,21 +1951,22 @@
             this._returnsTabPage.Text = "Returns";
             this._returnsTabPage.UseVisualStyleBackColor = true;
             // 
-            // StudentsEditStudyYearCmB
+            // CardsAddCNPCmB
             // 
-            this.StudentsEditStudyYearCmB.FormattingEnabled = true;
-            this.StudentsEditStudyYearCmB.Location = new System.Drawing.Point(88, 121);
-            this.StudentsEditStudyYearCmB.Name = "StudentsEditStudyYearCmB";
-            this.StudentsEditStudyYearCmB.Size = new System.Drawing.Size(145, 21);
-            this.StudentsEditStudyYearCmB.TabIndex = 10;
+            this.CardsAddCNPCmB.FormattingEnabled = true;
+            this.CardsAddCNPCmB.Location = new System.Drawing.Point(88, 43);
+            this.CardsAddCNPCmB.Name = "CardsAddCNPCmB";
+            this.CardsAddCNPCmB.Size = new System.Drawing.Size(145, 21);
+            this.CardsAddCNPCmB.TabIndex = 10;
             // 
-            // studentsAddStudyYearCmB
+            // CardsAddNameCmB
             // 
-            this.studentsAddStudyYearCmB.FormattingEnabled = true;
-            this.studentsAddStudyYearCmB.Location = new System.Drawing.Point(88, 199);
-            this.studentsAddStudyYearCmB.Name = "studentsAddStudyYearCmB";
-            this.studentsAddStudyYearCmB.Size = new System.Drawing.Size(145, 21);
-            this.studentsAddStudyYearCmB.TabIndex = 18;
+            this.CardsAddNameCmB.FormattingEnabled = true;
+            this.CardsAddNameCmB.Location = new System.Drawing.Point(88, 17);
+            this.CardsAddNameCmB.Name = "CardsAddNameCmB";
+            this.CardsAddNameCmB.Size = new System.Drawing.Size(145, 21);
+            this.CardsAddNameCmB.TabIndex = 11;
+            this.CardsAddNameCmB.SelectedValueChanged += new System.EventHandler(this.OnCardsNameChanged);
             // 
             // Form1
             // 
@@ -2108,8 +2110,6 @@
         private System.Windows.Forms.Button CardsEditButton;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox CardsAddCreationDateTb;
-        private System.Windows.Forms.TextBox CardsAddCNPTb;
-        private System.Windows.Forms.TextBox CardsAddNameTb;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
@@ -2202,6 +2202,8 @@
         private System.Windows.Forms.ComboBox BooksEditTypeCmB;
         private System.Windows.Forms.ComboBox studentsAddStudyYearCmB;
         private System.Windows.Forms.ComboBox StudentsEditStudyYearCmB;
+        private System.Windows.Forms.ComboBox CardsAddNameCmB;
+        private System.Windows.Forms.ComboBox CardsAddCNPCmB;
     }
 }
 

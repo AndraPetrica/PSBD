@@ -67,6 +67,7 @@ namespace Library_Form_Application
             _adapters = new Entity[7];
             _adapters[(int)adaptersIndexes.booksIndex] = new Books(_oracleConn);
             _adapters[(int)adaptersIndexes.studentsIndex] = new Students(_oracleConn);
+            _adapters[(int)adaptersIndexes.cardsIndex] = new Cards(_oracleConn);
           
         }
 
@@ -488,12 +489,43 @@ namespace Library_Form_Application
 
         private void LoadAllCards()
         {
+            Cards cardsAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
 
+            List<Card> cards = cardsAdapter.GetAllCards();
+            List<Student> names = studentsAdapter.GetAllStudents();
+
+            listBoxCards.Items.Clear();
+            CardsAddNameCmB.Items.Clear();
+
+            foreach (Card card in cards)
+            {
+                listBoxCards.Items.Add(card.lastName + " " + card.firstName + " " + card.lastValidation.Split(" ".ToCharArray())[0]);
+            }
+
+            foreach (Student s in names)
+            {
+                CardsAddNameCmB.Items.Add(s.last_name + " " + s.first_name);
+            }
         }
 
         private void AddCard(object sender, EventArgs e)
         {
+            try
+            {
+                String cnp = CardsAddCNPCmB.Text;
+                CustomDate date = new CustomDate(CardsAddCreationDateTb.Text);
 
+                Cards cardsAdapter = (Cards)_adapters[(int)adaptersIndexes.cardsIndex];
+                bool ret = cardsAdapter.AddCard(date, cnp);
+                String message = (ret ? "Card added !" : "Card not added : Fill all fields !");
+                MessageBox.Show(message);
+                LoadAllCards();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void OnSelectCard(object sender, EventArgs e)
@@ -516,7 +548,21 @@ namespace Library_Form_Application
 
         }
 
+        private void OnCardsNameChanged(object sender, EventArgs e)
+        {
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
+            String[] names = CardsAddNameCmB.Text.Split(" ".ToCharArray());
+            List<String> CNPs = studentsAdapter.GetCNPListByName(names[1], names[0]);
+            CardsAddCNPCmB.Items.Clear();
+
+            foreach (String cnp in CNPs)
+            {
+                CardsAddCNPCmB.Items.Add(cnp);
+            }
+        }
+
         #endregion Cards
+
 
     }
 }

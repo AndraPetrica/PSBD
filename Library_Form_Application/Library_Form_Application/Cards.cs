@@ -7,29 +7,30 @@ using System.Windows.Forms;
 
 namespace Library_Form_Application
 {
+
+    public class Card
+    {
+        public String cardId;
+        public String creationDate;
+        public String lastValidation;
+        public String cnp;
+        public String firstName;
+        public String lastName;
+
+        public Card(String cardIdC, String creationDateC, String lastValidationC, String cnpC, String firstNameC, String lastNameC)
+        {
+            cardId = cardIdC;
+            creationDate = creationDateC;
+            lastValidation = lastValidationC;
+            cnp = cnpC;
+            firstName = firstNameC;
+            lastName = lastNameC;
+        }
+    }
+
     class Cards:Entity
     {
         public List<Card> cards;
-
-        public class Card
-        {
-            public String cardId;
-            public String creationDate;
-            public String lastValidation;
-            public String cnp;
-            public String firstName;
-            public String lastName;
-
-            public Card(String cardIdC, String creationDateC, String lastValidationC, String cnpC, String firstNameC, String lastNameC)
-            {
-                cardId = cardIdC;
-                creationDate = creationDateC;
-                lastValidation = lastValidationC;
-                cnp = cnpC;
-                firstName = firstNameC;
-                lastName = lastNameC;
-            }
-        }
 
         public Cards(OracleConnection conn):base(conn)
         {
@@ -40,7 +41,7 @@ namespace Library_Form_Application
         {
             String command = "SELECT c.CARD_ID, c.CREATION_DATE, c.LAST_VALIDATION, c.STUDENT_ID, s.FIRST_NAME, S.LAST_NAME " +
                                 "FROM CARDS c JOIN STUDENTS s " +
-                                "ON c.CARD_ID = s.CNP ";
+                                "ON c.STUDENT_ID = s.CNP ";
             OracleCommand cmd = new OracleCommand(command, _connection);
             OracleDataReader dr = cmd.ExecuteReader();
             cards.Clear();
@@ -75,19 +76,27 @@ namespace Library_Form_Application
             OracleDataReader dr = GetMaxIndexBookCmd.ExecuteReader();
             if (dr.Read())
             {
-                index = Int32.Parse(dr["MAX_ID"].ToString()) + 1;
+                if (dr["MAX_ID"].ToString().CompareTo("") == 0)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index = Int32.Parse(dr["MAX_ID"].ToString()) + 1;
+                }
             }
 
             return index;
         }
 
-        public bool AddCard(String cardId, CustomDate creationDate, String CNP)
+        public bool AddCard(CustomDate creationDate, String CNP)
         {
             bool success = false;
             String date = creationDate.DateToString();
 
             String cmdString = String.Format("INSERT INTO CARDS (CARD_ID, CREATION_DATE, LAST_VALIDATION, STUDENT_ID) " +
                 "VALUES( {0}, {1}, {2}, '{3}')", GetNextCardIndex(), date, date, CNP);
+            MessageBox.Show(cmdString);
             OracleCommand insertCardCmd = new OracleCommand(cmdString);
             insertCardCmd.Connection = _connection;
 
