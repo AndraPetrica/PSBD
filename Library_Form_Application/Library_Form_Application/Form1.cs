@@ -68,6 +68,14 @@ namespace Library_Form_Application
           
         }
 
+        private void DisableEditElements()
+        {
+            //Books
+            BooksEditGroup.Enabled = false;
+            BooksEditButton.Enabled = false;
+            BooksSaveButton.Enabled = false;
+            BooksDeleteButton.Enabled = false;
+        }
         private void OnLoad(object sender, EventArgs e)
         {
             bool isInitializedOK = InitOracleDbConnection();
@@ -75,26 +83,41 @@ namespace Library_Form_Application
             {
                 Login();
                 InitAdapters();
+                DisableEditElements();
             }
             
         }
 
         private void LoadAllBooks()
         {
-            List <Books.Book> books = ((Books)_adapters[(int)adaptersIndexes.booksIndex]).GetAllBooks();           
+            Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+            List<Books.Book> books = booksAdapter.GetAllBooks();
+
             listBoxBooks.Items.Clear();
             foreach (Books.Book book in books)
             {
                 listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0] );
             }
-            if(books.Count > 0)
+            List<String> authors = booksAdapter.GetAuthors();
+            BooksAuthorCmB.Items.Clear();
+            foreach(String author in authors)
             {
-                BooksDeleteButton.Enabled = true;
+                BooksAuthorCmB.Items.Add(author);
             }
-            else
+
+            List<String> titles = booksAdapter.GetTitles();
+            BooksTitleCmB.Items.Clear();
+            foreach(String title in titles)
             {
-                BooksDeleteButton.Enabled = false;
+                BooksTitleCmB.Items.Add(title);
             }
+
+            BooksTypeCmB.Items.Add("home");
+            BooksTypeCmB.Items.Add("library");
+            BooksAddTypeCmB.Items.Add("home");
+            BooksAddTypeCmB.Items.Add("library");
+            BooksEditTypeCmB.Items.Add("home");
+            BooksEditTypeCmB.Items.Add("library");
         }
 
         private void AddBook(object sender, EventArgs e)
@@ -104,7 +127,7 @@ namespace Library_Form_Application
                 String title = BooksAddTitleTb.Text;
                 String author = BooksAddAuthorTb.Text;
                 String publisher = BooksAddPublisherTb.Text;
-                String type = BooksAddTypeTb.Text;
+                String type = BooksAddTypeCmB.Text;
                 int totalStock = Int32.Parse(BooksAddTotalStockTb.Text);
                 int avalaibleStock = Int32.Parse(BooksAddAvalaibleStockTb.Text);
                 String[] lines = BooksAddPublicationDateTb.Text.Split("-./".ToCharArray());
@@ -223,6 +246,7 @@ namespace Library_Form_Application
         {
             TabControl tc = (TabControl)sender;
             String tab = tc.SelectedTab.Text;
+            DisableEditElements();
             if (tab.CompareTo("Students") == 0)
             {
                 LoadAllStudents();
@@ -251,6 +275,79 @@ namespace Library_Form_Application
             {
             }
         }
-        
+
+        private void EditBook(object sender, EventArgs e)
+        {
+            BooksEditGroup.Enabled = true;
+            BooksSaveButton.Enabled = true;
+        }
+
+        private void SaveBookChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                int index = listBoxBooks.SelectedIndex;
+                Books.Book entry = library.books[index];
+                bool isUpdated = library.UpdateBook(entry.bookId, BooksEditTotalStockTB.Text, BooksEditAvalStockTB.Text, BooksEditTypeCmB.Text);
+                String message = (isUpdated ? "Book successfully updated" : "Book not updated");
+                MessageBox.Show(message);
+                LoadAllBooks();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error updating book: " + ex.Message);
+            }
+        }
+
+        private void OnSelectBook(object sender, EventArgs e)
+        {
+            try
+            {
+                BooksEditButton.Enabled = true;
+                Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+                int index = listBoxBooks.SelectedIndex;
+                Books.Book entry = library.books[index];
+                BooksEditTotalStockTB.Text = entry.totalStock;
+                BooksEditAvalStockTB.Text = entry.avalaibleStock;
+                BooksEditTypeCmB.SelectedText = entry.type;
+                BooksDeleteButton.Enabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void SearchBooks(object sender, EventArgs e)
+        {
+            String title = "";
+            String author = "";
+            String type = "";
+            if(BooksTitleCB.Checked == true)
+            {
+                title = BooksTitleCmB.Text;
+            }
+            if(BooksAuthorCB.Checked == true)
+            {
+                author = BooksAuthorCmB.Text;
+            }
+            if(BooksTypeCB.Checked == true)
+            {
+                type = BooksTypeCmB.Text;
+            }
+                        
+            Books library = (Books)_adapters[(int)adaptersIndexes.booksIndex];
+
+            List <Books.Book> books =  library.Search(title, author, type);
+
+            listBoxBooks.Items.Clear();
+            foreach (Books.Book book in books)
+            {
+                listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0]);
+            }
+
+        }
     }
 }

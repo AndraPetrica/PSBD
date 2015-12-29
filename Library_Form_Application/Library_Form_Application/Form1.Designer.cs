@@ -74,10 +74,9 @@
             this._studentsSearchLNameCheckBox = new System.Windows.Forms.CheckBox();
             this._studentsSearchFNameCheckBox = new System.Windows.Forms.CheckBox();
             this._booksTabPage = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
+            this.BooksEditButton = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.BooksAddTypeTb = new System.Windows.Forms.TextBox();
             this.BooksAddAvalaibleStockTb = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -92,23 +91,22 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.BooksDeleteButton = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.BooksSaveButton = new System.Windows.Forms.Button();
+            this.BooksEditGroup = new System.Windows.Forms.GroupBox();
+            this.BooksEditAvalStockTB = new System.Windows.Forms.TextBox();
+            this.BooksEditTotalStockTB = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.listBoxBooks = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.BooksApplyFiltersButton = new System.Windows.Forms.Button();
+            this.BooksTypeCmB = new System.Windows.Forms.ComboBox();
+            this.BooksAuthorCmB = new System.Windows.Forms.ComboBox();
+            this.BooksTitleCmB = new System.Windows.Forms.ComboBox();
+            this.BooksTypeCB = new System.Windows.Forms.CheckBox();
+            this.BooksAuthorCB = new System.Windows.Forms.CheckBox();
+            this.BooksTitleCB = new System.Windows.Forms.CheckBox();
             this._cardsTabPage = new System.Windows.Forms.TabPage();
             this.button15 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -208,6 +206,8 @@
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this._returnsTabPage = new System.Windows.Forms.TabPage();
+            this.BooksEditTypeCmB = new System.Windows.Forms.ComboBox();
+            this.BooksAddTypeCmB = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -215,7 +215,7 @@
             this._studentsSearchGroupBox.SuspendLayout();
             this._booksTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.BooksEditGroup.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this._cardsTabPage.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -665,12 +665,12 @@
             // 
             // _booksTabPage
             // 
-            this._booksTabPage.Controls.Add(this.button6);
+            this._booksTabPage.Controls.Add(this.BooksEditButton);
             this._booksTabPage.Controls.Add(this.button7);
             this._booksTabPage.Controls.Add(this.groupBox3);
             this._booksTabPage.Controls.Add(this.BooksDeleteButton);
-            this._booksTabPage.Controls.Add(this.button9);
-            this._booksTabPage.Controls.Add(this.groupBox4);
+            this._booksTabPage.Controls.Add(this.BooksSaveButton);
+            this._booksTabPage.Controls.Add(this.BooksEditGroup);
             this._booksTabPage.Controls.Add(this.listBoxBooks);
             this._booksTabPage.Controls.Add(this.groupBox5);
             this._booksTabPage.Location = new System.Drawing.Point(4, 22);
@@ -681,14 +681,15 @@
             this._booksTabPage.Text = "Books";
             this._booksTabPage.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // BooksEditButton
             // 
-            this.button6.Location = new System.Drawing.Point(329, 249);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(92, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Edit book";
-            this.button6.UseVisualStyleBackColor = true;
+            this.BooksEditButton.Location = new System.Drawing.Point(329, 249);
+            this.BooksEditButton.Name = "BooksEditButton";
+            this.BooksEditButton.Size = new System.Drawing.Size(92, 23);
+            this.BooksEditButton.TabIndex = 15;
+            this.BooksEditButton.Text = "Edit book";
+            this.BooksEditButton.UseVisualStyleBackColor = true;
+            this.BooksEditButton.Click += new System.EventHandler(this.EditBook);
             // 
             // button7
             // 
@@ -702,7 +703,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.BooksAddTypeTb);
+            this.groupBox3.Controls.Add(this.BooksAddTypeCmB);
             this.groupBox3.Controls.Add(this.BooksAddAvalaibleStockTb);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label18);
@@ -722,13 +723,6 @@
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add Book";
-            // 
-            // BooksAddTypeTb
-            // 
-            this.BooksAddTypeTb.Location = new System.Drawing.Point(88, 173);
-            this.BooksAddTypeTb.Name = "BooksAddTypeTb";
-            this.BooksAddTypeTb.Size = new System.Drawing.Size(145, 20);
-            this.BooksAddTypeTb.TabIndex = 14;
             // 
             // BooksAddAvalaibleStockTb
             // 
@@ -845,50 +839,44 @@
             this.BooksDeleteButton.UseVisualStyleBackColor = true;
             this.BooksDeleteButton.Click += new System.EventHandler(this.DeleteBook);
             // 
-            // button9
+            // BooksSaveButton
             // 
-            this.button9.Location = new System.Drawing.Point(460, 249);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(92, 23);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Save changes";
-            this.button9.UseVisualStyleBackColor = true;
+            this.BooksSaveButton.Location = new System.Drawing.Point(460, 249);
+            this.BooksSaveButton.Name = "BooksSaveButton";
+            this.BooksSaveButton.Size = new System.Drawing.Size(92, 23);
+            this.BooksSaveButton.TabIndex = 11;
+            this.BooksSaveButton.Text = "Save changes";
+            this.BooksSaveButton.UseVisualStyleBackColor = true;
+            this.BooksSaveButton.Click += new System.EventHandler(this.SaveBookChanges);
             // 
-            // groupBox4
+            // BooksEditGroup
             // 
-            this.groupBox4.Controls.Add(this.textBox26);
-            this.groupBox4.Controls.Add(this.textBox27);
-            this.groupBox4.Controls.Add(this.textBox28);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.label27);
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Location = new System.Drawing.Point(319, 104);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(248, 115);
-            this.groupBox4.TabIndex = 10;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Book Info";
+            this.BooksEditGroup.Controls.Add(this.BooksEditTypeCmB);
+            this.BooksEditGroup.Controls.Add(this.BooksEditAvalStockTB);
+            this.BooksEditGroup.Controls.Add(this.BooksEditTotalStockTB);
+            this.BooksEditGroup.Controls.Add(this.label26);
+            this.BooksEditGroup.Controls.Add(this.label27);
+            this.BooksEditGroup.Controls.Add(this.label28);
+            this.BooksEditGroup.Location = new System.Drawing.Point(319, 104);
+            this.BooksEditGroup.Name = "BooksEditGroup";
+            this.BooksEditGroup.Size = new System.Drawing.Size(248, 115);
+            this.BooksEditGroup.TabIndex = 10;
+            this.BooksEditGroup.TabStop = false;
+            this.BooksEditGroup.Text = "Book Info";
             // 
-            // textBox26
+            // BooksEditAvalStockTB
             // 
-            this.textBox26.Location = new System.Drawing.Point(88, 69);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(145, 20);
-            this.textBox26.TabIndex = 7;
+            this.BooksEditAvalStockTB.Location = new System.Drawing.Point(88, 43);
+            this.BooksEditAvalStockTB.Name = "BooksEditAvalStockTB";
+            this.BooksEditAvalStockTB.Size = new System.Drawing.Size(145, 20);
+            this.BooksEditAvalStockTB.TabIndex = 6;
             // 
-            // textBox27
+            // BooksEditTotalStockTB
             // 
-            this.textBox27.Location = new System.Drawing.Point(88, 43);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(145, 20);
-            this.textBox27.TabIndex = 6;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Location = new System.Drawing.Point(88, 17);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(145, 20);
-            this.textBox28.TabIndex = 5;
+            this.BooksEditTotalStockTB.Location = new System.Drawing.Point(88, 17);
+            this.BooksEditTotalStockTB.Name = "BooksEditTotalStockTB";
+            this.BooksEditTotalStockTB.Size = new System.Drawing.Size(145, 20);
+            this.BooksEditTotalStockTB.TabIndex = 5;
             // 
             // label26
             // 
@@ -924,16 +912,17 @@
             this.listBoxBooks.Name = "listBoxBooks";
             this.listBoxBooks.Size = new System.Drawing.Size(279, 355);
             this.listBoxBooks.TabIndex = 9;
+            this.listBoxBooks.SelectedValueChanged += new System.EventHandler(this.OnSelectBook);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button10);
-            this.groupBox5.Controls.Add(this.comboBox4);
-            this.groupBox5.Controls.Add(this.comboBox5);
-            this.groupBox5.Controls.Add(this.comboBox6);
-            this.groupBox5.Controls.Add(this.checkBox2);
-            this.groupBox5.Controls.Add(this.checkBox3);
-            this.groupBox5.Controls.Add(this.checkBox4);
+            this.groupBox5.Controls.Add(this.BooksApplyFiltersButton);
+            this.groupBox5.Controls.Add(this.BooksTypeCmB);
+            this.groupBox5.Controls.Add(this.BooksAuthorCmB);
+            this.groupBox5.Controls.Add(this.BooksTitleCmB);
+            this.groupBox5.Controls.Add(this.BooksTypeCB);
+            this.groupBox5.Controls.Add(this.BooksAuthorCB);
+            this.groupBox5.Controls.Add(this.BooksTitleCB);
             this.groupBox5.Location = new System.Drawing.Point(6, 6);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(836, 83);
@@ -941,68 +930,69 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Search";
             // 
-            // button10
+            // BooksApplyFiltersButton
             // 
-            this.button10.Location = new System.Drawing.Point(735, 43);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(86, 21);
-            this.button10.TabIndex = 10;
-            this.button10.Text = "Apply filters";
-            this.button10.UseVisualStyleBackColor = true;
+            this.BooksApplyFiltersButton.Location = new System.Drawing.Point(735, 43);
+            this.BooksApplyFiltersButton.Name = "BooksApplyFiltersButton";
+            this.BooksApplyFiltersButton.Size = new System.Drawing.Size(86, 21);
+            this.BooksApplyFiltersButton.TabIndex = 10;
+            this.BooksApplyFiltersButton.Text = "Apply filters";
+            this.BooksApplyFiltersButton.UseVisualStyleBackColor = true;
+            this.BooksApplyFiltersButton.Click += new System.EventHandler(this.SearchBooks);
             // 
-            // comboBox4
+            // BooksTypeCmB
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(588, 42);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 9;
+            this.BooksTypeCmB.FormattingEnabled = true;
+            this.BooksTypeCmB.Location = new System.Drawing.Point(588, 42);
+            this.BooksTypeCmB.Name = "BooksTypeCmB";
+            this.BooksTypeCmB.Size = new System.Drawing.Size(121, 21);
+            this.BooksTypeCmB.TabIndex = 9;
             // 
-            // comboBox5
+            // BooksAuthorCmB
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(313, 42);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(248, 21);
-            this.comboBox5.TabIndex = 8;
+            this.BooksAuthorCmB.FormattingEnabled = true;
+            this.BooksAuthorCmB.Location = new System.Drawing.Point(313, 42);
+            this.BooksAuthorCmB.Name = "BooksAuthorCmB";
+            this.BooksAuthorCmB.Size = new System.Drawing.Size(248, 21);
+            this.BooksAuthorCmB.TabIndex = 8;
             // 
-            // comboBox6
+            // BooksTitleCmB
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(10, 43);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(269, 21);
-            this.comboBox6.TabIndex = 7;
+            this.BooksTitleCmB.FormattingEnabled = true;
+            this.BooksTitleCmB.Location = new System.Drawing.Point(10, 43);
+            this.BooksTitleCmB.Name = "BooksTitleCmB";
+            this.BooksTitleCmB.Size = new System.Drawing.Size(269, 21);
+            this.BooksTitleCmB.TabIndex = 7;
             // 
-            // checkBox2
+            // BooksTypeCB
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(588, 18);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(50, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Type";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.BooksTypeCB.AutoSize = true;
+            this.BooksTypeCB.Location = new System.Drawing.Point(588, 18);
+            this.BooksTypeCB.Name = "BooksTypeCB";
+            this.BooksTypeCB.Size = new System.Drawing.Size(50, 17);
+            this.BooksTypeCB.TabIndex = 6;
+            this.BooksTypeCB.Text = "Type";
+            this.BooksTypeCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // BooksAuthorCB
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(313, 19);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(57, 17);
-            this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "Author";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.BooksAuthorCB.AutoSize = true;
+            this.BooksAuthorCB.Location = new System.Drawing.Point(313, 19);
+            this.BooksAuthorCB.Name = "BooksAuthorCB";
+            this.BooksAuthorCB.Size = new System.Drawing.Size(57, 17);
+            this.BooksAuthorCB.TabIndex = 4;
+            this.BooksAuthorCB.Text = "Author";
+            this.BooksAuthorCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // BooksTitleCB
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(10, 19);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(46, 17);
-            this.checkBox4.TabIndex = 2;
-            this.checkBox4.Text = "Title";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.BooksTitleCB.AutoSize = true;
+            this.BooksTitleCB.Location = new System.Drawing.Point(10, 19);
+            this.BooksTitleCB.Name = "BooksTitleCB";
+            this.BooksTitleCB.Size = new System.Drawing.Size(46, 17);
+            this.BooksTitleCB.TabIndex = 2;
+            this.BooksTitleCB.Text = "Title";
+            this.BooksTitleCB.UseVisualStyleBackColor = true;
             // 
             // _cardsTabPage
             // 
@@ -1948,6 +1938,22 @@
             this._returnsTabPage.Text = "Returns";
             this._returnsTabPage.UseVisualStyleBackColor = true;
             // 
+            // BooksEditTypeCmB
+            // 
+            this.BooksEditTypeCmB.FormattingEnabled = true;
+            this.BooksEditTypeCmB.Location = new System.Drawing.Point(88, 69);
+            this.BooksEditTypeCmB.Name = "BooksEditTypeCmB";
+            this.BooksEditTypeCmB.Size = new System.Drawing.Size(145, 21);
+            this.BooksEditTypeCmB.TabIndex = 10;
+            // 
+            // BooksAddTypeCmB
+            // 
+            this.BooksAddTypeCmB.FormattingEnabled = true;
+            this.BooksAddTypeCmB.Location = new System.Drawing.Point(88, 173);
+            this.BooksAddTypeCmB.Name = "BooksAddTypeCmB";
+            this.BooksAddTypeCmB.Size = new System.Drawing.Size(145, 21);
+            this.BooksAddTypeCmB.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1968,8 +1974,8 @@
             this._booksTabPage.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.BooksEditGroup.ResumeLayout(false);
+            this.BooksEditGroup.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this._cardsTabPage.ResumeLayout(false);
@@ -2055,10 +2061,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button BooksEditButton;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox BooksAddTypeTb;
         private System.Windows.Forms.TextBox BooksAddAvalaibleStockTb;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
@@ -2073,23 +2078,22 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button BooksDeleteButton;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.Button BooksSaveButton;
+        private System.Windows.Forms.GroupBox BooksEditGroup;
+        private System.Windows.Forms.TextBox BooksEditAvalStockTB;
+        private System.Windows.Forms.TextBox BooksEditTotalStockTB;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ListBox listBoxBooks;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Button BooksApplyFiltersButton;
+        private System.Windows.Forms.ComboBox BooksTypeCmB;
+        private System.Windows.Forms.ComboBox BooksAuthorCmB;
+        private System.Windows.Forms.ComboBox BooksTitleCmB;
+        private System.Windows.Forms.CheckBox BooksTypeCB;
+        private System.Windows.Forms.CheckBox BooksAuthorCB;
+        private System.Windows.Forms.CheckBox BooksTitleCB;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -2184,6 +2188,8 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox textBox40;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.ComboBox BooksAddTypeCmB;
+        private System.Windows.Forms.ComboBox BooksEditTypeCmB;
     }
 }
 
