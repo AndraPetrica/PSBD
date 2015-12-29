@@ -75,7 +75,14 @@ namespace Library_Form_Application
             BooksEditButton.Enabled = false;
             BooksSaveButton.Enabled = false;
             BooksDeleteButton.Enabled = false;
+
+            //Students
+            StudentsEditGroup.Enabled = false;
+            StudentsEditButton.Enabled = false;
+            StudentsSaveButton.Enabled = false;
+            StudentsDeleteButton.Enabled = false;
         }
+
         private void OnLoad(object sender, EventArgs e)
         {
             bool isInitializedOK = InitOracleDbConnection();
@@ -98,6 +105,7 @@ namespace Library_Form_Application
             {
                 listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0] );
             }
+
             List<String> authors = booksAdapter.GetAuthors();
             BooksAuthorCmB.Items.Clear();
             foreach(String author in authors)
@@ -112,10 +120,13 @@ namespace Library_Form_Application
                 BooksTitleCmB.Items.Add(title);
             }
 
+            BooksTypeCmB.Items.Clear();
             BooksTypeCmB.Items.Add("home");
             BooksTypeCmB.Items.Add("library");
+            BooksAddTypeCmB.Items.Clear();
             BooksAddTypeCmB.Items.Add("home");
             BooksAddTypeCmB.Items.Add("library");
+            BooksEditTypeCmB.Items.Clear();
             BooksEditTypeCmB.Items.Add("home");
             BooksEditTypeCmB.Items.Add("library");
         }
@@ -165,12 +176,46 @@ namespace Library_Form_Application
 
         private void LoadAllStudents()
         {
-            List<Student> students = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]).GetAllStudents();
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
+            List<Student> students = studentsAdapter.GetAllStudents();
+
             listBoxStudents.Items.Clear();
             foreach (Student stud in students)
             {
-                listBoxStudents.Items.Add(stud.CNP + " " + stud.first_name + " " + stud.last_name);
+                listBoxStudents.Items.Add(stud.first_name + " " + stud.last_name + " " + stud.CNP);
             }
+
+            List<String> firstNames = studentsAdapter.GetFirstNames();
+            StudentsFNameCmB.Items.Clear();
+            foreach (String fName in firstNames)
+            {
+                StudentsFNameCmB.Items.Add(fName);
+            }
+
+            List<String> lastNames = studentsAdapter.GetLastNames();
+            StudentsLNameCmB.Items.Clear();
+            foreach (String lName in lastNames)
+            {
+                StudentsLNameCmB.Items.Add(lName);
+            }
+
+            StudentsStudyYearCmB.Items.Clear();
+            StudentsStudyYearCmB.Items.Add("1");
+            StudentsStudyYearCmB.Items.Add("2");
+            StudentsStudyYearCmB.Items.Add("3");
+            StudentsStudyYearCmB.Items.Add("4");
+
+            StudentsEditStudyYearCmB.Items.Clear();
+            StudentsEditStudyYearCmB.Items.Add("1");
+            StudentsEditStudyYearCmB.Items.Add("2");
+            StudentsEditStudyYearCmB.Items.Add("3");
+            StudentsEditStudyYearCmB.Items.Add("4");
+
+            studentsAddStudyYearCmB.Items.Clear();
+            studentsAddStudyYearCmB.Items.Add("1");
+            studentsAddStudyYearCmB.Items.Add("2");
+            studentsAddStudyYearCmB.Items.Add("3");
+            studentsAddStudyYearCmB.Items.Add("4");
         }
 
         private void AddStudent(object sender, EventArgs e)
@@ -184,7 +229,7 @@ namespace Library_Form_Application
                 String address = studentsAddAddressTb.Text;
                 String phone = studentsAddPhoneTb.Text;
                 String email = studentsAddEmailTb.Text;
-                String yearOfStudy = studentsAddYearOfStudyTb.Text;
+                String yearOfStudy = studentsAddStudyYearCmB.Text;
                 String gender = studentsAddGenderTb.Text;
 
                 Students studentsAdapter = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
@@ -211,7 +256,7 @@ namespace Library_Form_Application
             {
                 int index = listBoxStudents.SelectedIndex;
                 Students students = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
-                Student stud = students._students[index];
+                Student stud = students.students[index];
                 bool success = students.DeleteStudent(stud.CNP);
 
                 if (success)
@@ -238,7 +283,7 @@ namespace Library_Form_Application
             studentsAddAddressTb.Text = "";
             studentsAddPhoneTb.Text = "";
             studentsAddEmailTb.Text = "";
-            studentsAddYearOfStudyTb.Text = "";
+            studentsAddStudyYearCmB.Text = "";
             studentsAddGenderTb.Text = "";
         }
 
@@ -310,7 +355,7 @@ namespace Library_Form_Application
                 Books.Book entry = library.books[index];
                 BooksEditTotalStockTB.Text = entry.totalStock;
                 BooksEditAvalStockTB.Text = entry.avalaibleStock;
-                BooksEditTypeCmB.SelectedText = entry.type;
+                BooksEditTypeCmB.Text = entry.type;
                 BooksDeleteButton.Enabled = true;
             }
             catch(Exception ex)
@@ -348,6 +393,82 @@ namespace Library_Form_Application
                 listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0]);
             }
 
+        }
+
+        private void EditStudent(object sender, EventArgs e)
+        {
+            StudentsEditGroup.Enabled = true;
+            StudentsSaveButton.Enabled = true;
+        }
+
+        private void SaveStudentChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Students studentsAdapter = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
+                int index = listBoxStudents.SelectedIndex;
+                Student entry = studentsAdapter.students[index];
+                bool isUpdated = studentsAdapter.UpdateStudent(entry.CNP, StudentsEditBirthDateTB.Text, StudentsEditAddressTB.Text, StudentsEditPhoneTB.Text, StudentsEditEmailTB.Text, StudentsEditStudyYearCmB.Text);
+                String message = (isUpdated ? "Student successfully updated" : "Student not updated");
+                MessageBox.Show(message);
+                LoadAllStudents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating student: " + ex.Message);
+            }
+        }
+
+        private void SearchStudents(object sender, EventArgs e)
+        {
+            String fName = "";
+            String lName = "";
+            String studyYear = "";
+            if (StudentsFNameCB.Checked == true)
+            {
+                fName = StudentsFNameCmB.Text;
+            }
+            if (StudentsLNameCB.Checked == true)
+            {
+                lName = StudentsLNameCmB.Text;
+            }
+            if (StudentsStudyYearCB.Checked == true)
+            {
+                studyYear = StudentsStudyYearCmB.Text;
+            }
+
+            Students studentsAdapter = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
+
+            List<Student> students = studentsAdapter.Search(fName, lName, studyYear);
+
+            listBoxStudents.Items.Clear();
+            foreach (Student stud in students)
+            {
+                listBoxStudents.Items.Add(stud.first_name + " " + stud.last_name + " " + stud.CNP);
+            }
+        }
+
+        private void OnSelectStudent(object sender, EventArgs e)
+        {
+            try
+            {
+                StudentsEditButton.Enabled = true;
+                Students studentsAdapter = (Students)_adapters[(int)adaptersIndexes.studentsIndex];
+                int index = listBoxStudents.SelectedIndex;
+                Student entry = studentsAdapter.students[index];
+
+                StudentsEditBirthDateTB.Text = entry.birth_date.Split(' ')[0];
+                StudentsEditAddressTB.Text = entry.address;
+                StudentsEditPhoneTB.Text = entry.phone;
+                StudentsEditEmailTB.Text = entry.email;
+                StudentsEditStudyYearCmB.Text = entry.study_year;
+
+                StudentsDeleteButton.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

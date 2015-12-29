@@ -30,12 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this._studentsTabPage = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
+            this.StudentsEditButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.studentsAddGenderTb = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.studentsAddYearOfStudyTb = new System.Windows.Forms.TextBox();
             this.studentsAddEmailTb = new System.Windows.Forms.TextBox();
             this.studentsAddPhoneTb = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -51,14 +50,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.StudentsDeleteButton = new System.Windows.Forms.Button();
+            this.StudentsSaveButton = new System.Windows.Forms.Button();
+            this.StudentsEditGroup = new System.Windows.Forms.GroupBox();
+            this.StudentsEditEmailTB = new System.Windows.Forms.TextBox();
+            this.StudentsEditPhoneTB = new System.Windows.Forms.TextBox();
+            this.StudentsEditAddressTB = new System.Windows.Forms.TextBox();
+            this.StudentsEditBirthDateTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,17 +64,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBoxStudents = new System.Windows.Forms.ListBox();
             this._studentsSearchGroupBox = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this._studentsSearchLNameCheckBox = new System.Windows.Forms.CheckBox();
-            this._studentsSearchFNameCheckBox = new System.Windows.Forms.CheckBox();
+            this.StudentsApplyFiltersButton = new System.Windows.Forms.Button();
+            this.StudentsStudyYearCmB = new System.Windows.Forms.ComboBox();
+            this.StudentsLNameCmB = new System.Windows.Forms.ComboBox();
+            this.StudentsFNameCmB = new System.Windows.Forms.ComboBox();
+            this.StudentsStudyYearCB = new System.Windows.Forms.CheckBox();
+            this.StudentsLNameCB = new System.Windows.Forms.CheckBox();
+            this.StudentsFNameCB = new System.Windows.Forms.CheckBox();
             this._booksTabPage = new System.Windows.Forms.TabPage();
             this.BooksEditButton = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BooksAddTypeCmB = new System.Windows.Forms.ComboBox();
             this.BooksAddAvalaibleStockTb = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -93,6 +92,7 @@
             this.BooksDeleteButton = new System.Windows.Forms.Button();
             this.BooksSaveButton = new System.Windows.Forms.Button();
             this.BooksEditGroup = new System.Windows.Forms.GroupBox();
+            this.BooksEditTypeCmB = new System.Windows.Forms.ComboBox();
             this.BooksEditAvalStockTB = new System.Windows.Forms.TextBox();
             this.BooksEditTotalStockTB = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -206,12 +206,12 @@
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this._returnsTabPage = new System.Windows.Forms.TabPage();
-            this.BooksEditTypeCmB = new System.Windows.Forms.ComboBox();
-            this.BooksAddTypeCmB = new System.Windows.Forms.ComboBox();
+            this.StudentsEditStudyYearCmB = new System.Windows.Forms.ComboBox();
+            this.studentsAddStudyYearCmB = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.StudentsEditGroup.SuspendLayout();
             this._studentsSearchGroupBox.SuspendLayout();
             this._booksTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -252,12 +252,12 @@
             // 
             // _studentsTabPage
             // 
-            this._studentsTabPage.Controls.Add(this.button5);
+            this._studentsTabPage.Controls.Add(this.StudentsEditButton);
             this._studentsTabPage.Controls.Add(this.button4);
             this._studentsTabPage.Controls.Add(this.groupBox2);
-            this._studentsTabPage.Controls.Add(this.button3);
-            this._studentsTabPage.Controls.Add(this.button2);
-            this._studentsTabPage.Controls.Add(this.groupBox1);
+            this._studentsTabPage.Controls.Add(this.StudentsDeleteButton);
+            this._studentsTabPage.Controls.Add(this.StudentsSaveButton);
+            this._studentsTabPage.Controls.Add(this.StudentsEditGroup);
             this._studentsTabPage.Controls.Add(this.listBoxStudents);
             this._studentsTabPage.Controls.Add(this._studentsSearchGroupBox);
             this._studentsTabPage.Location = new System.Drawing.Point(4, 22);
@@ -268,14 +268,15 @@
             this._studentsTabPage.Text = "Students";
             this._studentsTabPage.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // StudentsEditButton
             // 
-            this.button5.Location = new System.Drawing.Point(330, 271);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(92, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Edit student";
-            this.button5.UseVisualStyleBackColor = true;
+            this.StudentsEditButton.Location = new System.Drawing.Point(330, 271);
+            this.StudentsEditButton.Name = "StudentsEditButton";
+            this.StudentsEditButton.Size = new System.Drawing.Size(92, 23);
+            this.StudentsEditButton.TabIndex = 7;
+            this.StudentsEditButton.Text = "Edit student";
+            this.StudentsEditButton.UseVisualStyleBackColor = true;
+            this.StudentsEditButton.Click += new System.EventHandler(this.EditStudent);
             // 
             // button4
             // 
@@ -289,9 +290,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.studentsAddStudyYearCmB);
             this.groupBox2.Controls.Add(this.studentsAddGenderTb);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.studentsAddYearOfStudyTb);
             this.groupBox2.Controls.Add(this.studentsAddEmailTb);
             this.groupBox2.Controls.Add(this.studentsAddPhoneTb);
             this.groupBox2.Controls.Add(this.label11);
@@ -329,13 +330,6 @@
             this.label14.Size = new System.Drawing.Size(45, 13);
             this.label14.TabIndex = 16;
             this.label14.Text = "Gender:";
-            // 
-            // studentsAddYearOfStudyTb
-            // 
-            this.studentsAddYearOfStudyTb.Location = new System.Drawing.Point(88, 199);
-            this.studentsAddYearOfStudyTb.Name = "studentsAddYearOfStudyTb";
-            this.studentsAddYearOfStudyTb.Size = new System.Drawing.Size(145, 20);
-            this.studentsAddYearOfStudyTb.TabIndex = 15;
             // 
             // studentsAddEmailTb
             // 
@@ -458,78 +452,72 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "CNP:";
             // 
-            // button3
+            // StudentsDeleteButton
             // 
-            this.button3.Location = new System.Drawing.Point(330, 328);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Delete student";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.DeleteStudent);
+            this.StudentsDeleteButton.Location = new System.Drawing.Point(330, 328);
+            this.StudentsDeleteButton.Name = "StudentsDeleteButton";
+            this.StudentsDeleteButton.Size = new System.Drawing.Size(92, 23);
+            this.StudentsDeleteButton.TabIndex = 4;
+            this.StudentsDeleteButton.Text = "Delete student";
+            this.StudentsDeleteButton.UseVisualStyleBackColor = true;
+            this.StudentsDeleteButton.Click += new System.EventHandler(this.DeleteStudent);
             // 
-            // button2
+            // StudentsSaveButton
             // 
-            this.button2.Location = new System.Drawing.Point(461, 271);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Save changes";
-            this.button2.UseVisualStyleBackColor = true;
+            this.StudentsSaveButton.Location = new System.Drawing.Point(461, 271);
+            this.StudentsSaveButton.Name = "StudentsSaveButton";
+            this.StudentsSaveButton.Size = new System.Drawing.Size(92, 23);
+            this.StudentsSaveButton.TabIndex = 3;
+            this.StudentsSaveButton.Text = "Save changes";
+            this.StudentsSaveButton.UseVisualStyleBackColor = true;
+            this.StudentsSaveButton.Click += new System.EventHandler(this.SaveStudentChanges);
             // 
-            // groupBox1
+            // StudentsEditGroup
             // 
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(320, 105);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(248, 153);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Student Info";
+            this.StudentsEditGroup.Controls.Add(this.StudentsEditStudyYearCmB);
+            this.StudentsEditGroup.Controls.Add(this.StudentsEditEmailTB);
+            this.StudentsEditGroup.Controls.Add(this.StudentsEditPhoneTB);
+            this.StudentsEditGroup.Controls.Add(this.StudentsEditAddressTB);
+            this.StudentsEditGroup.Controls.Add(this.StudentsEditBirthDateTB);
+            this.StudentsEditGroup.Controls.Add(this.label5);
+            this.StudentsEditGroup.Controls.Add(this.label4);
+            this.StudentsEditGroup.Controls.Add(this.label3);
+            this.StudentsEditGroup.Controls.Add(this.label2);
+            this.StudentsEditGroup.Controls.Add(this.label1);
+            this.StudentsEditGroup.Location = new System.Drawing.Point(320, 105);
+            this.StudentsEditGroup.Name = "StudentsEditGroup";
+            this.StudentsEditGroup.Size = new System.Drawing.Size(248, 153);
+            this.StudentsEditGroup.TabIndex = 2;
+            this.StudentsEditGroup.TabStop = false;
+            this.StudentsEditGroup.Text = "Student Info";
             // 
-            // textBox5
+            // StudentsEditEmailTB
             // 
-            this.textBox5.Location = new System.Drawing.Point(88, 121);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(145, 20);
-            this.textBox5.TabIndex = 9;
+            this.StudentsEditEmailTB.Location = new System.Drawing.Point(88, 95);
+            this.StudentsEditEmailTB.Name = "StudentsEditEmailTB";
+            this.StudentsEditEmailTB.Size = new System.Drawing.Size(145, 20);
+            this.StudentsEditEmailTB.TabIndex = 8;
             // 
-            // textBox4
+            // StudentsEditPhoneTB
             // 
-            this.textBox4.Location = new System.Drawing.Point(88, 95);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(145, 20);
-            this.textBox4.TabIndex = 8;
+            this.StudentsEditPhoneTB.Location = new System.Drawing.Point(88, 69);
+            this.StudentsEditPhoneTB.Name = "StudentsEditPhoneTB";
+            this.StudentsEditPhoneTB.Size = new System.Drawing.Size(145, 20);
+            this.StudentsEditPhoneTB.TabIndex = 7;
             // 
-            // textBox3
+            // StudentsEditAddressTB
             // 
-            this.textBox3.Location = new System.Drawing.Point(88, 69);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(145, 20);
-            this.textBox3.TabIndex = 7;
+            this.StudentsEditAddressTB.Location = new System.Drawing.Point(88, 43);
+            this.StudentsEditAddressTB.Name = "StudentsEditAddressTB";
+            this.StudentsEditAddressTB.Size = new System.Drawing.Size(145, 20);
+            this.StudentsEditAddressTB.TabIndex = 6;
             // 
-            // textBox2
+            // StudentsEditBirthDateTB
             // 
-            this.textBox2.Location = new System.Drawing.Point(88, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(145, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(88, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 20);
-            this.textBox1.TabIndex = 5;
+            this.StudentsEditBirthDateTB.Location = new System.Drawing.Point(88, 17);
+            this.StudentsEditBirthDateTB.Name = "StudentsEditBirthDateTB";
+            this.StudentsEditBirthDateTB.Size = new System.Drawing.Size(145, 20);
+            this.StudentsEditBirthDateTB.TabIndex = 5;
             // 
             // label5
             // 
@@ -583,16 +571,17 @@
             this.listBoxStudents.Name = "listBoxStudents";
             this.listBoxStudents.Size = new System.Drawing.Size(279, 355);
             this.listBoxStudents.TabIndex = 1;
+            this.listBoxStudents.SelectedValueChanged += new System.EventHandler(this.OnSelectStudent);
             // 
             // _studentsSearchGroupBox
             // 
-            this._studentsSearchGroupBox.Controls.Add(this.button1);
-            this._studentsSearchGroupBox.Controls.Add(this.comboBox3);
-            this._studentsSearchGroupBox.Controls.Add(this.comboBox2);
-            this._studentsSearchGroupBox.Controls.Add(this.comboBox1);
-            this._studentsSearchGroupBox.Controls.Add(this.checkBox1);
-            this._studentsSearchGroupBox.Controls.Add(this._studentsSearchLNameCheckBox);
-            this._studentsSearchGroupBox.Controls.Add(this._studentsSearchFNameCheckBox);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsApplyFiltersButton);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsStudyYearCmB);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsLNameCmB);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsFNameCmB);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsStudyYearCB);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsLNameCB);
+            this._studentsSearchGroupBox.Controls.Add(this.StudentsFNameCB);
             this._studentsSearchGroupBox.Location = new System.Drawing.Point(7, 7);
             this._studentsSearchGroupBox.Name = "_studentsSearchGroupBox";
             this._studentsSearchGroupBox.Size = new System.Drawing.Size(836, 83);
@@ -600,68 +589,69 @@
             this._studentsSearchGroupBox.TabStop = false;
             this._studentsSearchGroupBox.Text = "Search";
             // 
-            // button1
+            // StudentsApplyFiltersButton
             // 
-            this.button1.Location = new System.Drawing.Point(735, 43);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 21);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Apply filters";
-            this.button1.UseVisualStyleBackColor = true;
+            this.StudentsApplyFiltersButton.Location = new System.Drawing.Point(735, 43);
+            this.StudentsApplyFiltersButton.Name = "StudentsApplyFiltersButton";
+            this.StudentsApplyFiltersButton.Size = new System.Drawing.Size(86, 21);
+            this.StudentsApplyFiltersButton.TabIndex = 10;
+            this.StudentsApplyFiltersButton.Text = "Apply filters";
+            this.StudentsApplyFiltersButton.UseVisualStyleBackColor = true;
+            this.StudentsApplyFiltersButton.Click += new System.EventHandler(this.SearchStudents);
             // 
-            // comboBox3
+            // StudentsStudyYearCmB
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(588, 42);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 9;
+            this.StudentsStudyYearCmB.FormattingEnabled = true;
+            this.StudentsStudyYearCmB.Location = new System.Drawing.Point(588, 42);
+            this.StudentsStudyYearCmB.Name = "StudentsStudyYearCmB";
+            this.StudentsStudyYearCmB.Size = new System.Drawing.Size(121, 21);
+            this.StudentsStudyYearCmB.TabIndex = 9;
             // 
-            // comboBox2
+            // StudentsLNameCmB
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(313, 42);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(248, 21);
-            this.comboBox2.TabIndex = 8;
+            this.StudentsLNameCmB.FormattingEnabled = true;
+            this.StudentsLNameCmB.Location = new System.Drawing.Point(313, 42);
+            this.StudentsLNameCmB.Name = "StudentsLNameCmB";
+            this.StudentsLNameCmB.Size = new System.Drawing.Size(248, 21);
+            this.StudentsLNameCmB.TabIndex = 8;
             // 
-            // comboBox1
+            // StudentsFNameCmB
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(269, 21);
-            this.comboBox1.TabIndex = 7;
+            this.StudentsFNameCmB.FormattingEnabled = true;
+            this.StudentsFNameCmB.Location = new System.Drawing.Point(10, 43);
+            this.StudentsFNameCmB.Name = "StudentsFNameCmB";
+            this.StudentsFNameCmB.Size = new System.Drawing.Size(269, 21);
+            this.StudentsFNameCmB.TabIndex = 7;
             // 
-            // checkBox1
+            // StudentsStudyYearCB
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(588, 18);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 17);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "Study Year";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.StudentsStudyYearCB.AutoSize = true;
+            this.StudentsStudyYearCB.Location = new System.Drawing.Point(588, 18);
+            this.StudentsStudyYearCB.Name = "StudentsStudyYearCB";
+            this.StudentsStudyYearCB.Size = new System.Drawing.Size(78, 17);
+            this.StudentsStudyYearCB.TabIndex = 6;
+            this.StudentsStudyYearCB.Text = "Study Year";
+            this.StudentsStudyYearCB.UseVisualStyleBackColor = true;
             // 
-            // _studentsSearchLNameCheckBox
+            // StudentsLNameCB
             // 
-            this._studentsSearchLNameCheckBox.AutoSize = true;
-            this._studentsSearchLNameCheckBox.Location = new System.Drawing.Point(313, 19);
-            this._studentsSearchLNameCheckBox.Name = "_studentsSearchLNameCheckBox";
-            this._studentsSearchLNameCheckBox.Size = new System.Drawing.Size(77, 17);
-            this._studentsSearchLNameCheckBox.TabIndex = 4;
-            this._studentsSearchLNameCheckBox.Text = "Last Name";
-            this._studentsSearchLNameCheckBox.UseVisualStyleBackColor = true;
+            this.StudentsLNameCB.AutoSize = true;
+            this.StudentsLNameCB.Location = new System.Drawing.Point(313, 19);
+            this.StudentsLNameCB.Name = "StudentsLNameCB";
+            this.StudentsLNameCB.Size = new System.Drawing.Size(77, 17);
+            this.StudentsLNameCB.TabIndex = 4;
+            this.StudentsLNameCB.Text = "Last Name";
+            this.StudentsLNameCB.UseVisualStyleBackColor = true;
             // 
-            // _studentsSearchFNameCheckBox
+            // StudentsFNameCB
             // 
-            this._studentsSearchFNameCheckBox.AutoSize = true;
-            this._studentsSearchFNameCheckBox.Location = new System.Drawing.Point(10, 19);
-            this._studentsSearchFNameCheckBox.Name = "_studentsSearchFNameCheckBox";
-            this._studentsSearchFNameCheckBox.Size = new System.Drawing.Size(76, 17);
-            this._studentsSearchFNameCheckBox.TabIndex = 2;
-            this._studentsSearchFNameCheckBox.Text = "First Name";
-            this._studentsSearchFNameCheckBox.UseVisualStyleBackColor = true;
+            this.StudentsFNameCB.AutoSize = true;
+            this.StudentsFNameCB.Location = new System.Drawing.Point(10, 19);
+            this.StudentsFNameCB.Name = "StudentsFNameCB";
+            this.StudentsFNameCB.Size = new System.Drawing.Size(76, 17);
+            this.StudentsFNameCB.TabIndex = 2;
+            this.StudentsFNameCB.Text = "First Name";
+            this.StudentsFNameCB.UseVisualStyleBackColor = true;
             // 
             // _booksTabPage
             // 
@@ -723,6 +713,14 @@
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add Book";
+            // 
+            // BooksAddTypeCmB
+            // 
+            this.BooksAddTypeCmB.FormattingEnabled = true;
+            this.BooksAddTypeCmB.Location = new System.Drawing.Point(88, 173);
+            this.BooksAddTypeCmB.Name = "BooksAddTypeCmB";
+            this.BooksAddTypeCmB.Size = new System.Drawing.Size(145, 21);
+            this.BooksAddTypeCmB.TabIndex = 14;
             // 
             // BooksAddAvalaibleStockTb
             // 
@@ -863,6 +861,14 @@
             this.BooksEditGroup.TabIndex = 10;
             this.BooksEditGroup.TabStop = false;
             this.BooksEditGroup.Text = "Book Info";
+            // 
+            // BooksEditTypeCmB
+            // 
+            this.BooksEditTypeCmB.FormattingEnabled = true;
+            this.BooksEditTypeCmB.Location = new System.Drawing.Point(88, 69);
+            this.BooksEditTypeCmB.Name = "BooksEditTypeCmB";
+            this.BooksEditTypeCmB.Size = new System.Drawing.Size(145, 21);
+            this.BooksEditTypeCmB.TabIndex = 10;
             // 
             // BooksEditAvalStockTB
             // 
@@ -1938,21 +1944,21 @@
             this._returnsTabPage.Text = "Returns";
             this._returnsTabPage.UseVisualStyleBackColor = true;
             // 
-            // BooksEditTypeCmB
+            // StudentsEditStudyYearCmB
             // 
-            this.BooksEditTypeCmB.FormattingEnabled = true;
-            this.BooksEditTypeCmB.Location = new System.Drawing.Point(88, 69);
-            this.BooksEditTypeCmB.Name = "BooksEditTypeCmB";
-            this.BooksEditTypeCmB.Size = new System.Drawing.Size(145, 21);
-            this.BooksEditTypeCmB.TabIndex = 10;
+            this.StudentsEditStudyYearCmB.FormattingEnabled = true;
+            this.StudentsEditStudyYearCmB.Location = new System.Drawing.Point(88, 121);
+            this.StudentsEditStudyYearCmB.Name = "StudentsEditStudyYearCmB";
+            this.StudentsEditStudyYearCmB.Size = new System.Drawing.Size(145, 21);
+            this.StudentsEditStudyYearCmB.TabIndex = 10;
             // 
-            // BooksAddTypeCmB
+            // studentsAddStudyYearCmB
             // 
-            this.BooksAddTypeCmB.FormattingEnabled = true;
-            this.BooksAddTypeCmB.Location = new System.Drawing.Point(88, 173);
-            this.BooksAddTypeCmB.Name = "BooksAddTypeCmB";
-            this.BooksAddTypeCmB.Size = new System.Drawing.Size(145, 21);
-            this.BooksAddTypeCmB.TabIndex = 14;
+            this.studentsAddStudyYearCmB.FormattingEnabled = true;
+            this.studentsAddStudyYearCmB.Location = new System.Drawing.Point(88, 199);
+            this.studentsAddStudyYearCmB.Name = "studentsAddStudyYearCmB";
+            this.studentsAddStudyYearCmB.Size = new System.Drawing.Size(145, 21);
+            this.studentsAddStudyYearCmB.TabIndex = 18;
             // 
             // Form1
             // 
@@ -1967,8 +1973,8 @@
             this._studentsTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.StudentsEditGroup.ResumeLayout(false);
+            this.StudentsEditGroup.PerformLayout();
             this._studentsSearchGroupBox.ResumeLayout(false);
             this._studentsSearchGroupBox.PerformLayout();
             this._booksTabPage.ResumeLayout(false);
@@ -2013,12 +2019,11 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage _studentsTabPage;
         private System.Windows.Forms.TabPage _booksTabPage;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox StudentsEditGroup;
+        private System.Windows.Forms.TextBox StudentsEditEmailTB;
+        private System.Windows.Forms.TextBox StudentsEditPhoneTB;
+        private System.Windows.Forms.TextBox StudentsEditAddressTB;
+        private System.Windows.Forms.TextBox StudentsEditBirthDateTB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -2026,24 +2031,23 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxStudents;
         private System.Windows.Forms.GroupBox _studentsSearchGroupBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox _studentsSearchLNameCheckBox;
-        private System.Windows.Forms.CheckBox _studentsSearchFNameCheckBox;
+        private System.Windows.Forms.Button StudentsApplyFiltersButton;
+        private System.Windows.Forms.ComboBox StudentsStudyYearCmB;
+        private System.Windows.Forms.ComboBox StudentsLNameCmB;
+        private System.Windows.Forms.ComboBox StudentsFNameCmB;
+        private System.Windows.Forms.CheckBox StudentsStudyYearCB;
+        private System.Windows.Forms.CheckBox StudentsLNameCB;
+        private System.Windows.Forms.CheckBox StudentsFNameCB;
         private System.Windows.Forms.TabPage _cardsTabPage;
         private System.Windows.Forms.TabPage _penalizationsTabPage;
         private System.Windows.Forms.TabPage _debtsTabPage;
         private System.Windows.Forms.TabPage _loansTabPage;
         private System.Windows.Forms.TabPage _returnsTabPage;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button StudentsEditButton;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox studentsAddGenderTb;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox studentsAddYearOfStudyTb;
         private System.Windows.Forms.TextBox studentsAddEmailTb;
         private System.Windows.Forms.TextBox studentsAddPhoneTb;
         private System.Windows.Forms.Label label11;
@@ -2059,8 +2063,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button StudentsDeleteButton;
+        private System.Windows.Forms.Button StudentsSaveButton;
         private System.Windows.Forms.Button BooksEditButton;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -2190,6 +2194,8 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.ComboBox BooksAddTypeCmB;
         private System.Windows.Forms.ComboBox BooksEditTypeCmB;
+        private System.Windows.Forms.ComboBox studentsAddStudyYearCmB;
+        private System.Windows.Forms.ComboBox StudentsEditStudyYearCmB;
     }
 }
 
