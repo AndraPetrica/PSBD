@@ -113,6 +113,8 @@
             this.CardsAddButton = new System.Windows.Forms.Button();
             this.CardsEditButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.CardsAddNameCmB = new System.Windows.Forms.ComboBox();
+            this.CardsAddCNPCmB = new System.Windows.Forms.ComboBox();
             this.CardsAddCreationDateTb = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -132,31 +134,31 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this._penalizationsTabPage = new System.Windows.Forms.TabPage();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.PenalizationsAddButton = new System.Windows.Forms.Button();
+            this.PenalizationsEditButton = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.PenalizationsAddCNPCmB = new System.Windows.Forms.ComboBox();
+            this.PenalizationsAddNameCmB = new System.Windows.Forms.ComboBox();
+            this.PenalizationsAddSumTB = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.PenalizationsDeleteButton = new System.Windows.Forms.Button();
+            this.PenalizationsSaveButton = new System.Windows.Forms.Button();
+            this.PenalizationsEditGroup = new System.Windows.Forms.GroupBox();
+            this.PenalizationsEditStatusCmB = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.PenalizationsEditSumTB = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.listBoxPenalizations = new System.Windows.Forms.ListBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.button20 = new System.Windows.Forms.Button();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.PenalizationsApplyFiltersButton = new System.Windows.Forms.Button();
+            this.PenalizationsSumCmB = new System.Windows.Forms.ComboBox();
+            this.PenalizationsStatusCmB = new System.Windows.Forms.ComboBox();
+            this.PenalizationsStudNameCmB = new System.Windows.Forms.ComboBox();
+            this.PenalizationsSumCB = new System.Windows.Forms.CheckBox();
+            this.PenalizationsStatusCB = new System.Windows.Forms.CheckBox();
+            this.PenalizationsStudNameCB = new System.Windows.Forms.CheckBox();
             this._debtsTabPage = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -206,8 +208,6 @@
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this._returnsTabPage = new System.Windows.Forms.TabPage();
-            this.CardsAddCNPCmB = new System.Windows.Forms.ComboBox();
-            this.CardsAddNameCmB = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this._studentsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -223,7 +223,7 @@
             this.groupBox8.SuspendLayout();
             this._penalizationsTabPage.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
+            this.PenalizationsEditGroup.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this._debtsTabPage.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -1069,6 +1069,23 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Add Card";
             // 
+            // CardsAddNameCmB
+            // 
+            this.CardsAddNameCmB.FormattingEnabled = true;
+            this.CardsAddNameCmB.Location = new System.Drawing.Point(88, 17);
+            this.CardsAddNameCmB.Name = "CardsAddNameCmB";
+            this.CardsAddNameCmB.Size = new System.Drawing.Size(145, 21);
+            this.CardsAddNameCmB.TabIndex = 11;
+            this.CardsAddNameCmB.SelectedValueChanged += new System.EventHandler(this.OnCardsNameChanged);
+            // 
+            // CardsAddCNPCmB
+            // 
+            this.CardsAddCNPCmB.FormattingEnabled = true;
+            this.CardsAddCNPCmB.Location = new System.Drawing.Point(88, 43);
+            this.CardsAddCNPCmB.Name = "CardsAddCNPCmB";
+            this.CardsAddCNPCmB.Size = new System.Drawing.Size(145, 21);
+            this.CardsAddCNPCmB.TabIndex = 10;
+            // 
             // CardsAddCreationDateTb
             // 
             this.CardsAddCreationDateTb.Location = new System.Drawing.Point(88, 69);
@@ -1239,13 +1256,13 @@
             // 
             // _penalizationsTabPage
             // 
-            this._penalizationsTabPage.Controls.Add(this.button16);
-            this._penalizationsTabPage.Controls.Add(this.button17);
+            this._penalizationsTabPage.Controls.Add(this.PenalizationsAddButton);
+            this._penalizationsTabPage.Controls.Add(this.PenalizationsEditButton);
             this._penalizationsTabPage.Controls.Add(this.groupBox9);
-            this._penalizationsTabPage.Controls.Add(this.button18);
-            this._penalizationsTabPage.Controls.Add(this.button19);
-            this._penalizationsTabPage.Controls.Add(this.groupBox10);
-            this._penalizationsTabPage.Controls.Add(this.listBox4);
+            this._penalizationsTabPage.Controls.Add(this.PenalizationsDeleteButton);
+            this._penalizationsTabPage.Controls.Add(this.PenalizationsSaveButton);
+            this._penalizationsTabPage.Controls.Add(this.PenalizationsEditGroup);
+            this._penalizationsTabPage.Controls.Add(this.listBoxPenalizations);
             this._penalizationsTabPage.Controls.Add(this.groupBox11);
             this._penalizationsTabPage.Location = new System.Drawing.Point(4, 22);
             this._penalizationsTabPage.Name = "_penalizationsTabPage";
@@ -1254,29 +1271,31 @@
             this._penalizationsTabPage.Text = "Penalizations";
             this._penalizationsTabPage.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // PenalizationsAddButton
             // 
-            this.button16.Location = new System.Drawing.Point(604, 257);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(111, 23);
-            this.button16.TabIndex = 31;
-            this.button16.Text = "Add penalization";
-            this.button16.UseVisualStyleBackColor = true;
+            this.PenalizationsAddButton.Location = new System.Drawing.Point(604, 257);
+            this.PenalizationsAddButton.Name = "PenalizationsAddButton";
+            this.PenalizationsAddButton.Size = new System.Drawing.Size(111, 23);
+            this.PenalizationsAddButton.TabIndex = 31;
+            this.PenalizationsAddButton.Text = "Add penalization";
+            this.PenalizationsAddButton.UseVisualStyleBackColor = true;
+            this.PenalizationsAddButton.Click += new System.EventHandler(this.AddPenalization);
             // 
-            // button17
+            // PenalizationsEditButton
             // 
-            this.button17.Location = new System.Drawing.Point(329, 257);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(92, 23);
-            this.button17.TabIndex = 30;
-            this.button17.Text = "Edit book";
-            this.button17.UseVisualStyleBackColor = true;
+            this.PenalizationsEditButton.Location = new System.Drawing.Point(329, 257);
+            this.PenalizationsEditButton.Name = "PenalizationsEditButton";
+            this.PenalizationsEditButton.Size = new System.Drawing.Size(92, 23);
+            this.PenalizationsEditButton.TabIndex = 30;
+            this.PenalizationsEditButton.Text = "Edit penalization";
+            this.PenalizationsEditButton.UseVisualStyleBackColor = true;
+            this.PenalizationsEditButton.Click += new System.EventHandler(this.EditPenalization);
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.textBox15);
-            this.groupBox9.Controls.Add(this.textBox16);
-            this.groupBox9.Controls.Add(this.textBox24);
+            this.groupBox9.Controls.Add(this.PenalizationsAddCNPCmB);
+            this.groupBox9.Controls.Add(this.PenalizationsAddNameCmB);
+            this.groupBox9.Controls.Add(this.PenalizationsAddSumTB);
             this.groupBox9.Controls.Add(this.label15);
             this.groupBox9.Controls.Add(this.label16);
             this.groupBox9.Controls.Add(this.label24);
@@ -1287,26 +1306,29 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Add Penalization";
             // 
-            // textBox15
+            // PenalizationsAddCNPCmB
             // 
-            this.textBox15.Location = new System.Drawing.Point(88, 69);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(145, 20);
-            this.textBox15.TabIndex = 7;
+            this.PenalizationsAddCNPCmB.FormattingEnabled = true;
+            this.PenalizationsAddCNPCmB.Location = new System.Drawing.Point(88, 43);
+            this.PenalizationsAddCNPCmB.Name = "PenalizationsAddCNPCmB";
+            this.PenalizationsAddCNPCmB.Size = new System.Drawing.Size(145, 21);
+            this.PenalizationsAddCNPCmB.TabIndex = 9;
             // 
-            // textBox16
+            // PenalizationsAddNameCmB
             // 
-            this.textBox16.Location = new System.Drawing.Point(88, 43);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(145, 20);
-            this.textBox16.TabIndex = 6;
+            this.PenalizationsAddNameCmB.FormattingEnabled = true;
+            this.PenalizationsAddNameCmB.Location = new System.Drawing.Point(88, 17);
+            this.PenalizationsAddNameCmB.Name = "PenalizationsAddNameCmB";
+            this.PenalizationsAddNameCmB.Size = new System.Drawing.Size(145, 21);
+            this.PenalizationsAddNameCmB.TabIndex = 8;
+            this.PenalizationsAddNameCmB.SelectedValueChanged += new System.EventHandler(this.OnPenalizationNameChanged);
             // 
-            // textBox24
+            // PenalizationsAddSumTB
             // 
-            this.textBox24.Location = new System.Drawing.Point(88, 17);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(145, 20);
-            this.textBox24.TabIndex = 5;
+            this.PenalizationsAddSumTB.Location = new System.Drawing.Point(88, 69);
+            this.PenalizationsAddSumTB.Name = "PenalizationsAddSumTB";
+            this.PenalizationsAddSumTB.Size = new System.Drawing.Size(145, 20);
+            this.PenalizationsAddSumTB.TabIndex = 7;
             // 
             // label15
             // 
@@ -1335,43 +1357,46 @@
             this.label24.TabIndex = 0;
             this.label24.Text = "Name:";
             // 
-            // button18
+            // PenalizationsDeleteButton
             // 
-            this.button18.Location = new System.Drawing.Point(329, 314);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(92, 23);
-            this.button18.TabIndex = 28;
-            this.button18.Text = "Delete book";
-            this.button18.UseVisualStyleBackColor = true;
+            this.PenalizationsDeleteButton.Location = new System.Drawing.Point(329, 314);
+            this.PenalizationsDeleteButton.Name = "PenalizationsDeleteButton";
+            this.PenalizationsDeleteButton.Size = new System.Drawing.Size(107, 23);
+            this.PenalizationsDeleteButton.TabIndex = 28;
+            this.PenalizationsDeleteButton.Text = "Delete penalization";
+            this.PenalizationsDeleteButton.UseVisualStyleBackColor = true;
+            this.PenalizationsDeleteButton.Click += new System.EventHandler(this.DeletePenalization);
             // 
-            // button19
+            // PenalizationsSaveButton
             // 
-            this.button19.Location = new System.Drawing.Point(460, 257);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(92, 23);
-            this.button19.TabIndex = 27;
-            this.button19.Text = "Save changes";
-            this.button19.UseVisualStyleBackColor = true;
+            this.PenalizationsSaveButton.Location = new System.Drawing.Point(460, 257);
+            this.PenalizationsSaveButton.Name = "PenalizationsSaveButton";
+            this.PenalizationsSaveButton.Size = new System.Drawing.Size(92, 23);
+            this.PenalizationsSaveButton.TabIndex = 27;
+            this.PenalizationsSaveButton.Text = "Save changes";
+            this.PenalizationsSaveButton.UseVisualStyleBackColor = true;
+            this.PenalizationsSaveButton.Click += new System.EventHandler(this.SavePenalizationChanges);
             // 
-            // groupBox10
+            // PenalizationsEditGroup
             // 
-            this.groupBox10.Controls.Add(this.textBox32);
-            this.groupBox10.Controls.Add(this.label32);
-            this.groupBox10.Controls.Add(this.textBox25);
-            this.groupBox10.Controls.Add(this.label25);
-            this.groupBox10.Location = new System.Drawing.Point(319, 108);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(248, 115);
-            this.groupBox10.TabIndex = 26;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Penalization Info";
+            this.PenalizationsEditGroup.Controls.Add(this.PenalizationsEditStatusCmB);
+            this.PenalizationsEditGroup.Controls.Add(this.label32);
+            this.PenalizationsEditGroup.Controls.Add(this.PenalizationsEditSumTB);
+            this.PenalizationsEditGroup.Controls.Add(this.label25);
+            this.PenalizationsEditGroup.Location = new System.Drawing.Point(319, 108);
+            this.PenalizationsEditGroup.Name = "PenalizationsEditGroup";
+            this.PenalizationsEditGroup.Size = new System.Drawing.Size(248, 115);
+            this.PenalizationsEditGroup.TabIndex = 26;
+            this.PenalizationsEditGroup.TabStop = false;
+            this.PenalizationsEditGroup.Text = "Penalization Info";
             // 
-            // textBox32
+            // PenalizationsEditStatusCmB
             // 
-            this.textBox32.Location = new System.Drawing.Point(88, 43);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(145, 20);
-            this.textBox32.TabIndex = 7;
+            this.PenalizationsEditStatusCmB.FormattingEnabled = true;
+            this.PenalizationsEditStatusCmB.Location = new System.Drawing.Point(88, 43);
+            this.PenalizationsEditStatusCmB.Name = "PenalizationsEditStatusCmB";
+            this.PenalizationsEditStatusCmB.Size = new System.Drawing.Size(145, 21);
+            this.PenalizationsEditStatusCmB.TabIndex = 9;
             // 
             // label32
             // 
@@ -1382,12 +1407,12 @@
             this.label32.TabIndex = 6;
             this.label32.Text = "Status:";
             // 
-            // textBox25
+            // PenalizationsEditSumTB
             // 
-            this.textBox25.Location = new System.Drawing.Point(88, 17);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(145, 20);
-            this.textBox25.TabIndex = 5;
+            this.PenalizationsEditSumTB.Location = new System.Drawing.Point(88, 17);
+            this.PenalizationsEditSumTB.Name = "PenalizationsEditSumTB";
+            this.PenalizationsEditSumTB.Size = new System.Drawing.Size(145, 20);
+            this.PenalizationsEditSumTB.TabIndex = 5;
             // 
             // label25
             // 
@@ -1398,23 +1423,24 @@
             this.label25.TabIndex = 0;
             this.label25.Text = "Sum:";
             // 
-            // listBox4
+            // listBoxPenalizations
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(6, 108);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(279, 355);
-            this.listBox4.TabIndex = 25;
+            this.listBoxPenalizations.FormattingEnabled = true;
+            this.listBoxPenalizations.Location = new System.Drawing.Point(6, 108);
+            this.listBoxPenalizations.Name = "listBoxPenalizations";
+            this.listBoxPenalizations.Size = new System.Drawing.Size(279, 355);
+            this.listBoxPenalizations.TabIndex = 25;
+            this.listBoxPenalizations.SelectedValueChanged += new System.EventHandler(this.OnSelectPenalization);
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.button20);
-            this.groupBox11.Controls.Add(this.comboBox10);
-            this.groupBox11.Controls.Add(this.comboBox11);
-            this.groupBox11.Controls.Add(this.comboBox12);
-            this.groupBox11.Controls.Add(this.checkBox8);
-            this.groupBox11.Controls.Add(this.checkBox9);
-            this.groupBox11.Controls.Add(this.checkBox10);
+            this.groupBox11.Controls.Add(this.PenalizationsApplyFiltersButton);
+            this.groupBox11.Controls.Add(this.PenalizationsSumCmB);
+            this.groupBox11.Controls.Add(this.PenalizationsStatusCmB);
+            this.groupBox11.Controls.Add(this.PenalizationsStudNameCmB);
+            this.groupBox11.Controls.Add(this.PenalizationsSumCB);
+            this.groupBox11.Controls.Add(this.PenalizationsStatusCB);
+            this.groupBox11.Controls.Add(this.PenalizationsStudNameCB);
             this.groupBox11.Location = new System.Drawing.Point(6, 10);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(836, 83);
@@ -1422,68 +1448,69 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Search";
             // 
-            // button20
+            // PenalizationsApplyFiltersButton
             // 
-            this.button20.Location = new System.Drawing.Point(735, 43);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(86, 21);
-            this.button20.TabIndex = 10;
-            this.button20.Text = "Apply filters";
-            this.button20.UseVisualStyleBackColor = true;
+            this.PenalizationsApplyFiltersButton.Location = new System.Drawing.Point(735, 43);
+            this.PenalizationsApplyFiltersButton.Name = "PenalizationsApplyFiltersButton";
+            this.PenalizationsApplyFiltersButton.Size = new System.Drawing.Size(86, 21);
+            this.PenalizationsApplyFiltersButton.TabIndex = 10;
+            this.PenalizationsApplyFiltersButton.Text = "Apply filters";
+            this.PenalizationsApplyFiltersButton.UseVisualStyleBackColor = true;
+            this.PenalizationsApplyFiltersButton.Click += new System.EventHandler(this.SearchPenalizations);
             // 
-            // comboBox10
+            // PenalizationsSumCmB
             // 
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(588, 42);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(121, 21);
-            this.comboBox10.TabIndex = 9;
+            this.PenalizationsSumCmB.FormattingEnabled = true;
+            this.PenalizationsSumCmB.Location = new System.Drawing.Point(588, 42);
+            this.PenalizationsSumCmB.Name = "PenalizationsSumCmB";
+            this.PenalizationsSumCmB.Size = new System.Drawing.Size(121, 21);
+            this.PenalizationsSumCmB.TabIndex = 9;
             // 
-            // comboBox11
+            // PenalizationsStatusCmB
             // 
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(313, 42);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(248, 21);
-            this.comboBox11.TabIndex = 8;
+            this.PenalizationsStatusCmB.FormattingEnabled = true;
+            this.PenalizationsStatusCmB.Location = new System.Drawing.Point(313, 42);
+            this.PenalizationsStatusCmB.Name = "PenalizationsStatusCmB";
+            this.PenalizationsStatusCmB.Size = new System.Drawing.Size(248, 21);
+            this.PenalizationsStatusCmB.TabIndex = 8;
             // 
-            // comboBox12
+            // PenalizationsStudNameCmB
             // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(10, 43);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(269, 21);
-            this.comboBox12.TabIndex = 7;
+            this.PenalizationsStudNameCmB.FormattingEnabled = true;
+            this.PenalizationsStudNameCmB.Location = new System.Drawing.Point(10, 43);
+            this.PenalizationsStudNameCmB.Name = "PenalizationsStudNameCmB";
+            this.PenalizationsStudNameCmB.Size = new System.Drawing.Size(269, 21);
+            this.PenalizationsStudNameCmB.TabIndex = 7;
             // 
-            // checkBox8
+            // PenalizationsSumCB
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(588, 18);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(47, 17);
-            this.checkBox8.TabIndex = 6;
-            this.checkBox8.Text = "Sum";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.PenalizationsSumCB.AutoSize = true;
+            this.PenalizationsSumCB.Location = new System.Drawing.Point(588, 18);
+            this.PenalizationsSumCB.Name = "PenalizationsSumCB";
+            this.PenalizationsSumCB.Size = new System.Drawing.Size(47, 17);
+            this.PenalizationsSumCB.TabIndex = 6;
+            this.PenalizationsSumCB.Text = "Sum";
+            this.PenalizationsSumCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox9
+            // PenalizationsStatusCB
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(313, 19);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(56, 17);
-            this.checkBox9.TabIndex = 4;
-            this.checkBox9.Text = "Status";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.PenalizationsStatusCB.AutoSize = true;
+            this.PenalizationsStatusCB.Location = new System.Drawing.Point(313, 19);
+            this.PenalizationsStatusCB.Name = "PenalizationsStatusCB";
+            this.PenalizationsStatusCB.Size = new System.Drawing.Size(56, 17);
+            this.PenalizationsStatusCB.TabIndex = 4;
+            this.PenalizationsStatusCB.Text = "Status";
+            this.PenalizationsStatusCB.UseVisualStyleBackColor = true;
             // 
-            // checkBox10
+            // PenalizationsStudNameCB
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(10, 19);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(94, 17);
-            this.checkBox10.TabIndex = 2;
-            this.checkBox10.Text = "Student Name";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.PenalizationsStudNameCB.AutoSize = true;
+            this.PenalizationsStudNameCB.Location = new System.Drawing.Point(10, 19);
+            this.PenalizationsStudNameCB.Name = "PenalizationsStudNameCB";
+            this.PenalizationsStudNameCB.Size = new System.Drawing.Size(94, 17);
+            this.PenalizationsStudNameCB.TabIndex = 2;
+            this.PenalizationsStudNameCB.Text = "Student Name";
+            this.PenalizationsStudNameCB.UseVisualStyleBackColor = true;
             // 
             // _debtsTabPage
             // 
@@ -1951,23 +1978,6 @@
             this._returnsTabPage.Text = "Returns";
             this._returnsTabPage.UseVisualStyleBackColor = true;
             // 
-            // CardsAddCNPCmB
-            // 
-            this.CardsAddCNPCmB.FormattingEnabled = true;
-            this.CardsAddCNPCmB.Location = new System.Drawing.Point(88, 43);
-            this.CardsAddCNPCmB.Name = "CardsAddCNPCmB";
-            this.CardsAddCNPCmB.Size = new System.Drawing.Size(145, 21);
-            this.CardsAddCNPCmB.TabIndex = 10;
-            // 
-            // CardsAddNameCmB
-            // 
-            this.CardsAddNameCmB.FormattingEnabled = true;
-            this.CardsAddNameCmB.Location = new System.Drawing.Point(88, 17);
-            this.CardsAddNameCmB.Name = "CardsAddNameCmB";
-            this.CardsAddNameCmB.Size = new System.Drawing.Size(145, 21);
-            this.CardsAddNameCmB.TabIndex = 11;
-            this.CardsAddNameCmB.SelectedValueChanged += new System.EventHandler(this.OnCardsNameChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2002,8 +2012,8 @@
             this._penalizationsTabPage.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
+            this.PenalizationsEditGroup.ResumeLayout(false);
+            this.PenalizationsEditGroup.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this._debtsTabPage.ResumeLayout(false);
@@ -2127,31 +2137,28 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button PenalizationsAddButton;
+        private System.Windows.Forms.Button PenalizationsEditButton;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.TextBox PenalizationsAddSumTB;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.Button PenalizationsDeleteButton;
+        private System.Windows.Forms.Button PenalizationsSaveButton;
+        private System.Windows.Forms.GroupBox PenalizationsEditGroup;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox PenalizationsEditSumTB;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.ListBox listBoxPenalizations;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.ComboBox comboBox10;
-        private System.Windows.Forms.ComboBox comboBox11;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.Button PenalizationsApplyFiltersButton;
+        private System.Windows.Forms.ComboBox PenalizationsSumCmB;
+        private System.Windows.Forms.ComboBox PenalizationsStatusCmB;
+        private System.Windows.Forms.ComboBox PenalizationsStudNameCmB;
+        private System.Windows.Forms.CheckBox PenalizationsSumCB;
+        private System.Windows.Forms.CheckBox PenalizationsStatusCB;
+        private System.Windows.Forms.CheckBox PenalizationsStudNameCB;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ListBox listBox6;
@@ -2204,6 +2211,9 @@
         private System.Windows.Forms.ComboBox StudentsEditStudyYearCmB;
         private System.Windows.Forms.ComboBox CardsAddNameCmB;
         private System.Windows.Forms.ComboBox CardsAddCNPCmB;
+        private System.Windows.Forms.ComboBox PenalizationsEditStatusCmB;
+        private System.Windows.Forms.ComboBox PenalizationsAddCNPCmB;
+        private System.Windows.Forms.ComboBox PenalizationsAddNameCmB;
     }
 }
 

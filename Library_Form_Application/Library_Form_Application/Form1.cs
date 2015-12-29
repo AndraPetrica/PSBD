@@ -68,6 +68,7 @@ namespace Library_Form_Application
             _adapters[(int)adaptersIndexes.booksIndex] = new Books(_oracleConn);
             _adapters[(int)adaptersIndexes.studentsIndex] = new Students(_oracleConn);
             _adapters[(int)adaptersIndexes.cardsIndex] = new Cards(_oracleConn);
+            _adapters[(int)adaptersIndexes.penalizationsIndex] = new Penalizations(_oracleConn);
           
         }
 
@@ -93,7 +94,7 @@ namespace Library_Form_Application
             }
             else if (tab.CompareTo("Penalizations") == 0)
             {
-
+                LoadAllPenalizations();
             }
             else if (tab.CompareTo("Debts") == 0)
             {
@@ -120,6 +121,13 @@ namespace Library_Form_Application
             StudentsEditButton.Enabled = false;
             StudentsSaveButton.Enabled = false;
             StudentsDeleteButton.Enabled = false;
+
+            //Penalizations
+
+            PenalizationsEditGroup.Enabled = false;
+            PenalizationsSaveButton.Enabled = false;
+            PenalizationsEditButton.Enabled = false;
+            PenalizationsDeleteButton.Enabled = false;
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -359,7 +367,7 @@ namespace Library_Form_Application
                 if (success)
                 {
                     LoadAllStudents();
-                    ClearAddStudentFields();
+                    ClearAddFields();
                 }
                 
                 String message = (success ? "Student added !" : "Student not added : Fill all fields !");
@@ -383,7 +391,7 @@ namespace Library_Form_Application
                 if (success)
                 {
                     LoadAllStudents();
-                    ClearAddStudentFields();
+                    ClearAddFields();
                 }
 
                 String message = (success ? "Student deleted !" : "Student not deleted");
@@ -395,7 +403,7 @@ namespace Library_Form_Application
             }
         }
 
-        private void ClearAddStudentFields()
+        private void ClearAddFields()
         {
             studentsAddCNPTb.Text = "";
             studentsAddFirstNameTb.Text = "";
@@ -561,8 +569,145 @@ namespace Library_Form_Application
             }
         }
 
+
         #endregion Cards
 
+        #region Penalizations
 
+        private void LoadAllPenalizations()
+        {
+            Penalizations penalizationsAdapter = ((Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex]);
+            List<Penalization> penalizations = penalizationsAdapter.GetAllPenalizations();
+
+            listBoxPenalizations.Items.Clear();
+            foreach (Penalization penalization in penalizations)
+            {
+                listBoxPenalizations.Items.Add(penalization.sum + " " + penalization.status + " " + penalization.first_name + " " + penalization.last_name);
+            }
+
+            PenalizationsStatusCmB.Items.Clear();
+            PenalizationsStatusCmB.Items.Add("Paid");
+            PenalizationsStatusCmB.Items.Add("Unpaid");
+
+            PenalizationsEditStatusCmB.Items.Clear();
+            PenalizationsEditStatusCmB.Items.Add("Paid");
+            PenalizationsEditStatusCmB.Items.Add("Unpaid");
+
+            PenalizationsSumCmB.Items.Clear();
+            PenalizationsSumCmB.Items.Add("<50");
+            PenalizationsSumCmB.Items.Add("50-100");
+            PenalizationsSumCmB.Items.Add(">100");
+
+            //Populate add combos
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
+            List<Student> names = studentsAdapter.GetAllStudents();
+
+            PenalizationsAddNameCmB.Items.Clear();
+            foreach (Student s in names)
+            {
+                PenalizationsAddNameCmB.Items.Add(s.last_name + " " + s.first_name);
+            }
+
+        }
+
+        private void EditPenalization(object sender, EventArgs e)
+        {
+            PenalizationsEditGroup.Enabled = true;
+            PenalizationsSaveButton.Enabled = true;
+        }
+
+        private void SavePenalizationChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Penalizations penalizationsAdapter = (Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex];
+                int index = listBoxPenalizations.SelectedIndex;
+                Penalization entry = penalizationsAdapter.penalizations[index];
+                bool isUpdated = penalizationsAdapter.UpdatePenalization(entry.penalization_id, PenalizationsEditSumTB.Text, PenalizationsEditStatusCmB.Text);
+                String message = (isUpdated ? "Penalization successfully updated" : "Penalization not updated");
+                MessageBox.Show(message);
+                LoadAllPenalizations();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating penalization: " + ex.Message);
+            }
+        }
+
+        private void AddPenalization(object sender, EventArgs e)
+        {
+            try
+            {
+                Penalizations penalizationsAdapter = ((Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex]);
+                bool succes = penalizationsAdapter.AddPenalization(PenalizationsAddCNPCmB.Text, PenalizationsAddSumTB.Text);
+                String message = (succes ? "Penalization added" : "Penalization not added");
+                MessageBox.Show(message);
+                ClearAddFields();
+                LoadAllPenalizations();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeletePenalization(object sender, EventArgs e)
+        {
+            try
+            {
+                Penalizations penalizationsAdapter = (Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex];
+                int index = listBoxPenalizations.SelectedIndex;
+                Penalization entry = penalizationsAdapter.penalizations[index];
+                bool isUpdated = penalizationsAdapter.DeletePenalization(entry.penalization_id);
+                String message = (isUpdated ? "Penalization successfully deleted" : "Penalization not deleted");
+                MessageBox.Show(message);
+                LoadAllPenalizations();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting penalization: " + ex.Message);
+            }
+        }
+
+        private void SearchPenalizations(object sender, EventArgs e)
+        {
+            MessageBox.Show("Search");
+        }
+
+        private void OnPenalizationNameChanged(object sender, EventArgs e)
+        {
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
+            String[] names = PenalizationsAddNameCmB.Text.Split(" ".ToCharArray());
+            List<String> CNPs = studentsAdapter.GetCNPListByName(names[1], names[0]);
+            PenalizationsAddCNPCmB.Items.Clear();
+
+            foreach (String cnp in CNPs)
+            {
+                PenalizationsAddCNPCmB.Items.Add(cnp);
+            }
+        }
+
+
+        #endregion Penalizations
+
+        private void OnSelectPenalization(object sender, EventArgs e)
+        {
+            try
+            {
+                PenalizationsEditButton.Enabled = true;
+                Penalizations penalizationsAdapter = (Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex];
+                int index = listBoxPenalizations.SelectedIndex;
+                Penalization entry = penalizationsAdapter.penalizations[index];
+
+                PenalizationsEditStatusCmB.Text = entry.status;
+                PenalizationsEditSumTB.Text = entry.sum;
+                PenalizationsDeleteButton.Enabled = true;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
