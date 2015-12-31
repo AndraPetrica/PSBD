@@ -51,6 +51,7 @@
     <Compile Include="Books.cs" />
     <Compile Include="Cards.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="Debts.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -58,6 +59,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loans.cs" />
     <Compile Include="Penalizations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

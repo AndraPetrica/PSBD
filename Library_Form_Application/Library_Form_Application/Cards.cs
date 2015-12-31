@@ -208,13 +208,12 @@ namespace Library_Form_Application
 
             OracleCommand cmd = new OracleCommand(command, _connection);
             OracleDataReader dr = cmd.ExecuteReader();
-            cards.Clear();
 
             while (dr.Read())
             {
                 try
                 {
-                    cards.Add(new Card(
+                    cardsList.Add(new Card(
                         dr["CARD_ID"].ToString(),
                         dr["CREATION_DATE"].ToString(),
                         dr["LAST_VALIDATION"].ToString(),
@@ -228,67 +227,7 @@ namespace Library_Form_Application
                 }
             }
 
-            return cards;
-
-            cards = cardsList;
-            return cards;
+            return cardsList;
         }
-
-
-        /*public List<Card> Search(String title, String author, String type)
-        {
-            String command = "SELECT * FROM BOOKS WHERE ";
-            bool previousSelected = false;
-
-            if (title.CompareTo("") != 0)
-            {
-                command += String.Format("TITLE = '{0}'", title);
-                previousSelected = true;
-            }
-            if (author.CompareTo("") != 0)
-            {
-                command += (previousSelected ? " AND " : "");
-                command += String.Format("AUTHOR = '{0}'", author);
-                previousSelected = true;
-            }
-
-            if (type.CompareTo("") != 0)
-            {
-                command += (previousSelected ? " AND " : "");
-                command += String.Format("TYPE = '{0}'", type);
-                previousSelected = true;
-            }
-
-            if (!previousSelected)
-            {
-                command = "SELECT * FROM BOOKS";
-            }
-
-            OracleCommand cmd = new OracleCommand(command, _connection);
-            OracleDataReader dr = cmd.ExecuteReader();
-            books.Clear();
-
-            while (dr.Read())
-            {
-                try
-                {
-                    books.Add(new Card(
-                        dr["BOOK_ID"].ToString(),
-                        dr["TITLE"].ToString(),
-                        dr["AUTHOR"].ToString(),
-                        dr["PUBLICATION_DATE"].ToString(),
-                        dr["PUBLISHER"].ToString(),
-                        dr["TOTAL_STOCK"].ToString(),
-                        dr["AVALAIBLE_STOCK"].ToString(),
-                        dr["TYPE"].ToString()));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Eroare la citirea cartilor : " + ex.ToString());
-                }
-            }
-
-            return books;
-        }*/
     }
 }

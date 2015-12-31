@@ -22,8 +22,7 @@ namespace Library_Form_Application
             cardsIndex,
             penalizationsIndex,
             debtsIndex,
-            loansIndex,
-            returnsIndex
+            loansIndex
         }
 
         public Form1()
@@ -56,20 +55,22 @@ namespace Library_Form_Application
         public bool Login()
         {
             bool bRet = _connection.Login("user1", "user1");
-            String message;
-            message = (bRet == true ? "Utilizator logat" : "Utilizator nelogat");
-            MessageBox.Show(message);
+            if(!bRet)
+            {
+                MessageBox.Show("Connection problems");
+            }
             return bRet;
         }
 
         private void InitAdapters()
         {
-            _adapters = new Entity[7];
+            _adapters = new Entity[6];
             _adapters[(int)adaptersIndexes.booksIndex] = new Books(_oracleConn);
             _adapters[(int)adaptersIndexes.studentsIndex] = new Students(_oracleConn);
             _adapters[(int)adaptersIndexes.cardsIndex] = new Cards(_oracleConn);
             _adapters[(int)adaptersIndexes.penalizationsIndex] = new Penalizations(_oracleConn);
-          
+            _adapters[(int)adaptersIndexes.loansIndex] = new Loans(_oracleConn);
+            _adapters[(int)adaptersIndexes.debtsIndex] = new Debts(_oracleConn);      
         }
 
         #endregion Connection
@@ -104,10 +105,6 @@ namespace Library_Form_Application
             {
                 LoadAllLoans();
             }
-            else if (tab.CompareTo("Returns") == 0)
-            {
-                LoadAllReturns();
-            }
         }
         private void DisableEditElements()
         {
@@ -134,18 +131,33 @@ namespace Library_Form_Application
             PenalizationsSaveButton.Enabled = false;
             PenalizationsEditButton.Enabled = false;
             PenalizationsDeleteButton.Enabled = false;
+
+            //Loans
+            LoansEditGroup.Enabled = false;
+            LoansEditButton.Enabled = false;
+            LoansSaveButton.Enabled = false;
+
+
         }
 
         private void OnLoad(object sender, EventArgs e)
         {
-            bool isInitializedOK = InitOracleDbConnection();
-            if ( true == isInitializedOK)
+            try
             {
-                Login();
-                InitAdapters();
-                DisableEditElements();
+                bool isInitializedOK = InitOracleDbConnection();
+                if (true == isInitializedOK)
+                {
+                    Login();
+                    InitAdapters();
+                    DisableEditElements();
+                    LoadAllStudents();
+                }
+
             }
-            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void ClearAddFields()
@@ -195,7 +207,7 @@ namespace Library_Form_Application
             listBoxBooks.Items.Clear();
             foreach (Book book in books)
             {
-                listBoxBooks.Items.Add(book.title + " " + book.author + " " + book.pubDate.Split(' ')[0] );
+                listBoxBooks.Items.Add(book.title + " - " + book.author + " " + book.avalaibleStock + "/" + book.totalStock + " - " + book.pubDate.Split(' ')[0] );
             }
 
             List<String> authors = booksAdapter.GetAuthors();
@@ -706,13 +718,14 @@ namespace Library_Form_Application
             PenalizationsSumCmB.Items.Add(">100");
 
             //Populate add combos
-            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
-            List<Student> names = studentsAdapter.GetAllStudents();
+            Cards cardAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+            List<Card> names = cardAdapter.GetAllCards();
 
             PenalizationsAddNameCmB.Items.Clear();
-            foreach (Student s in names)
+            foreach (Card s in names)
             {
-                PenalizationsAddNameCmB.Items.Add(s.last_name + " " + s.first_name);
+                PenalizationsAddNameCmB.Items.Add(s.lastName + " " + s.firstName);
+                PenalizationsStudNameCmB.Items.Add(s.lastName + " " + s.firstName);
             }
 
         }
@@ -778,7 +791,33 @@ namespace Library_Form_Application
 
         private void SearchPenalizations(object sender, EventArgs e)
         {
-            MessageBox.Show("Search");
+            String cnp = "";
+            String status = "";
+            String sum = "";
+            if(PenalizationsStudNameCB.Checked)
+            {
+                int index = PenalizationsStudNameCmB.SelectedIndex;
+                Cards cardAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+                cnp = cardAdapter.cards[index].cnp;
+            }
+            if(PenalizationsStatusCB.Checked)
+            {
+                status = PenalizationsStatusCmB.Text;
+            }
+            if(PenalizationsSumCB.Checked)
+            {
+                sum = PenalizationsSumCmB.SelectedIndex.ToString();
+            }
+
+            Penalizations penalizationsAdapter = ((Penalizations)_adapters[(int)adaptersIndexes.penalizationsIndex]);
+            List<Penalization> penalizations = penalizationsAdapter.Search(cnp, status, sum);
+
+            listBoxPenalizations.Items.Clear();
+            foreach (Penalization penalization in penalizations)
+            {
+                listBoxPenalizations.Items.Add(penalization.sum + " " + penalization.status + " " + penalization.first_name + " " + penalization.last_name);
+            }
+
         }
 
         private void OnPenalizationNameChanged(object sender, EventArgs e)
@@ -820,7 +859,99 @@ namespace Library_Form_Application
 
         private void LoadAllDebts()
         {
+            Debts debtsAdapter = ((Debts)_adapters[(int)adaptersIndexes.debtsIndex]);
+            List<Debt> debts = debtsAdapter.GetAllDebts();
 
+            listBoxDebts.Items.Clear();
+            listBoxDebtsBooks.Items.Clear();
+            DebtsEditFirstName.Text = "";
+            DebtsEditLastName.Text = "";
+
+            foreach (Debt debt in debts)
+            {
+                listBoxDebts.Items.Add(debt.firstName + " " + debt.lastName);
+            }
+
+            DebtsStudyYearCmB.Items.Clear();
+            DebtsStudyYearCmB.Items.Add("1");
+            DebtsStudyYearCmB.Items.Add("2");
+            DebtsStudyYearCmB.Items.Add("3");
+            DebtsStudyYearCmB.Items.Add("4");
+
+            Cards cardsAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+            List<Card> cards = cardsAdapter.GetAllCards();
+            DebtsStudentNameCmB.Items.Clear();
+            foreach ( Card c in cards)
+            {
+                DebtsStudentNameCmB.Items.Add(c.firstName + " " + c.lastName + " " + c.cnp);
+            }
+
+            Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+            List<Book> books = booksAdapter.GetAllBooks();
+            DebtsBookCmB.Items.Clear();
+
+            foreach (Book book in books)
+            {
+                DebtsBookCmB.Items.Add(book.title + " - " + book.author + "  - " + book.publisher + "@" + book.pubDate.Split(" ".ToCharArray())[0]);
+            }
+        }
+
+        private void OnDebtSelected(object sender, EventArgs e)
+        {
+            int index = listBoxDebts.SelectedIndex;
+            Debts debtsAdapter = ((Debts)_adapters[(int)adaptersIndexes.debtsIndex]);
+
+            if (index < debtsAdapter.debts.Count)
+            {
+                Debt debt = debtsAdapter.debts[index];
+                DebtsEditFirstName.Text = debt.firstName;
+                DebtsEditLastName.Text = debt.lastName;
+
+                listBoxDebtsBooks.Items.Clear();
+                List<String> books = debtsAdapter.GetListOfBooksByCardId(debt.cardId, "On Loan");
+
+                foreach (String book in books)
+                {
+                    listBoxDebtsBooks.Items.Add(book);
+                }
+            }
+        }
+
+        private void SearchDebts(object sender, EventArgs e)
+        {
+            String cardId = "";
+            String book = "";
+            String year = "";
+            
+            if(DebtsStudentNameCB.Checked)
+            {
+                int index = DebtsStudentNameCmB.SelectedIndex;               
+                Cards cardsAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+                cardId = cardsAdapter.cards[index].cardId;
+            }
+            if(DebtsBookCB.Checked)
+            {
+                int index = DebtsBookCmB.SelectedIndex;
+                Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+                book = booksAdapter.books[index].bookId;
+            }
+            if(DebtsStudyYearCB.Checked)
+            {
+                year = DebtsStudyYearCmB.Text;
+            }
+
+            Debts debtsAdapter = ((Debts)_adapters[(int)adaptersIndexes.debtsIndex]);
+            List<Debt> debts = debtsAdapter.Search(cardId, book, year);
+
+            listBoxDebts.Items.Clear();
+            listBoxDebtsBooks.Items.Clear();
+            DebtsEditFirstName.Text = "";
+            DebtsEditLastName.Text = "";
+
+            foreach (Debt debt in debts)
+            {
+                listBoxDebts.Items.Add(debt.firstName + " " + debt.lastName);
+            }
         }
 
         #endregion Debts
@@ -828,19 +959,189 @@ namespace Library_Form_Application
 
         #region Loans
 
-         private void LoadAllLoans()
+        private void LoadAllLoans()
         {
+            Cards cardsAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+            List<Card> cards = cardsAdapter.GetAllCards();
+            Loans loansAdapter = ((Loans)_adapters[(int)adaptersIndexes.loansIndex]);
+            List<Loan> loans = loansAdapter.GetAllLoans();
+            Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+            List<Book> books = booksAdapter.GetAllBooks();
+
+            listBoxLoans.Items.Clear();
+
+            //main listbox
+            foreach(Loan loan in loans)
+            {
+                listBoxLoans.Items.Add(loan.firstName + " " + loan.lastName + " - " + loan.bookTitle + ", " + loan.bookAuthor + " - loan : " + loan.loanDate.Split(" ".ToCharArray())[0]);
+            }
+
+            //Add loan group
+            foreach (Card card in cards)
+            {
+                LoansAddNameCmB.Items.Add(card.lastName + " " + card.firstName);
+            }
+
+            // if returned/lost then trigger
+            LoansEditStatusCmB.Items.Clear();
+            LoansEditStatusCmB.Items.Add("On Loan");
+            LoansEditStatusCmB.Items.Add("Returned");
+            LoansEditStatusCmB.Items.Add("Lost");
+
+            //Search Group
+            LoansStudentNameCmB.Items.Clear();
+            foreach (Card card in cards)
+            {
+                LoansStudentNameCmB.Items.Add(card.lastName + " " + card.firstName);
+            }
+            
+            LoansBookCmB.Items.Clear();
+            foreach (Book book in books)
+            {
+                LoansBookCmB.Items.Add(book.title + " - " + book.author + "  - " + book.publisher + " - " + book.pubDate.Split(" ".ToCharArray())[0]);
+            }
+
+            LoansStatusCmB.Items.Clear();
+            LoansStatusCmB.Items.Add("On Loan");
+            LoansStatusCmB.Items.Add("Returned");
+            LoansStatusCmB.Items.Add("Lost");
+
 
         }
+
+        private void AddLoan(object sender, EventArgs e)
+        {
+            try
+            {
+                int indexCNP = LoansAddCNPCmB.SelectedIndex;
+                Cards cardsAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+                Card card = cardsAdapter.cards[indexCNP];
+
+                Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+                int indexBook = LoansAddBookCmB.SelectedIndex;
+                Book book = booksAdapter.books[indexBook];
+
+                Loans loansAdapter = ((Loans)_adapters[(int)adaptersIndexes.loansIndex]);
+                bool loandIsAdded = loansAdapter.AddLoan(book.bookId, card.cnp);
+                String message = (loandIsAdded ? "Book on loan" : "Book not on loan");
+                MessageBox.Show(message);
+                LoadAllLoans();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error adding loan : " + ex.ToString());
+            }
+             
+        }
+
+        private void SaveLoanChanges(object sender, EventArgs e)
+        {
+            try
+            {
+                Loans loansAdapter = ((Loans)_adapters[(int)adaptersIndexes.loansIndex]);
+                int index = listBoxLoans.SelectedIndex;
+                Loan loan = loansAdapter.loans[index];
+                bool loandIsUpdated = loansAdapter.UpdateLoan(loan.loanId, LoansEditStatusCmB.Text);
+                String message = (loandIsUpdated ? "Loan Updated" : "Loan not updated");
+                MessageBox.Show(message);
+                LoadAllLoans();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding loan : " + ex.ToString());
+            }
+        }
+
+        private void EditLoan(object sender, EventArgs e)
+        {
+            LoansEditGroup.Enabled = true;
+            LoansSaveButton.Enabled = true;
+        }
+
+        private void OnLoanSelected(object sender, EventArgs e)
+        {
+            LoansEditButton.Enabled = true;
+            Loans loansAdapter = ((Loans)_adapters[(int)adaptersIndexes.loansIndex]);
+            int index = listBoxLoans.SelectedIndex;
+            if(index < loansAdapter.loans.Count)
+            {
+                Loan loan = loansAdapter.loans[index];
+                LoansEditStatusCmB.Text = loan.status;
+            }
+           
+        }
+
+        private void OnLoanNameSelected(object sender, EventArgs e)
+        {
+            Students studentsAdapter = ((Students)_adapters[(int)adaptersIndexes.studentsIndex]);
+            String[] names = LoansAddNameCmB.Text.Split(" ".ToCharArray());
+            List<String> CNPs = studentsAdapter.GetCNPListByName(names[1], names[0]);
+            LoansAddCNPCmB.Items.Clear();
+
+            foreach (String cnp in CNPs)
+            {
+                LoansAddCNPCmB.Items.Add(cnp);
+            }
+        }
+
+        private void OnLoanCnpSelected(object sender, EventArgs e)
+        {
+            Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+            List<Book> books = booksAdapter.GetAllBooks();
+            LoansAddBookCmB.Items.Clear();
+
+            foreach ( Book book in books)
+            {
+                LoansAddBookCmB.Items.Add(book.title + " - " + book.author + "  - " + book.publisher + " - " + book.pubDate.Split(" ".ToCharArray())[0]);
+            }
+        }
+
+        private void SearchLoans(object sender, EventArgs e)
+        {
+            String student = "";
+            String date = "";
+            String book = "";
+            String status = "";
+
+            if(LoansStudNameCB.Checked)
+            {
+                int index = LoansStudentNameCmB.SelectedIndex;
+                Cards cardsAdapter = ((Cards)_adapters[(int)adaptersIndexes.cardsIndex]);
+                Card card = cardsAdapter.cards[index];
+                student = card.cardId;
+            }
+            if(LoansReturnDateCB.Checked)
+            {
+                date = LoansReturnDateCmB.Text;
+            }
+            if(LoansBookCB.Checked)
+            {
+                //Get index and book id 
+                int index = LoansBookCmB.SelectedIndex;
+                Books booksAdapter = ((Books)_adapters[(int)adaptersIndexes.booksIndex]);
+                Book b = booksAdapter.books[index];
+                book = b.bookId;
+            }
+            if(LoansStatusCB.Checked)
+            {
+                status = LoansStatusCmB.Text;
+            }
+
+            Loans loansAdapter = ((Loans)_adapters[(int)adaptersIndexes.loansIndex]);
+            List<Loan> loans = loansAdapter.Search(student, book, status, date);
+
+            listBoxLoans.Items.Clear();
+
+            //main listbox
+            foreach (Loan loan in loans)
+            {
+                listBoxLoans.Items.Add(loan.firstName + " " + loan.lastName + " - " + loan.bookTitle + ", " + loan.bookAuthor + " - loan : " + loan.loanDate.Split(" ".ToCharArray())[0]);
+            }           
+        }
+
+
+
         #endregion Loans
-
-        #region Returns
-
-        private void LoadAllReturns()
-        {
-
-        }
-        #endregion Returns
 
 
     }

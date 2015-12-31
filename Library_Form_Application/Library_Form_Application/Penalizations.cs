@@ -40,7 +40,11 @@ namespace Library_Form_Application
         {
             List<Penalization> penalizationsList = new List<Penalization>();
 
-            String cmdSring = "SELECT * FROM PENALIZATIONS";
+            String cmdSring = "SELECT p.PENALIZATION_ID, p.SUM, p.STATUS, p.CARD_ID, s.FIRST_NAME, s.LAST_NAME " +
+                                  "FROM PENALIZATIONS p JOIN CARDS c " +
+                                    "ON p.CARD_ID = c.CARD_ID " +
+                                    "JOIN STUDENTS s " +
+                                    "ON c.STUDENT_ID = s.CNP" ;
             OracleCommand cmd = new OracleCommand(cmdSring, _connection);
             OracleDataReader dr = cmd.ExecuteReader();
 
@@ -52,8 +56,8 @@ namespace Library_Form_Application
                         dr["SUM"].ToString(),
                         dr["STATUS"].ToString(),
                         dr["CARD_ID"].ToString(),
-                        "k",
-                        "k"
+                        dr["FIRST_NAME"].ToString(),
+                        dr["LAST_NAME"].ToString()
                         );
 
                     penalizationsList.Add(stud);
@@ -155,64 +159,78 @@ namespace Library_Form_Application
             return success;
         }
 
-        public List<Penalization> Search(String fName, String lName, String status, String sum)
+        public List<Penalization> Search(String cnp, String status, String sum)
         {
-            int iSum = Convert.ToInt32(sum);
 
-            //String command = "SELECT * FROM STUDENTS WHERE ";
-            //bool previousSelected = false;
+            List<Penalization> penalizationsList = new List<Penalization>();
 
-            //if (fName.CompareTo("") != 0)
-            //{
-            //    command += String.Format("FIRST_NAME = '{0}'", fName);
-            //    previousSelected = true;
-            //}
-            //if (lName.CompareTo("") != 0)
-            //{
-            //    command += (previousSelected ? " AND " : "");
-            //    command += String.Format("LAST_NAME = '{0}'", lName);
-            //    previousSelected = true;
-            //}
+            String cmdSring = "SELECT p.PENALIZATION_ID, p.SUM, p.STATUS, p.CARD_ID, s.FIRST_NAME, s.LAST_NAME " +
+                                  "FROM PENALIZATIONS p JOIN CARDS c " +
+                                    "ON p.CARD_ID = c.CARD_ID " +
+                                    "JOIN STUDENTS s " +
+                                    "ON c.STUDENT_ID = s.CNP";
 
-            //if (studyYear.CompareTo("") != 0)
-            //{
-            //    int study_year = Convert.ToInt32(studyYear);
-            //    command += (previousSelected ? " AND " : "");
-            //    command += String.Format("STUDY_YEAR = {0}", study_year);
-            //    previousSelected = true;
-            //}
+            String restriction = " WHERE ";
+            bool prevSelected = false;
+            if (cnp.CompareTo("") != 0)
+            {
+                restriction += " s.CNP = '" + cnp + "' ";
+                prevSelected = true;
+            }
+            if (status.CompareTo("") != 0)
+            {
+                restriction += (prevSelected ? " AND " : "");
+                restriction += " p.STATUS = '" + status + "' ";
+                prevSelected = true;
+            }
+            if (sum.CompareTo("") != 0)
+            {
+                restriction += (prevSelected ? " AND " : "");
+                if(sum.CompareTo("0") == 0)
+                {
+                    restriction += " p.SUM <= 50 ";
+                }
+                else if (sum.CompareTo("1") == 0)
+                {
+                    restriction += " p.SUM > 50 AND p.SUM < 100";
+                }
+                else
+                {
+                    restriction += " p.SUM >= 100 ";
+                }
+                prevSelected = true;
+            }
 
-            //if (!previousSelected)
-            //{
-            //    command = "SELECT * FROM STUDENTS";
-            //}
+            if(prevSelected)
+            {
+                cmdSring += restriction;
+            }
 
-            //OracleCommand cmd = new OracleCommand(command, _connection);
-            //OracleDataReader dr = cmd.ExecuteReader();
-            //students.Clear();
+            OracleCommand cmd = new OracleCommand(cmdSring, _connection);
+            OracleDataReader dr = cmd.ExecuteReader();
 
-            //while (dr.Read())
-            //{
-            //    try
-            //    {
-            //        students.Add(new Student(
-            //            dr["CNP"].ToString(),
-            //            dr["FIRST_NAME"].ToString(),
-            //            dr["LAST_NAME"].ToString(),
-            //            dr["BIRTH_DATE"].ToString(),
-            //            dr["ADDRESS"].ToString(),
-            //            dr["PHONE"].ToString(),
-            //            dr["EMAIL"].ToString(),
-            //            dr["GENDER"].ToString(),
-            //            dr["STUDY_YEAR"].ToString()));
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error reading students : " + ex.ToString());
-            //    }
-            //}
+            while (dr.Read())
+            {
+                try
+                {
+                    Penalization stud = new Penalization(dr["PENALIZATION_ID"].ToString(),
+                        dr["SUM"].ToString(),
+                        dr["STATUS"].ToString(),
+                        dr["CARD_ID"].ToString(),
+                        dr["FIRST_NAME"].ToString(),
+                        dr["LAST_NAME"].ToString()
+                        );
 
-            return penalizations;
+                    penalizationsList.Add(stud);
+                }
+                catch (Exception exc)
+                {
+                    System.Windows.Forms.MessageBox.Show("Penalization could not be added to the list \n" + exc.Message);
+                }
+            }
+
+            penalizations = penalizationsList;
+            return penalizationsList;
         }
     }
 }
